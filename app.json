@@ -1,0 +1,31 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/profile/index",
+    "pages/secret/index"
+  ],
+  "window": {
+    "navigationBarTitleText": "秘密说"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "广场"
+      },
+      {
+        "pagePath": "pages/profile/index",
+        "text": "我的地盘"
+      },
+      {
+        "pagePath": "pages/secret/index",
+        "text": "立刻吐槽"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
+  "debug": true
+}
