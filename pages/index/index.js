@@ -4,21 +4,18 @@ Page({
   data: {
     text: '我是首页'
   },
-  onLoad: function(options) {
-    //Do some initialize when page load.
-    get({ url: 'profile2' })
-      .then(rsp => {
-        console.log(rsp)
-      })
-      .catch(err => {
-        console.log(err)
-      })
+  onLoad: async function() {
+    //Do some when page show.
+    const rsp = await get({ url: 'profile2' })
+    console.log(rsp)
   },
   onReady: function() {
     //Do some when page ready.
   },
-  onShow: function() {
+  onShow: async function() {
     //Do some when page show.
+    const rsp = await get({ url: 'profile2' })
+    console.log(rsp)
   },
   onHide: function() {
     //Do some when page hide.

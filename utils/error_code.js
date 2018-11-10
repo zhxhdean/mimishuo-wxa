@@ -1,1 +1,3 @@
-export const INVALID_PARAM = 10001
+module.exports = {
+  code: { INVALID_URL: 10001 }
+}

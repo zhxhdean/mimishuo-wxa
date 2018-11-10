@@ -1,6 +1,11 @@
 const config = require('../config.js')
+const regeneratorRuntime = require('./runtime')
 
-const { INVALID_PARAM } = require('./error_code')
+function noop(){}
+noop(regeneratorRuntime)
+
+
+const {code} = require('./error_code')
 //请求的域名
 const host = 'https://api.mimishuo.net'
 
@@ -13,7 +18,7 @@ function wxRequest(options) {
   if (!Object.values(config.urls).includes(url)) {
     return new Promise((resolve, reject) => {
       return resolve({
-        code: INVALID_PARAM,
+        code: code.INVALID_URL,
         content: '非法的url'
       })
     })
@@ -48,16 +53,16 @@ function wxRequest(options) {
 }
 
 
- function get(options) {
+ async function get(options) {
   options = options || {}
   options.method = 'GET'
-   return wxRequest(options)
+   return await wxRequest(options)
 }
 
-function post(options) {
+async function post(options) {
   options = options || {}
   options.method = 'POST'
-  return wxRequest(options)
+  return await wxRequest(options)
 }
 
 module.exports = {
