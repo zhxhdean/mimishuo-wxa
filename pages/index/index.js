@@ -5,8 +5,8 @@ Page({
   data: {
     text: '我是首页',
     userInfo: {
-
-    }
+    },
+    previewImages: []
   },
   onLoad: async function() {
     //Do some when page show.
@@ -18,7 +18,6 @@ Page({
   onShow: async function() {
     //Do some when page show.
     const rsp = await get({ url: urls.userAuth })
-    console.log(rsp)
     if(rsp.code === 0){
       wx.showToast({title: '数据加载成功'})
       rsp.data.expireTime = formatTimeFromStamp(rsp.data.expireTime, 'Y-M-D h:m:s')
@@ -35,5 +34,27 @@ Page({
   },
   onPullDownRefresh: function() {
     //Do some when page pull down.
+  },
+  chooseImage: function(){
+    
+    if(this.data.previewImages.length >= 5){
+      wx.showToast({title: '最多上传5张'})
+      return
+    }
+    const self = this
+    wx.chooseImage({
+      count: 5,
+      sizeType: ['original', 'compressed'],
+      sourceType: ['album', 'camera'],
+      success (res) {
+        if(res.errMsg === 'chooseImage:ok'){
+        // tempFilePath可以作为img标签的src属性显示图片
+        const tempFilePaths = res.tempFilePaths
+        self.setData({previewImages: self.data.previewImages.concat(tempFilePaths)})
+        console.log(tempFilePaths)
+        }
+
+      }
+    })
   }
 })

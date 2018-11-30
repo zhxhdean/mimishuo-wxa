@@ -13,7 +13,14 @@ const host = 'http://140.143.223.43:8080/api'
 
 // 微信发送请求
 function wxRequest(options) {
-  const { url, data, method, dataType } = options
+  const { url, data, method, dataType, header } = options
+  let head = {}
+  if(!header){
+    head = {
+      'content-type': 'application/json', // 默认值
+      'authorization': '4c2d1153f46311e88a8a0242ac110002', // 测试值，// todo 到时候需要通过接口获取到这个值
+    }
+  }
   // 请求url是否在合法的urls中
   if (!Object.values(config.urls).includes(url)) {
     return new Promise((resolve, reject) => {
@@ -33,12 +40,9 @@ function wxRequest(options) {
       data: data,
       method: request_method,
       dataType: request_dataType,
-      header: {
-        'authorization': '4c2d1153f46311e88a8a0242ac110002', // 测试值，// todo 到时候需要通过接口获取到这个值
-        'content-type': 'application/json' // 默认值
-      },
+      header: head,
       success(res) {
-        console.log(res)
+        // console.log(res)
         // todo ，统一校验
         if (res.statusCode === 200) {
           if(res.data.result === 'success'){
@@ -86,8 +90,15 @@ async function post(options) {
   return await wxRequest(options)
 }
 
+async function put(options) {
+  options = options || {}
+  options.method = 'PUT'
+  return await wxRequest(options)
+}
+
 module.exports = {
   get: get,
   post: post,
+  put: put,
   wxLogin: wxLogin
 }
