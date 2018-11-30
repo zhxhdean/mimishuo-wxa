@@ -1,7 +1,10 @@
 // 域名
 
-
-const urls = { profile: `profile` }
+// api 接口地址
+const urls = { 
+  userInfo: '/user/info', 
+  userAuth: '/user/auth' 
+}
 
 module.exports = {
   urls: urls

@@ -1,4 +1,9 @@
 
 <view>
 {{text}}
+<view>
+昵称： {{userInfo.nickName}}<br/>
+性别：{{userInfo.sex ? '男' : '女'}}<br/>
+过期时间：{{userInfo.expireTime}}
+</view>
 </view>

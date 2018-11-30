@@ -7,7 +7,7 @@ noop(regeneratorRuntime)
 
 const {code} = require('./error_code')
 //请求的域名
-const host = 'https://api.mimishuo.net'
+const host = 'http://140.143.223.43:8080/api'
 
 
 
@@ -34,12 +34,19 @@ function wxRequest(options) {
       method: request_method,
       dataType: request_dataType,
       header: {
+        'authorization': '4c2d1153f46311e88a8a0242ac110002',
         'content-type': 'application/json' // 默认值
       },
       success(res) {
+        console.log(res)
         // todo ，统一校验
         if (res.statusCode === 200) {
-          resolve(res)
+          if(res.data.result === 'success'){
+            //接口成功返回数据
+            resolve({code: 0, data: res.data.data})
+          }else{
+            resolve({code: res.data.errorCode, content: res.data.errorMsg})
+          }
         } else {
           reject(res)
         }
@@ -50,6 +57,20 @@ function wxRequest(options) {
     })
   })
   return promise
+}
+
+// 微信登录
+function wxLogin(){
+  wx.login({
+    success(res){
+      if(res.code){
+        // 发网络请求，调api获取openid
+        console.log(res.code)
+      }else{
+        console.log('登录失败'+res.errMsg)
+      }
+    }
+  })
 }
 
 
@@ -67,5 +88,6 @@ async function post(options) {
 
 module.exports = {
   get: get,
-  post: post
+  post: post,
+  wxLogin: wxLogin
 }
