@@ -34,7 +34,7 @@ function wxRequest(options) {
       method: request_method,
       dataType: request_dataType,
       header: {
-        'authorization': '4c2d1153f46311e88a8a0242ac110002',
+        'authorization': '4c2d1153f46311e88a8a0242ac110002', // 测试值，// todo 到时候需要通过接口获取到这个值
         'content-type': 'application/json' // 默认值
       },
       success(res) {
