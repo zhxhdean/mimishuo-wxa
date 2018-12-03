@@ -24,7 +24,7 @@
         placeholder="此刻你想提的意见或建议..."
         class="content"
         maxlength="200"
-        value="{{content}}"
+        bindinput="setConent"
       ></textarea>
     </view>
     <view class="imglist">

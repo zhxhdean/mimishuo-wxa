@@ -80,6 +80,7 @@ Page({
   },
 
   submit: function(){
+    const self = this
     wx.showModal({
       title: '是否提交？',
       content: '您的吐槽反馈仅HR可见并已加密处理，请放心提交。',
@@ -87,6 +88,7 @@ Page({
       success(res){
         if(res.confirm){
           // todo
+          console.log(self.data)
           console.log('提交')
         }else if(res.cancel){
           //todo
@@ -94,6 +96,9 @@ Page({
         }
       }
     })
+  },
+  setConent: function(e){
+    this.setData({content: e.detail.value})
   },
   // 更换虚拟信息
   changeVirtualInfo: function(){
