@@ -7,6 +7,9 @@
     </view>
     <view class="content">
       {{item.content}}<view></view>
+      <block wx:for="{{item.images}}" wx:key="*this" wx:for-item="i">
+      <image src="{{i}}"/>
+      </block>
     </view>
     <view class="reply">
       <view class="reply-hr"><strong>HR</strong> <text class="c8b8">{{item.replyTime}}</text></view>

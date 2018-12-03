@@ -28,9 +28,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: async function () {
-    wx.showLoading()
+    // wx.showLoading()
     const rsp = await get({ url: urls.userAuth })
-    wx.hideLoading()
+    // wx.hideLoading()
     if(rsp.code === 0){
       this.setData({userInfo: rsp.data})
     }

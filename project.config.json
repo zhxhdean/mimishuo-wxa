@@ -34,6 +34,22 @@
 		"game": {
 			"currentL": -1,
 			"list": []
+		},
+		"miniprogram": {
+			"current": 1,
+			"list": [
+				{
+					"id": -1,
+					"name": "我的",
+					"pathName": "pages/profile/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "首页",
+					"pathName": "pages/index/index"
+				}
+			]
 		}
 	}
 }
