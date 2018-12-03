@@ -1,4 +1,4 @@
-// pages/talk/index.js
+
 const {formatTimeFromStamp} = require('../../utils/timeUtil')
 Page({
 

@@ -1,4 +1,4 @@
-/* pages/talk/index.wxss */
+
 .body{
   font-size:28rpx;
   padding:10rpx 30rpx;

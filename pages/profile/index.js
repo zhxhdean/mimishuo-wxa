@@ -1,11 +1,13 @@
 // pages/profile/index.js
+const {get} = require('../../utils/request')
+const {urls} = require('../../config')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    userInfo: {}
   },
 
   /**
@@ -25,8 +27,14 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-
+  onShow: async function () {
+    wx.showLoading()
+    const rsp = await get({ url: urls.userAuth })
+    wx.hideLoading()
+    if(rsp.code === 0){
+      this.setData({userInfo: rsp.data})
+    }
+    
   },
 
   /**
