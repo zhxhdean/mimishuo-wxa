@@ -1,3 +1,64 @@
-.text{
-  font-size: 14px;
+/* pages/talk/index.wxss */
+.body{
+  font-size:28rpx;
+  padding:10rpx 30rpx;
+  box-sizing: border-box;
+}
+.avator{
+  width:100rpx;
+  height: 100rpx;
+}
+.user{
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+.user view{
+  display: flex;
+  align-items: center;
+}
+.user view text {
+  margin-top: 60rpx;
+}
+.user view:last-child{
+  margin-right: 30rpx;
+}
+.power{
+  width:32rpx;
+  height: 44rpx;
+  margin-right: 5rpx;
+}
+.content{
+  background:#ECECEC;
+  border-radius: 30rpx;
+  margin:30rpx;
+  padding:30rpx;
+  position: relative;
+}
+.content view{
+  position: absolute;
+  top:-44rpx;
+  left:20rpx;
+  border-width:30rpx;
+  border-style: solid;
+  border-color:transparent transparent #ECECEC transparent;
+}
+.reply-hr{
+  color:#1C75BC;
+  display:flex;
+  justify-content: space-between;
+}
+.reply{
+  background:#ECECEC;
+  margin:30rpx;
+  padding:30rpx;
+  position: relative;
+}
+.reply .triangle{
+  position: absolute;
+  top:-44rpx;
+  right:20rpx;
+  border-width:30rpx;
+  border-style: solid;
+  border-color:transparent transparent #ECECEC transparent;
 }

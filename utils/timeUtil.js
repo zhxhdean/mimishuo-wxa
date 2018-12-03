@@ -35,7 +35,7 @@ function formatTimeFromStamp(number, format) {
   returnArr.push(formatNumber(date.getMinutes()))
   returnArr.push(formatNumber(date.getSeconds()))
 
-  for (var i in returnArr) {
+  for (var i in format.split(/\/|-|:|\s/)) {
     format = format.replace(formateArr[i], returnArr[i])
   }
   return format

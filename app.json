@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/talk/index",
     "pages/profile/index",
     "pages/secret/index"
   ],
@@ -18,7 +19,7 @@
         "text": "我的地盘"
       },
       {
-        "pagePath": "pages/secret/index",
+        "pagePath": "pages/talk/index",
         "text": "立刻吐槽"
       }
     ]
