@@ -81,6 +81,7 @@ Page({
 
   submit: function(){
     const self = this
+
     wx.showModal({
       title: '是否提交？',
       content: '您的吐槽反馈仅HR可见并已加密处理，请放心提交。',
@@ -88,11 +89,41 @@ Page({
       success(res){
         if(res.confirm){
           // todo
+          const tasks = []
+          self.data.previewImages.forEach(item => {
+            tasks.push(new Promise((resolve, reject) => {
+              wx.uploadFile({
+                url: 'http://140.143.223.43:8080/api/user/info', // 待定
+                filePath: item,
+                name:'name',
+                // header: {}, // 设置请求的 header
+                // formData: {}, // HTTP 请求中其他额外的 form data
+                success: function(res){
+                  // success
+                  resolve(res)
+                },
+                fail: function() {
+                  // fail
+                  reject()
+                },
+                complete: function() {
+                  // complete
+                }
+              })
+            }))
+          })
+
+          // 批量上传图片
+          Promise.all(tasks).then(rsp => {
+
+          })
+          
           console.log(self.data)
           console.log('提交')
         }else if(res.cancel){
           //todo
           console.log('取消')
+          
         }
       }
     })
