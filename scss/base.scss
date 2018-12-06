@@ -1,0 +1,14 @@
+@charset "UTF-8";
+@import "./vars";
+@import "./mixins";
+
+view, text {
+  font-family: inherit;
+  color: inherit;
+}
+
+.cu-dialog {
+  &__iphone-x {
+    border-bottom: px(68) solid #FFFFFF;
+  }
+}

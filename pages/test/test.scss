@@ -1,0 +1,11 @@
+@charset "UTF-8";
+@import "../../scss/vars";
+@import "../../scss/mixins";
+$main_color: #dddddd;
+.sample {
+  padding: px(15);
+  &__botton {
+    @include size(150);
+    background-color: $main_color;
+  }
+}

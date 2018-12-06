@@ -12,7 +12,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.0.4",
-	"appid": "wxb3c596eaba329a23",
+	"appid": "wx62506aa3535aa4db",
 	"projectname": "%E7%A7%98%E5%AF%86%E8%AF%B4",
 	"debugOptions": {
 		"hidedInDevtools": []
@@ -36,7 +36,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 2,
+			"current": 3,
 			"list": [
 				{
 					"id": -1,
@@ -53,7 +53,13 @@
 				{
 					"id": -1,
 					"name": "吐槽",
-					"pathName": "pages/talk/index"
+					"pathName": "pages/talk/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "111",
+					"pathName": "pages/secret/index"
 				}
 			]
 		}

@@ -1,0 +1,18 @@
+@charset "UTF-8";
+
+// 设计稿宽度
+$design_width: 750;
+
+// 三倍图宽度
+$high_design_width: 1242;
+
+// 750设计稿上的元素尺寸计算成rpx
+@function px($px) {
+  @return $px * 750 / $design_width + rpx;
+}
+
+// 三倍设计稿上的元素尺寸计算rpx,切图使用三倍图的话可以使用它直接用切图尺寸计算出rpx尺寸
+@function pxImage($px) {
+  @return $px * 750 / $high_design_width + rpx;
+}
+

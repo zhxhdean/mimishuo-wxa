@@ -1,0 +1,36 @@
+.cu-tab-bar {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  left: 0;
+  bottom: 0;
+  height: 164rpx;
+}
+.tab-bar_img {
+  width: 112rpx;
+  height: 140rpx;
+}
+.bar-item {
+  flex: 1;
+
+  width: 219rpx;
+  height: 164rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.bar-complaints_btn {
+  line-height: 164rpx;
+
+  height: 164rpx;
+  width: 312rpx;
+  background-color: rgba(27, 120, 191, 1);
+  text-align: center;
+  border: 2rpx solid rgba(255, 255, 255, 0);
+  box-sizing: border-box;
+  color: rgba(255, 255, 255, 1);
+  font-size: 40rpx;
+}

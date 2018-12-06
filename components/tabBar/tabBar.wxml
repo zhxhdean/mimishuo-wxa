@@ -1,0 +1,26 @@
+<view class="cu-tab-bar">
+
+  <view class="bar-item {{currentTab == idx ? 'active' : 'default' }}"
+    wx:for="{{items}}"
+    wx:key="prototype"
+    wx:for-index="idx"
+    wx:for-item="item"
+    data-current="{{idx}}"
+    bindtap="swichNav">
+    <!--<text class="tab-text"
+          wx:for-index="idx"
+          data-current="{{idx}}"
+          src="{{currentTab == idx ? item.selectedIconPath : item.iconPath }}">
+      {{item.text}}
+    </text>-->
+    <image class="tab-bar_img"
+       wx:for-index="idx"
+       data-current="{{idx}}"
+       src="{{currentTab == idx ? item.selectedIconPath : item.iconPath }}">
+    </image>
+  </view>
+
+
+  <view class="bar-complaints_btn">立即吐槽</view>
+</view>
+

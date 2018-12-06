@@ -1,0 +1,19 @@
+<view class="body">
+  <view class="start-top">
+    <view class="top_left">
+      <image class="top_left_img" src="/images/icon/index_eyes.png"/>
+    </view>
+    <view class="top_right">
+      <image class="top_right_img" src="/images/icon/index_title.png"/>
+    </view>
+  </view>
+  <view class="start-middle">
+    <image class="middle_img" src="/images/icon/index_top.png"/>
+  </view>
+  <view class="start-content">
+    <text class="">{{content}}</text>
+  </view>
+    <view class="start-bottom" bindtap="clickComplaints">
+    <image class="bottom_img" src="/images/icon/index_main.png"/>
+  </view>
+</view>

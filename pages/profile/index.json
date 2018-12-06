@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "我的"
+  "navigationBarTitleText": "我的",
+  "usingComponents": {
+    "cu-tab-bar": "/components/tabBar/tabBar"
+  }
 }

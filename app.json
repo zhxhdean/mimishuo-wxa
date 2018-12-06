@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/start/start",
     "pages/index/index",
     "pages/profile/index",
     "pages/talk/index",
@@ -7,22 +8,6 @@
   ],
   "window": {
     "navigationBarTitleText": "秘密说"
-  },
-  "tabBar": {
-    "list": [
-      {
-        "pagePath": "pages/index/index",
-        "text": "广场"
-      },
-      {
-        "pagePath": "pages/profile/index",
-        "text": "我的地盘"
-      },
-      {
-        "pagePath": "pages/talk/index",
-        "text": "立刻吐槽"
-      }
-    ]
   },
   "networkTimeout": {
     "request": 10000,
