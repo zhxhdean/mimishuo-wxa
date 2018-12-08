@@ -6,6 +6,10 @@
   left: 0;
   bottom: 0;
   height: 164rpx;
+
+  background-color: rgba(237, 237, 237, 1);
+  border: 2rpx solid rgba(255, 255, 255, 0);
+
 }
 .tab-bar_img {
   width: 112rpx;

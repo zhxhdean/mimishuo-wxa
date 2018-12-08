@@ -1,13 +1,19 @@
 {
   "pages": [
     "pages/start/start",
+    "pages/main/main",
     "pages/index/index",
     "pages/profile/index",
     "pages/talk/index",
     "pages/secret/index"
   ],
   "window": {
-    "navigationBarTitleText": "秘密说"
+    "navigationBarTitleText": "秘密说",
+
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#ffffff",
+    "backgroundTextStyle": "light"
   },
   "networkTimeout": {
     "request": 10000,

@@ -1,0 +1,6 @@
+<view>
+  <cu-square id="cusquare" wx:if="{{currentTab == 0}}"></cu-square>
+  <cu-profile id="cuprofile" wx:if="{{currentTab == 1}}"></cu-profile>
+
+  <cu-tab-bar currentTab="{{currentTab}}" bindswichNav="swichNav"></cu-tab-bar>
+</view>

@@ -1,0 +1,28 @@
+<view>
+  <view class="user">
+    <image src="{{userInfo.avatar || '../../images/avator.jpg'}}"/>
+    <image src="../../images/flash.png" class="power"/>
+    <text class="cff9">{{userInfo.power || 12}}</text>
+  </view>
+
+  <view class="menu">
+    <navigator url="/pages/secret/index">
+      <view class="menu-item">
+        <view>
+          <image src="../../images/icon/icon_secret.png" />秘密说
+        </view>5
+      </view>
+    </navigator>
+    <view class="menu-item">
+      <view>
+        <image src="../../images/icon/icon_energy.png" />充能值
+      </view>32
+    </view>
+    <view class="menu-item">
+      <view>
+        <image src="../../images/icon/icon_reply.png" />已回复
+      </view>3
+    </view>
+  </view>
+  <cu-tab-bar></cu-tab-bar>
+</view>

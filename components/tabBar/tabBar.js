@@ -1,6 +1,9 @@
 Component({
   properties: {
-
+    currentTab: {
+      type: Number,
+      value: 0
+    }
   },
   data: {
     currentTab: 0,
@@ -17,16 +20,44 @@ Component({
       }
     ]
   },
+  attached () {
+    const {currentTab} = this.properties
+    this.setData({currentTab})
+  },
   methods: {
     swichNav (e) {
-      console.log(e)
       let self = this;
-      if (this.data.currentTab === e.target.dataset.current) {
+      const currentTab = e.target.dataset.current
+      if (this.data.currentTab === currentTab) {
         return false;
       } else {
         self.setData({
           currentTab: e.target.dataset.current
         })
+        // if (currentTab === 0) {
+        //   wx.navigateTo({
+        //     url: '/pages/index/index'
+        //   })
+        // } else {
+        //   wx.navigateTo({
+        //     url: '/pages/profile/index'
+        //   })
+        // }
+        if (currentTab === 0) {
+          wx.setNavigationBarTitle({
+            title: '广场',
+          })
+        } else {
+          wx.setNavigationBarTitle({
+            title: '我的',
+          })
+        }
+        // wx.setNavigationBarTitle({
+        //   title: res.data.nav_name,
+        // })
+        setTimeout(() => {
+          self.triggerEvent('swichNav', currentTab)
+        }, 0)
       }
     }
   }

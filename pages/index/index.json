@@ -1,4 +1,7 @@
 {
   "navigationBarTitleText": "广场",
-  "onReachBottomDistance": 100
+  "onReachBottomDistance": 100,
+  "usingComponents": {
+    "cu-tab-bar": "/components/tabBar/tabBar"
+  }
 }

@@ -1,0 +1,49 @@
+/* pages/profile/index.wxss */
+.user{
+  display: flex;
+  height: 418rpx;
+  align-items: center;
+}
+.user image{
+  margin-left: 60rpx;
+
+  width: 112rpx;
+  height: 150rpx;
+}
+.user .power{
+  margin-left: 20rpx;
+
+  width: 86rpx;
+  height: 150rpx;
+}
+.user text{
+  margin-left: 12rpx;
+
+  font-size: 56rpx;
+  font-weight: bolder;
+}
+.menu {
+  color: rgba(16, 16, 16, 1);
+  font-size: 32rpx;
+  font-family: PingFangSC-regular;
+}
+.menu-item{
+  display: flex;
+  align-items: center;
+  padding: 0 128rpx 0 80rpx;
+  justify-content: space-between;
+  margin-top: 18rpx;
+
+  height: 102rpx;
+  background:#ECECEC;
+}
+.menu-item view{
+  display: flex;
+  align-items: center;
+}
+.menu-item image{
+  width: 100rpx;
+  height: 90rpx;
+  margin-right: 30rpx;
+}
+

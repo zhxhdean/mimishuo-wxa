@@ -66,7 +66,7 @@ Page({
   },
   clickComplaints: function(){
     wx.navigateTo({
-      url: '/pages/index/index'
+      url: '/pages/main/main'
     })
   }
 })
