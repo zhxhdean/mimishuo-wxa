@@ -1,0 +1,12 @@
+@charset "UTF-8";
+@import "../../scss/vars";
+@import "../../scss/mixins";
+.cu-tab-line {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  background: #DDDDDD;
+  @include size(100%,px(1));
+
+}

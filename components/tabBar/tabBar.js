@@ -47,9 +47,13 @@ Component({
           wx.setNavigationBarTitle({
             title: '广场',
           })
-        } else {
+        } else if (currentTab === 1) {
           wx.setNavigationBarTitle({
             title: '我的',
+          })
+        } else if (currentTab === 2) {
+          wx.setNavigationBarTitle({
+            title: '',
           })
         }
         // wx.setNavigationBarTitle({
@@ -59,6 +63,11 @@ Component({
           self.triggerEvent('swichNav', currentTab)
         }, 0)
       }
+    },
+    toComplaints () {
+      wx.navigateTo({
+        url: '/pages/talk/index'
+      })
     }
   }
 })

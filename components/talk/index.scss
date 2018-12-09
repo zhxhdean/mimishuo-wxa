@@ -1,0 +1,150 @@
+@charset "UTF-8";
+@import "../../scss/vars";
+@import "../../scss/mixins";
+.cu-talk {
+  position: absolute;
+
+  background: rgba(241, 241, 241, 1);
+  @include size(100%);
+  &__action {
+    padding:0 px(60);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    height: px(160);
+    line-height: px(160);
+    background: #FFFFFF;
+    font-size: px(56);
+    // border-bottom: px(1) solid #DDDDDD;
+
+    &--submit {
+      color: rgba(139, 195, 74, 1);
+      font-family: SFUIText-regular;
+
+    }
+  }
+
+  &__body {
+    background: #f1f1f1;
+    font-size: px(24);
+    padding:px(10) px(30) px(180) px(30);
+    box-sizing: border-box;
+  }
+
+  &__virtualinfo {
+    padding: px(34) px(20);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    box-sizing: border-box;
+    font-size: px(28);
+    font-family: PingFangSC-regular;
+
+    &__image {
+      overflow: hidden;
+      @include size(px(121),px(164));
+    }
+
+    &__img {
+      @include size(px(121),px(164));
+    }
+    &__flag-image {
+      margin-top: px(50);
+      margin-left: px(32);
+
+      overflow: hidden;
+      @include size(px(88),px(48));
+    }
+    &__flag {
+      @include size(px(88),px(48));
+    }
+
+    &__text {
+      margin-left: px(24);
+      line-height: px(50);
+
+      color: rgba(138, 137, 137, 1);
+      text-align: left;
+    }
+
+    &__change {
+      margin-top: px(54);
+      margin-left: px(20);
+      display: inline-block;
+
+      color: rgba(63, 81, 181, 1);
+      text-align: left;
+
+    }
+  }
+
+  &__textarea {
+    margin-top: px(10);
+
+    background: #eee;
+    width:100%;
+    height: px(120);
+
+    font-size: px(32);
+    text-align: left;
+    font-family: PingFangSC-regular;
+
+    &--placeholder {
+      color: rgba(181, 181, 181, 1);
+    }
+
+    &--area {
+      height: px(120);
+    }
+  }
+
+
+  &__imglist {
+    display: flex;
+    flex-wrap: wrap;
+    &__image {
+      position: relative;
+      margin-right: px(30);
+      margin-top: px(30);
+
+      border: px(1) solid #DDDDDD;
+      @include size(px(200));
+
+      &:nth-child(3n+3) {
+        margin-right: 0;
+      }
+    }
+    &__img {
+      @include size(px(200));
+    }
+
+    &__i {
+      z-index: 9999;
+      position: absolute;
+      display: block;
+      left: px(170);
+      top: px(10);
+      color: #f20;
+      @include size(px(40));
+      font-weight: bold;
+      transform: rotate(45deg) scale(1.5);
+    }
+
+    &__add {
+      position: relative;
+      margin-top: px(30);
+
+      text-align: center;
+      @include size(px(200));
+      line-height: px(180);
+      box-sizing: border-box;
+      font-size: px(100);
+      color: #FFFFFF;
+      background: #C9C9C9;
+      border-radius: 0;
+      font-weight: bolder;
+    }
+  }
+}

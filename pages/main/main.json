@@ -3,6 +3,8 @@
   "usingComponents": {
     "cu-square": "/components/index/index",
     "cu-tab-bar": "/components/tabBar/tabBar",
-    "cu-profile": "/components/profile/index"
+    "cu-profile": "/components/profile/index",
+    "cu-top-line": "/components/topLine/topLine",
+    "cu-talk": "/components/talk/index"
   }
 }

@@ -6,7 +6,7 @@ page{
   padding-bottom: 36rpx;
   /*justify-content: center;*/
   align-items: center;
-  height: 222rpx;
+  height: 142rpx;
 }
 .top_left {
   display: inline-block;
@@ -36,7 +36,7 @@ page{
   height: 322rpx;
 }
 .start-content {
-  margin: 98rpx auto 80rpx auto;
+  margin: 68rpx auto 80rpx auto;
   line-height: 40rpx;
 
   color: rgba(83, 83, 83, 1);

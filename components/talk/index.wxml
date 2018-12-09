@@ -1,0 +1,40 @@
+<view class="cu-talk">
+  <view class="cu-talk__action">
+    <text>取消</text>
+    <text class="cu-talk__action--submit" bindtap="submit">提交</text>
+  </view>
+  <view class="cu-talk__body">
+    <view class="cu-talk__virtualinfo">
+      <view class="cu-talk__virtualinfo__image">
+        <image class="cu-talk__virtualinfo__img" src="{{virtualInfo.avatar || '../../images/avator.jpg'}}" />
+      </view>
+      <text class="cu-talk__virtualinfo__text">您的IP已经被保护
+        虚拟IP {{virtualInfo.ip}}</text>
+      <view class="cu-talk__virtualinfo__flag-image">
+        <image class="cu-talk__virtualinfo__flag" src="../../images/guoqi/br.png"/>
+      </view>
+      <text class="cu-talk__virtualinfo__change" bindtap="changeVirtualInfo">更换</text>
+    </view>
+    <view class="cu-talk__textarea">
+      <textarea class="cu-talk__textarea--area"
+        placeholder-class="cu-talk__textarea--placeholder"
+        placeholder="此刻你想提的意见或建议..."
+        maxlength="200"
+        bindinput="setConent"></textarea>
+    </view>
+    <view class="cu-talk__imglist">
+      <view class="cu-talk__imglist__image" wx:for="{{previewImages}}" wx:key="*this">
+        <image src="{{item}}" class="cu-talk__imglist__img"></image>
+        <i class="cu-talk__imglist__i"
+           bindtap="removeImage"
+           color="red"
+           type="cancel"
+           size="60"
+           data-index="{{index}}">+</i>
+      </view>
+      <view catchtap="chooseImage"
+        wx:if="{{previewImages.length < 9}}"
+        class="cu-talk__imglist__add">+</view>
+    </view>
+  </view>
+</view>

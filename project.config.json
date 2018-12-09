@@ -12,7 +12,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.0.4",
-	"appid": "wx62506aa3535aa4db",
+	"appid": "wxbbb3ebffebeb8746",
 	"projectname": "%E7%A7%98%E5%AF%86%E8%AF%B4",
 	"debugOptions": {
 		"hidedInDevtools": []
@@ -63,10 +63,10 @@
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 4,
 					"name": "我的主页",
 					"pathName": "pages/main/main",
-					"query": ""
+					"query": "currentTab=2"
 				}
 			]
 		}

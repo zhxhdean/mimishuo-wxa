@@ -1,0 +1,157 @@
+@charset "UTF-8";
+@import "../../scss/vars";
+@import "../../scss/mixins";
+
+.cu-profile {
+  background: #FFFFFF;
+
+  &__select {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+
+    &__title {
+      position: relative;
+      padding: 0 px(20);
+      line-height: px(80);
+
+      width: px(710);
+      background-color: rgba(35, 166, 221, 1);
+      color: rgba(255, 255, 255, 1);
+      font-size: px(36);
+      font-family: Microsoft Yahei;
+      border-radius: px(10);
+      &::after {
+        content: '';
+
+        @include size(px(78));
+        @include icon($select_down_icon);
+        @include abs-pos(0, px(30), 0, auto);
+
+      }
+
+    }
+
+    &__items {
+      border: px(1) solid #DDDDDD;
+    }
+
+    &__item {
+      padding-left: px(20);
+      line-height: px(50);
+
+      background-color: rgba(35, 166, 221, 1);
+      color: rgba(255, 255, 255, 1);
+      font-size: px(32);
+      font-family: Microsoft Yahei;
+    }
+
+  }
+
+  &__body {
+    margin-top: px(60);
+
+    &--first {
+      margin-top: px(60);
+    }
+  }
+  &__bodys {
+    padding-bottom: px(164);
+  }
+
+  &__user {
+    padding: 0 px(40) 0 px(30);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    line-height: px(80);
+    height: px(80);
+
+    color: rgba(150, 150, 150, 1);
+    font-size: px(28);
+    font-family: PingFangSC-regular;
+
+  }
+  &__user-left {
+    display: flex;
+    align-items: center;
+  }
+
+  &__user-right {
+    display: flex;
+    align-items: center;
+  }
+  &__user-image {
+    margin-right: px(12);
+
+    @include size(px(58),px(76));
+    overflow: hidden;
+  }
+  &__user-img {
+    @include size(px(58),px(76))
+  }
+  &__power-image {
+    margin-right: px(10);
+
+    @include size(px(32),px(44))
+  }
+  &__user-img {
+
+  }
+  &__content {
+    margin: px(24) px(40) px(20) px(30);
+    padding: px(10);
+
+    width: px(672);
+    line-height: px(40);
+    border-radius: px(14);
+    background-color: rgba(237, 237, 237, 1);
+    color: rgba(136, 136, 136, 1);
+    font-size: px(28);
+    text-align: left;
+    font-family: Microsoft Yahei;
+    border: px(2) solid rgba(255, 255, 255, 0);
+
+  }
+
+  &__reply {
+    margin: px(24) px(40) px(20) px(30);
+    padding: px(10);
+    line-height: px(40);
+
+    width: px(672);
+    border-radius: px(14);
+    background-color: rgba(35, 166, 221, 1);
+    color: rgba(255, 255, 255, 1);
+    font-size: px(28);
+    text-align: left;
+    font-family: Microsoft Yahei;
+    border: px(2) solid rgba(255, 255, 255, 0);
+
+  }
+
+  &__reply-hr {
+    padding-top: px(30);
+  }
+
+  &__reply-time {
+    margin-left: px(20);
+  }
+
+  &__images {
+    padding: px(10) px(20) px(10) px(30);
+  }
+  &__image {
+    display: inline-block;
+    margin-top: px(10);
+    margin-right: px(10);
+
+    @include size(31%,px(200));
+    overflow: hidden;
+    border: px(1) solid #DDDDDD;
+  }
+  &__img {
+    @include size(100%);
+  }
+}

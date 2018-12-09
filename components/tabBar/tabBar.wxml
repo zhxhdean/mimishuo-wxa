@@ -21,6 +21,6 @@
   </view>
 
 
-  <view class="bar-complaints_btn">立即吐槽</view>
+  <view class="bar-complaints_btn" bindtap="swichNav" data-current="{{2}}">立即吐槽</view>
 </view>
 

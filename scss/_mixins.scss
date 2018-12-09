@@ -42,3 +42,7 @@
   font-weight: bold;
   font-family: PingFangSC-Semibold;
 }
+@mixin icon($url) {
+  background: url($url) no-repeat;
+  background-size: 100% 100%;
+}

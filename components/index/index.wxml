@@ -1,22 +1,52 @@
+<view class="cu-profile">
+  <!--<view class="cu-profile__select">
+    <view class="cu-profile__select__title" bindtap="selectStage">第一期</view>
+    <view class="cu-profile__select__items" wx-if="{{showSelect}}">
+      <view class="cu-profile__select__item cu-profile__select__item&#45;&#45;select">第一期</view>
+      <view class="cu-profile__select__item">第二期</view>
+      <view class="cu-profile__select__item">第三期</view>
+    </view>
+  </view>-->
+  <view class="cu-profile__bodys">
+    <view wx:for="{{secretList}}" wx:key="{{item.secretId}}"
+          wx:for-index="index"
+          class="cu-profile__body {{index==0?'cu-profile__body--first':''}}">
+      <view class="cu-profile__user">
+        <view class="cu-profile__user-left">
+          <view class="cu-profile__user-image">
+            <image src="../../images/avator.jpg" class="cu-profile__user-img"/>
+          </view>{{item.createTime}}
+        </view>
+        <view class="cu-profile__user-right">
+          <image src="../../images/flash.png" class="cu-profile__power-image"/>
+          {{item.power}}
+        </view>
+      </view>
+      <view class="cu-profile__content">
+        食堂的伙食可不可以翻新一下。还有我无辣不欢，是否可以配一瓶老干妈拌饭。
+      </view>
 
-<view class="body">
-  <view wx:for="{{secretList}}" wx:key="{{item.secretId}}" class="">
-    <view class="c858 user">
-      <view><image src="../../images/avator.jpg" class="avator"/> <text>{{item.createTime}}</text> </view>
-      <view><image src="../../images/flash.png" class="power"/>{{item.power}}</view>
-    </view>
-    <view class="content">
-      {{item.content}}<view></view>
-      <block wx:for="{{item.images}}" wx:key="*this" wx:for-item="i">
-      <image src="{{i}}"/>
-      </block>
-    </view>
-    <view class="reply">
-      <view class="reply-hr"><strong>HR</strong> <text class="c8b8">{{item.replyTime}}</text></view>
-      <view>
-        {{item.replyContent}}<view class="triangle"></view>
+      <view class="cu-profile__images">
+        <view wx:for="{{item.images}}"
+              wx:key="{{index}}"
+              wx:for-index="index"
+              wx:for-item="img" class="cu-profile__image">
+          <image src="{{img}}" class="cu-profile__img"/>
+        </view>
+        <!--<block wx:for="{{item.images}}" wx:key="*this" wx:for-item="i">
+          <image src="{{i}}"/>
+        </block>-->
       </view>
+
+      <view class="cu-profile__reply">
+        <view>{{item.replyContent}}
+        </view>
+        <view class="cu-profile__reply-hr"><strong>HR</strong>
+          <text class="cu-profile__reply-time">{{item.replyTime}}</text>
+        </view>
       </view>
+    </view>
   </view>
+
   <cu-tab-bar></cu-tab-bar>
 </view>
