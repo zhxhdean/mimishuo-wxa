@@ -1,4 +1,4 @@
-const {get} = require('../../utils/request')
+const {get, post} = require('../../utils/request')
 const {urls} = require('../../config')
 const {formatTimeFromStamp} = require('../../utils/timeUtil')
 Component({
@@ -62,43 +62,7 @@ Component({
       })
     })
     this.setData({secretList: rst})
-  },
-  async onLoad () {
     this.refresh()
-  },
-  /**
-   * 刷新,并且初始化页面参数
-   */
-  refresh () {
-    this.setData({
-      isEmpty: false,
-      noMore: false,
-      pageIndex: 1,
-      list: []
-    })
-    this.loadMore()
-  },
-  async loadMore () {
-    const rsp = await get({
-      url: urls.secretList,
-      data: this.params()
-    })
-    // wx.hideLoading()
-    if(rsp.code === 0){
-      this.setData({userInfo: rsp.data})
-    }
-  },
-  /**
-   * 封装接口需要的参数
-   */
-  params () {
-    const { upDown = true, pageSize = 10, last = 0 } = this.data
-    let result = {
-      size: pageSize,
-      last,
-      upDown
-    }
-    return result
   },
   methods: {
     loadMoreData () {
@@ -148,6 +112,40 @@ Component({
     selectStage () {
       const showSelect = !this.data.showSelect
       this.setData({showSelect: showSelect})
-    }
+    },
+    /**
+     * 刷新,并且初始化页面参数
+     */
+    refresh () {
+      this.setData({
+        isEmpty: false,
+        noMore: false,
+        pageIndex: 1,
+        list: []
+      })
+      this.loadMore()
+    },
+    async loadMore () {
+      const rsp = await post({
+        url: urls.secretList,
+        data: this.params()
+      })
+      // wx.hideLoading()
+      if(rsp.code === 0){
+        this.setData({userInfo: rsp.data})
+      }
+    },
+    /**
+     * 封装接口需要的参数
+     */
+    params () {
+      const { upDown = true, pageSize = 10, last = 0 } = this.data
+      let result = {
+        size: pageSize,
+        last,
+        upDown
+      }
+      return result
+    },
   }
 })
