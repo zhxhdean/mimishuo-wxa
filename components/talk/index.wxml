@@ -32,9 +32,12 @@
            size="60"
            data-index="{{index}}">+</i>
       </view>
-      <view catchtap="chooseImage"
+      <view catchtap="chooseImage" class="cu-talk__imglist__image" wx:if="{{previewImages.length < 9}}">
+        <view class="cu-talk__imglist__choose">+</view>
+      </view>
+      <!--<view catchtap="chooseImage"
         wx:if="{{previewImages.length < 9}}"
-        class="cu-talk__imglist__add">+</view>
+        class="cu-talk__imglist__add">+</view>-->
     </view>
   </view>
 </view>

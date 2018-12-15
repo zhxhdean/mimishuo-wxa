@@ -102,22 +102,24 @@
 
 
   &__imglist {
-    display: flex;
+    /*display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;*/
     &__image {
+      display: inline-block;
       position: relative;
       margin-right: px(30);
       margin-top: px(30);
 
       border: px(1) solid #DDDDDD;
-      @include size(px(200));
+      @include size(29.9%,px(200));
 
       &:nth-child(3n+3) {
         margin-right: 0;
       }
     }
     &__img {
-      @include size(px(200));
+      @include size(100%);
     }
 
     &__i {
@@ -133,11 +135,26 @@
     }
 
     &__add {
+      display: inline-block;
       position: relative;
       margin-top: px(30);
 
       text-align: center;
       @include size(px(200));
+      line-height: px(180);
+      box-sizing: border-box;
+      font-size: px(100);
+      color: #FFFFFF;
+      background: #C9C9C9;
+      border-radius: 0;
+      font-weight: bolder;
+    }
+
+    &__choose {
+      position: absolute;
+
+      text-align: center;
+      @include size(100%);
       line-height: px(180);
       box-sizing: border-box;
       font-size: px(100);
