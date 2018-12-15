@@ -1,4 +1,7 @@
 const config = require('../config.js')
+const storage = require('./storage.js')
+const unit = require('./util.js')
+
 const regeneratorRuntime = require('./runtime')
 
 function noop(){}
@@ -12,14 +15,20 @@ const host = 'http://140.143.223.43:8080/api'
 
 
 // 微信发送请求
-function wxRequest(options) {
+async function wxRequest(options) {
   const { url, data, method, dataType, header } = options
   let head = {}
   if(!header){
+    let authorization = storage.authStorage.getAuth() ? storage.authStorage.getAuth().accessToken : ''
+    if (!authorization) {
+      authorization = await userLogin()
+    }
     head = {
       'content-type': 'application/json', // 默认值
-      'authorization': '4c2d1153f46311e88a8a0242ac110002', // 测试值，// todo 到时候需要通过接口获取到这个值
+      'authorization': authorization, // 测试值，// todo 到时候需要通过接口获取到这个值
     }
+  }else {
+    head = header
   }
   // 请求url是否在合法的urls中
   if (!Object.values(config.urls).includes(url)) {
@@ -63,12 +72,81 @@ function wxRequest(options) {
   return promise
 }
 
-// 微信登录
-function wxLogin(){
+// 微信发送请求
+function userLogin(options) {
+  const promise = new Promise((resolve, reject) => {
+    wx.login({
+      success(res){
+
+        if(res.code){
+          // 发网络请求，调api获取openid
+          let head = {'content-type': 'application/json'}
+          wx.request({
+            url: `${host}/user/login`,
+            header: head,
+            data: {
+              code: res.code
+            },
+            success(res) {
+              console.info(res)
+              storage.authStorage.setAuth({
+                "accessToken": "4c2d1153f46311e88a8a0242ac110002",
+                "companyId": 0,
+                "expireTime": "2018-12-15T06:11:46.330Z",
+                "headImageUrl": "//m.360buyimg.com/babel/jfs/t10675/253/1344769770/66891/92d54ca4/59df2e7fN86c99a27.jpg!q70.jpg",
+                "nickName": "小程序",
+                "sex": 20,
+                "userId": 1234567
+              });
+              if (res.statusCode === 200) {
+                if(res.data && res.data.errorCode === '200'){
+                  storage.authStorage.setAuth(res.data.data);
+                  resolve(res.data.data.accessToken)
+                }else{
+                  unit.showToast(res.data.errorMsg)
+                  reject()
+                }
+              } else {
+                reject()
+              }
+            },
+            fail(res) {
+              reject()
+            }
+          })
+        }else{
+          console.log('登录失败'+res.errMsg)
+        }
+      }
+    })
+  })
+  return promise
+}
+
+async function wxLogin() {
   wx.login({
     success(res){
       if(res.code){
-        // 发网络请求，调api获取openid
+        wx.request({
+          url: `${host}/user/login`,
+          data: {
+            code: res.code
+          },
+          success(res) {
+            if (res.statusCode === 200) {
+              if(res.data.errorCode === 200){
+                storage.setAuth(res.data.data);
+              }else{
+                unit.showToast(res.data.errorMsg)
+              }
+            } else {
+
+            }
+          },
+          fail(res) {
+
+          }
+        })
         console.log(res.code)
       }else{
         console.log('登录失败'+res.errMsg)
@@ -77,6 +155,9 @@ function wxLogin(){
   })
 }
 
+async function login(options) {
+  return await userLogin(options)
+}
 
  async function get(options) {
   options = options || {}
@@ -100,5 +181,6 @@ module.exports = {
   get: get,
   post: post,
   put: put,
-  wxLogin: wxLogin
+  wxLogin: wxLogin,
+  login: login
 }

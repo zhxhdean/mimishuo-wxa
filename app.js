@@ -1,11 +1,15 @@
-const {wxLogin} = require('./utils/request')
-
+const {wxLogin, login} = require('./utils/request')
+const regeneratorRuntime = require('./utils/runtime')
+function noop () { }
+noop(regeneratorRuntime)
 App({
   onLaunch: function() {},
-  onShow: function() {
+  onShow: async function() {
     // 登录
-    wxLogin()
-
+    try {
+      await login()
+    } catch (err) {
+    }
     // 获取用户经纬度
     wx.getLocation({
       type: 'wgs84',
