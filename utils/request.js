@@ -129,12 +129,6 @@ function wxUploadFile(options) {
   }
   const request_url = `${host}/${url}`
   const promise = new Promise((resolve, reject) => {
-    wx.showToast({
-      title: '正在上传...',
-      icon: 'loading',
-      mask: true,
-      duration: 10000
-    })
 
     wx.uploadFile({
       url: request_url,
@@ -149,8 +143,12 @@ function wxUploadFile(options) {
       success: function (res) {
         var data = JSON.parse(res.data);
         //服务器返回格式: {"result": "success","errorMsg": null,"errorCode": null,"data": { "presignedUrl": null,"previewUrl": "https://mimishuo.oss-cn-beijing.aliyuncs.com/82a42370240143d7afb5f049d52d849b.jpg?Expires=1544943830&OSSAccessKeyId=LTAI8OcdlGlLVNgz&Signature=KB1GTXIO7%2BIUqazwe8BAUe7z2Dk%3D","fileKey": "82a42370240143d7afb5f049d52d849b.jpg"}}
-        console.log(data);
-        resolve(data)
+        if (data.errorCode === '200' || data.result === 'success') {
+          resolve(data.data)
+        } else {
+          reject(data.errorMsg)
+        }
+
       },
       fail: function (res) {
         wx.hideToast();
@@ -161,6 +159,9 @@ function wxUploadFile(options) {
           success: function (res) { }
         })
         reject(res)
+      },
+      complete: function () {
+
       }
     });
   })

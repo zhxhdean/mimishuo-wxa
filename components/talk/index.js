@@ -1,6 +1,8 @@
 const { get, post, uploadFile } = require('../../utils/request')
 const {urls} = require('../../config.js')
 const {formatTimeFromStamp} = require('../../utils/timeUtil')
+const storage = require('../../utils/storage.js')
+const util = require('../../utils/util.js')
 Component({
   properties: {
   },
@@ -9,28 +11,41 @@ Component({
     userInfo: {
     },
     virtualInfo:{
-
     },
-    content: '',
-    previewImages: []
+    previewImages: [],
+
+    burnAfterReading: false, // 是否阅后即焚
+    content: '', // 内容
+    headImageKey: '', // 头像key
+    headImageUrl: '', // 头像
+    imageKeyList: [], // 图片key列表
+    imageUrls: [],  // 秘密图片
+    reply: '',  // 回复内容
+    replyTime: '', //  回复时间
+    subject: ''  //  主题
+
   },
   async attached () {
     this.getVirtual()
-    const rsp = await get({ url: urls.userAuth })
-    if(rsp.code === 0){
-      wx.showToast({title: '数据加载成功'})
-      rsp.data.expireTime = formatTimeFromStamp(rsp.data.expireTime, 'Y-M-D h:m:s')
-      this.setData({userInfo: rsp.data})
-    }else{
-      wx.showToast({title: '数据加载失败'})
-    }
+    const headImageUrl = storage.authStorage.getAuth() ? storage.authStorage.getAuth().headImageUrl : ''
+    debugger
+    this.setData({
+      headImageUrl
+    })
+    // const rsp = await get({ url: urls.userAuth })
+    // if(rsp.code === 0){
+    //   wx.showToast({title: '数据加载成功'})
+    //   rsp.data.expireTime = formatTimeFromStamp(rsp.data.expireTime, 'Y-M-D h:m:s')
+    //   this.setData({userInfo: rsp.data})
+    // }else{
+    //   wx.showToast({title: '数据加载失败'})
+    // }
   },
   methods: {
     getVirtual () {
       const virtualInfo = {
         ip: '169.132.155.34',
-        country: '巴西',
-        avatar: ''
+        country: '巴西'
       }
       this.setData({virtualInfo: virtualInfo})
     },
@@ -97,20 +112,39 @@ Component({
         // }))
       })
 
-
-      // 批量上传图片
-      // Promise.all(tasks).then(res => {
-      //   console.log(res)
-      // })
       try {
-        await Promise.all(tasks)
+        wx.showLoading({
+          title: '正在上传...',
+        })
+        const upload_res = await Promise.all(tasks)
+        wx.hideLoading()
+        let imageKeyList = []
+        let imageUrls = []
+        upload_res.map(item => {
+          imageUrls.push(item.previewUrl)
+          imageKeyList.push(item.fileKey)
+        })
+        debugger
+        self.setData({
+          imageUrls: imageUrls,
+          imageKeyList: imageKeyList
+        })
+
+        console.log(upload_res)
+        // 新增秘密
+
         const rsp = await post({
           url: urls.secretNew,
-          data: this.params()
+          data: self.params()
         })
-        console.log('保存成功' + rsp)
+        util.showToast('保存成功')
+        setTimeout(() => {
+          self.triggerEvent('swichNav', 0)
+        },1500)
       } catch (err) {
-        console.log('保存失败')
+        wx.hideLoading()
+        console.log(err)
+        util.showToast(err ? err : '保存失败')
       }
     },
     setConent (e){
@@ -120,6 +154,26 @@ Component({
     changeVirtualInfo (){
       // toto
 
+    },
+    /**
+     * 封装接口需要的参数
+     */
+    params () {
+      const { burnAfterReading  = false, content, headImageKey, headImageUrl, imageKeyList = [], imageUrls = [], reply = '', replyTime = '', subject } = this.data
+      let result = {
+        burnAfterReading,
+        content,
+        createTime: new Date().getTime(),
+        headImageKey,
+        headImageUrl,
+        imageKeyList,
+        imageUrls,
+        reply,
+        replyTime,
+        subject
+      }
+      return result
     }
-  }
+  },
+
 })

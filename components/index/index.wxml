@@ -14,7 +14,7 @@
       <view class="cu-profile__user">
         <view class="cu-profile__user-left">
           <view class="cu-profile__user-image">
-            <image src="../../images/avator.jpg" class="cu-profile__user-img"/>
+            <image src="{{item.headImageUrl}}" class="cu-profile__user-img"/>
           </view>{{item.createTime}}
         </view>
         <view class="cu-profile__user-right">
@@ -22,10 +22,8 @@
           {{item.power}}
         </view>
       </view>
-      <view class="cu-profile__content">
-        食堂的伙食可不可以翻新一下。还有我无辣不欢，是否可以配一瓶老干妈拌饭。
+      <view wx:if="{{item.content}}" class="cu-profile__content">{{item.content}}
       </view>
-
       <view class="cu-profile__images">
         <view wx:for="{{item.imageUrls}}"
               wx:key="{{index}}"
@@ -38,7 +36,7 @@
         </block>-->
       </view>
 
-      <view class="cu-profile__reply">
+      <view wx:if="{{item.reply}}" class="cu-profile__reply">
         <view>{{item.replyContent}}
         </view>
         <view class="cu-profile__reply-hr"><strong>HR</strong>

@@ -2,6 +2,6 @@
   <cu-top-line></cu-top-line>
   <cu-square id="cusquare" wx:if="{{currentTab == 0}}"></cu-square>
   <cu-profile id="cuprofile" wx:if="{{currentTab == 1}}"></cu-profile>
-  <cu-talk id="talk" wx:if="{{currentTab == 2}}"></cu-talk>
+  <cu-talk id="talk" wx:if="{{currentTab == 2}}" bindswichNav="swichNav"></cu-talk>
   <cu-tab-bar currentTab="{{currentTab}}" bindswichNav="swichNav"></cu-tab-bar>
 </view>

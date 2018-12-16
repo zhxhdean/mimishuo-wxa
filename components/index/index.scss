@@ -87,6 +87,7 @@
   &__user-image {
     margin-right: px(12);
 
+    border: px(1) solid #DDDDDD;
     @include size(px(58),px(76));
     overflow: hidden;
   }
