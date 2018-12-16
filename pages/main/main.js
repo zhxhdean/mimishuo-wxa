@@ -30,7 +30,7 @@ Page({
   },
   onReachBottom: function () {
     if (this.data.currentTab == 0) {
-      this.selectComponent("#cusquare").loadMoreData();
+      this.selectComponent("#cusquare").loadMore();
     }
   },
 

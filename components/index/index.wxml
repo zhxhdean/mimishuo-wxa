@@ -27,7 +27,7 @@
       </view>
 
       <view class="cu-profile__images">
-        <view wx:for="{{item.images}}"
+        <view wx:for="{{item.imageUrls}}"
               wx:key="{{index}}"
               wx:for-index="index"
               wx:for-item="img" class="cu-profile__image">

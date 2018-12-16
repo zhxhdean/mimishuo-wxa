@@ -65,7 +65,7 @@ Page({
 
   },
   clickComplaints: function(){
-    wx.navigateTo({
+    wx.redirectTo({
       url: '/pages/main/main'
     })
   }
