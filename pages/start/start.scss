@@ -1,0 +1,69 @@
+@charset "UTF-8";
+@import "../../scss/vars";
+@import "../../scss/mixins";
+@import "../../scss/base";
+
+page{
+  background: #FFFFFF;
+}
+
+.top {
+  &__left {
+    display: inline-block;
+    padding-left: px(44);
+    overflow: hidden;
+
+    &__img {
+      @include size(px(144),px(62))
+    }
+  }
+
+  &__right {
+    display: inline-block;
+    margin-left: px(16);
+    overflow: hidden;
+
+    &__img {
+      @include size(px(502),px(46))
+    }
+  }
+}
+
+.start {
+  &__top {
+    display: flex;
+    padding-bottom: px(36);
+    /*justify-content: center;*/
+
+    align-items: center;
+    height: px(142);
+  }
+
+  &__middle {
+    @include size(100%,px(322));
+    overflow: hidden;
+
+    &__img {
+      @include size(100%,px(322));
+    }
+  }
+
+  &__content {
+    margin: px(68) auto px(80) auto;
+    line-height: px(40);
+
+    color: rgba(83, 83, 83, 1);
+    font-size: px(24);
+    text-align: center;
+    font-family: SourceHanSansSC-regular;
+  }
+
+  &__bottom {
+    @include size(100%,px(494));
+    overflow: hidden;
+
+    &__img {
+      @include size(100%,px(494));
+    }
+  }
+}

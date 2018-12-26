@@ -4,12 +4,11 @@ function noop () { }
 noop(regeneratorRuntime)
 App({
   onLaunch: function() {},
+  globalData: {
+    isIphoneX: false,
+  },
   onShow: async function() {
-    // 登录
-    try {
-      await login()
-    } catch (err) {
-    }
+    let self = this
     // 获取用户经纬度
     wx.getLocation({
       type: 'wgs84',
@@ -22,8 +21,23 @@ App({
         console.log(res)
       }
      })
+    // 全局值中设定是否粪X，为了在界面中设定显示安全区
+    debugger
+    wx.getSystemInfo({
+      success: res => {
+        let modelmes = res.model
+        if (modelmes.indexOf('iPhone X') !== -1) {
+          self.globalData.isIphoneX = true
+        }
+      }
+    })
+    // 登录
+    try {
+      await login()
+    } catch (err) {
+    }
 
   },
   onHide: function() {},
-  globalData: 11
+
 })

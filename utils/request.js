@@ -21,7 +21,12 @@ async function wxRequest(options) {
   if(!header){
     let authorization = storage.authStorage.getAuth() ? storage.authStorage.getAuth().accessToken : ''
     if (!authorization) {
-      authorization = await userLogin()
+      try {
+        authorization = await userLogin()
+      }catch (err) {
+        return
+      }
+
     }
     head = {
       'content-type': 'application/json', // 默认值
@@ -92,9 +97,13 @@ function userLogin(options) {
               if (res.statusCode === 200) {
                 if(res.data && res.data.errorCode === '200' || res.data.result === 'success'){
                   storage.authStorage.setAuth(res.data.data);
-                  resolve(res.data.data.accessToken)
+                  if (res.data.data && res.data.data.accessToken) {
+                    resolve(res.data.data.accessToken)
+                  } else {
+                    unit.showToast(res.data.errorMsg?res.data.errorMsg:'登录失败，请稍后重试')
+                  }
                 }else{
-                  unit.showToast(res.data.errorMsg)
+                  unit.showToast(res.data.errorMsg?res.data.errorMsg:'网络错误，请重试')
                   reject()
                 }
               } else {
@@ -102,7 +111,7 @@ function userLogin(options) {
               }
             },
             fail(res) {
-              reject()
+              reject(res)
             }
           })
         }else{

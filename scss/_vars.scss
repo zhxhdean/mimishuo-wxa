@@ -15,5 +15,3 @@ $high_design_width: 1242;
 @function pxImage($px) {
   @return $px * 750 / $high_design_width + rpx;
 }
-
-$select_down_icon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAA2CAYAAACBWxqaAAAA5klEQVRoge3VMQrCMBjF8SgqTroIHqAew4t5EEdXF0+iNxDMBXSqDoId1DcIRRKT4vC+wPuNTYfv/6XQXrX1T1ewPnuAfymATQFsCmBTAJsC2BTApgA2BbApgK34gAF7gGoydLNxeoz9+R58Tg/w18atl3O3mI6i76wOl3dA+MzEJ7Q51tGzU/1wO3+LnpsIwIAYNORXHJgIgNCgqe2DmYDQLaS2D2YCoD1wzvbBVED7FnK2D6YCAIPnbh/o/4FvuYN/mLsB6BJhMqALBbApgE0BbApgUwCbAtgUwKYANgWwKYCt+IAXGvtIeK7VgBgAAAAASUVORK5CYII='

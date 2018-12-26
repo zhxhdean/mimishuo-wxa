@@ -1,6 +1,6 @@
-<view class="cu-tab-bar">
+<view class="cu-tab-bar{{isIphoneX?' cu-ipx':''}}">
 
-  <view class="bar-item {{currentTab == idx ? 'active' : 'default' }}"
+  <view class="cu-tab-bar__item {{currentTab == idx ? 'active' : 'default' }}"
     wx:for="{{items}}"
     wx:key="prototype"
     wx:for-index="idx"
@@ -19,7 +19,6 @@
        src="{{currentTab == idx ? item.selectedIconPath : item.iconPath }}">
     </image>
   </view>
-
 
   <view class="bar-complaints_btn" bindtap="swichNav" data-current="{{2}}">立即吐槽</view>
 </view>

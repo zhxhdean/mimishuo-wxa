@@ -1,0 +1,48 @@
+@charset "UTF-8";
+@import "../../scss/vars";
+@import "../../scss/mixins";
+@import "../../scss/base";
+
+.cu-tab-bar {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  left: 0;
+  bottom: 0;
+  height: px($tab_bar_height);
+
+  background-color: rgba(237, 237, 237, 1);
+  border: px(2) solid rgba(255, 255, 255, 0);
+
+  &--ipx {
+    padding-bottom: px(68);
+  }
+
+  &__item {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+    @include size(px(219),px($tab_bar_height));
+  }
+}
+
+.tab-bar_img {
+  @include size(px(112),px($tab_bar_img_h))
+}
+
+.bar-complaints_btn {
+  line-height: px($tab_bar_height);
+
+  background-color: rgba(27, 120, 191, 1);
+  text-align: center;
+  border: px(2) solid rgba(255, 255, 255, 0);
+  box-sizing: border-box;
+  color: rgba(255, 255, 255, 1);
+  font-size: px(40);
+
+  @include size(px(312),px($tab_bar_height));
+}
