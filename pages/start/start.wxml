@@ -13,7 +13,8 @@
   <view class="start__content">
     <text class="">{{content}}</text>
   </view>
-    <view class="start__bottom" bindtap="clickComplaints">
-    <image class="start__bottom__img" src="/images/icon/index_main.png"/>
+  <view class="start__bottom">
+        <!--<image class="start__bottom__img" src="/images/icon/index_main.png"/>-->
   </view>
+  <button class="start__bottom__button" open-type="getUserInfo" bindgetuserinfo="clickComplaints">去吐槽</button>
 </view>

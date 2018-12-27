@@ -12,6 +12,56 @@ const {code} = require('./error_code')
 //请求的域名
 const host = 'http://140.143.223.43:8080/api'
 
+// 用户第一次进来注册
+
+
+async function userJoin (success, fail) {
+    wx.authorize({
+      scope: 'scope.userInfo',
+      success: function () {
+        wx.login({
+          success: function (loginRes) {
+            const code = loginRes.code
+            wx.getUserInfo({
+              withCredentials: true,
+              success: function (data) {
+                wx.setStorageSync('userInfo', data.userInfo)
+                console.log(data.userInfo)
+                const userInfo = data.userInfo
+                let head = {'content-type': 'application/json'}
+                wx.request({
+                  url: `${host}/user/join`,
+                  header: head,
+                  method: 'POST',
+                  data: {
+                    code: '', // code  测试默认传''
+                    companyId: 0,
+                    headImageUrl: userInfo.avatarUrl,
+                    nickName: userInfo.nickName,
+                    sex: userInfo.gender
+                  },
+                  success(res) {
+                    console.info(res)
+                    success()
+                  },
+                  fail(res) {
+                    reject(res)
+                  }
+                })
+                //RequestLogin(code, data.encryptedData, data.iv, success, fail)
+              }
+            })
+          },
+          fail: function () {
+            fail && fail(arguments)
+          }
+        })
+      },
+      fail: function () {
+        wx.removeStorageSync('userInfo')
+      }
+    })
+  }
 
 
 // 微信发送请求
@@ -218,7 +268,9 @@ async function uploadFile(options) {
 async function login(options) {
   return await userLogin(options)
 }
-
+async function join(suc,fail) {
+  return await userJoin(suc,fail)
+}
  async function get(options) {
   options = options || {}
   options.method = 'GET'
@@ -243,5 +295,6 @@ module.exports = {
   put: put,
   wxLogin: wxLogin,
   login: login,
-  uploadFile: uploadFile
+  uploadFile: uploadFile,
+  join: join
 }

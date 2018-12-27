@@ -1,4 +1,5 @@
-
+const {join} = require('../../utils/request')
+const {urls} = require('../../config')
 const {formatTimeFromStamp} = require('../../utils/timeUtil')
 Page({
 
@@ -64,9 +65,14 @@ Page({
   onShareAppMessage: function () {
 
   },
-  clickComplaints: function(){
-    wx.redirectTo({
-      url: '/pages/main/main'
+  clickComplaints: async function(){
+    const rsp = await join(() =>{
+      wx.redirectTo({
+        url: '/pages/main/main'
+      })
+    },() => {
+      console.log('注册失败')
     })
+
   }
 })
