@@ -1,0 +1,7 @@
+<view class="login">
+  <view class="login__content">
+    <image class="login__img" src="../../images/icon/empty.png"/>
+    <text class="login__text">登录遇到问题，请重新登录</text>
+  </view>
+  <view class="login__again" bindtap="againLogin">重新登录</view>
+</view>

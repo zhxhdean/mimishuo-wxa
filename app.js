@@ -22,7 +22,6 @@ App({
       }
      })
     // 全局值中设定是否粪X，为了在界面中设定显示安全区
-    debugger
     wx.getSystemInfo({
       success: res => {
         let modelmes = res.model
@@ -32,10 +31,6 @@ App({
       }
     })
     // 登录
-    try {
-      await login()
-    } catch (err) {
-    }
 
   },
   onHide: function() {},

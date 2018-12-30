@@ -7,14 +7,18 @@ Page({
    * 页面的初始数据
    */
   data: {
-      content: '您的每一条吐槽都将受到技术保护\n请放心大胆地说出你的建议，不要怂'
+    content: '您的每一条吐槽都将受到技术保护\n请放心大胆地说出你的建议，不要怂',
+    companyId: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    const companyId = options.companyId || 0
+    this.setData({
+      companyId
+    })
   },
 
   /**
@@ -66,13 +70,7 @@ Page({
 
   },
   clickComplaints: async function(){
-    const rsp = await join(() =>{
-      wx.redirectTo({
-        url: '/pages/main/main'
-      })
-    },() => {
-      console.log('注册失败')
-    })
+    const rsp = await join(this.data.companyId)
 
   }
 })

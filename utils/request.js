@@ -15,7 +15,7 @@ const host = 'http://140.143.223.43:8080/api'
 // 用户第一次进来注册
 
 
-async function userJoin (success, fail) {
+async function userJoin (companyId) {
     wx.authorize({
       scope: 'scope.userInfo',
       success: function () {
@@ -35,14 +35,16 @@ async function userJoin (success, fail) {
                   method: 'POST',
                   data: {
                     code: '', // code  测试默认传''
-                    companyId: 0,
+                    companyId: companyId,
                     headImageUrl: userInfo.avatarUrl,
                     nickName: userInfo.nickName,
                     sex: userInfo.gender
                   },
                   success(res) {
                     console.info(res)
-                    success()
+                    wx.redirectTo({
+                      url: '/pages/main/main'
+                    })
                   },
                   fail(res) {
                     reject(res)
@@ -53,7 +55,6 @@ async function userJoin (success, fail) {
             })
           },
           fail: function () {
-            fail && fail(arguments)
           }
         })
       },
@@ -113,7 +114,11 @@ async function wxRequest(options) {
             //接口成功返回数据
             resolve({code: 0, data: res.data.data})
           }else{
-            resolve({code: res.data.errorCode, content: res.data.errorMsg})
+            if (res.data.errorCode == '401' || res.data.errorCode == '403') { // 如果是tonken过期，自动刷新登录接口
+              userLogin()
+            } else {
+              resolve({code: res.data.errorCode, content: res.data.errorMsg})
+            }
           }
         } else {
           reject(res)
@@ -127,12 +132,11 @@ async function wxRequest(options) {
   return promise
 }
 
-// 微信发送请求
+
 function userLogin(options) {
   const promise = new Promise((resolve, reject) => {
     wx.login({
       success(res){
-
         if(res.code){
           // 发网络请求，调api获取openid
           let head = {'content-type': 'application/json'}
@@ -145,34 +149,47 @@ function userLogin(options) {
             success(res) {
               console.info(res)
               if (res.statusCode === 200) {
+                debugger
                 if(res.data && res.data.errorCode === '200' || res.data.result === 'success'){
                   storage.authStorage.setAuth(res.data.data);
                   if (res.data.data && res.data.data.accessToken) {
                     resolve(res.data.data.accessToken)
                   } else {
-                    unit.showToast(res.data.errorMsg?res.data.errorMsg:'登录失败，请稍后重试')
+                    showLoginErr(res.data.errorMsg || '登录失败，请稍后重试',options)
                   }
                 }else{
-                  unit.showToast(res.data.errorMsg?res.data.errorMsg:'网络错误，请重试')
+                  showLoginErr('网络连接失败',options)
                   reject()
                 }
               } else {
+                showLoginErr('网络连接失败',options)
                 reject()
               }
             },
             fail(res) {
+              showLoginErr('网络连接失败',options)
               reject(res)
             }
           })
         }else{
-          console.log('登录失败'+res.errMsg)
+          showLoginErr('微信登录授权失败',options)
         }
       }
     })
   })
   return promise
 }
-
+function showLoginErr(errMessage,type) {
+  debugger
+  unit.showToast(errMessage || '登录失败，请稍后重试')
+  if (type !== 2) {
+    setTimeout(() => {
+      wx.navigateTo({
+        url: '/pages/login/login'
+      })
+    },1500)
+  }
+}
 // 上传图片
 function wxUploadFile(options) {
   const { url = 'file/upload', img} = options
@@ -263,15 +280,13 @@ async function wxLogin() {
 async function uploadFile(options) {
   return await wxUploadFile(options)
 }
-
-
 async function login(options) {
   return await userLogin(options)
 }
-async function join(suc,fail) {
-  return await userJoin(suc,fail)
+async function join(companyId) {
+  return await userJoin(companyId)
 }
- async function get(options) {
+async function get(options) {
   options = options || {}
   options.method = 'GET'
    return await wxRequest(options)

@@ -1,4 +1,4 @@
-<view class="body">
+<view class="start">
   <view class="start__top">
     <view class="top__left">
       <image class="top__left__img" src="/images/icon/index_eyes.png"/>
@@ -15,6 +15,7 @@
   </view>
   <view class="start__bottom">
         <!--<image class="start__bottom__img" src="/images/icon/index_main.png"/>-->
+    <button class="start__bottom__button" open-type="getUserInfo" bindgetuserinfo="clickComplaints"></button>
   </view>
-  <button class="start__bottom__button" open-type="getUserInfo" bindgetuserinfo="clickComplaints">去吐槽</button>
+
 </view>
