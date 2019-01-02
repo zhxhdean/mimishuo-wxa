@@ -10,7 +10,7 @@ noop(regeneratorRuntime)
 
 const {code} = require('./error_code')
 //请求的域名
-const host = 'http://140.143.223.43:8080/api'
+const host = 'http://www.mimishuo.net/api'
 
 
 
