@@ -2,14 +2,17 @@
 @import "./vars";
 @import "./mixins";
 
+
+$tab_bar_height: 164;  //  tabbar 高度
+$tab_bar_img_h: 140;  //  tabbar 图片高度
+
 view, text {
   font-family: inherit;
   color: inherit;
 
 }
 
-.cu-dialog {
-  &__iphone-x {
-    border-bottom: px(68) solid #FFFFFF;
-  }
+.cu-ipx {
+  padding-bottom: px(68);
+  //border-bottom: px(68) solid #FFFFFF;
 }

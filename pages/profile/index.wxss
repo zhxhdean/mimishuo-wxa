@@ -1,7 +1,7 @@
 /* pages/profile/index.wxss */
 .user{
   display: flex;
-  height: 418rpx;
+  height: 318rpx;
   align-items: center;
 }
 .user image{

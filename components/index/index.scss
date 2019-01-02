@@ -1,6 +1,7 @@
 @charset "UTF-8";
 @import "../../scss/vars";
 @import "../../scss/mixins";
+@import "../../scss/base64";
 
 .cu-profile {
   background: #FFFFFF;
@@ -52,6 +53,8 @@
   &__body {
     margin-top: px(60);
 
+    border-bottom: px(1) solid #DDDDDD;
+
     &--first {
       margin-top: px(60);
     }
@@ -85,6 +88,7 @@
   &__user-image {
     margin-right: px(12);
 
+    border: px(1) solid #DDDDDD;
     @include size(px(58),px(76));
     overflow: hidden;
   }
@@ -140,16 +144,22 @@
   }
 
   &__images {
-    padding: px(10) px(20) px(10) px(30);
+    padding: px(10) px(30) px(10) px(30);
+    /*display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;*/
   }
   &__image {
     display: inline-block;
     margin-top: px(10);
     margin-right: px(10);
 
-    @include size(31%,px(200));
+    @include size(31.9%,px(200));
     overflow: hidden;
     border: px(1) solid #DDDDDD;
+    &:nth-child(3n+3) {
+      margin-right: 0;
+    }
   }
   &__img {
     @include size(100%);

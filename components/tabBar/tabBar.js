@@ -1,3 +1,4 @@
+const app = getApp()
 Component({
   properties: {
     currentTab: {
@@ -6,6 +7,7 @@ Component({
     }
   },
   data: {
+    isIphoneX: !!app.globalData.isIphoneX,
     currentTab: 0,
     items: [
       {

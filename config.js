@@ -10,7 +10,8 @@ const urls = {
   userInfo: 'user/info',
   secretList: 'secret/list',
   secretMy: 'secret/my',
-  secretNew: 'secret/new'
+  secretNew: 'secret/new',
+  upLoadFile: 'file/upload'
 }
 
 module.exports = {

@@ -1,0 +1,47 @@
+@charset "UTF-8";
+@import "../../scss/vars";
+@import "../../scss/mixins";
+@import "../../scss/base";
+
+.login {
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    //justify-content: center;
+    align-items: center;
+
+    margin: px(100) 0;
+
+  }
+
+  &__img {
+    @include size(px(400))
+  }
+
+  &__text {
+    height: px(48);
+    font-size: px(32);
+    font-family:PingFangSC-Regular;
+    font-weight: 400;
+    color: #666666;
+    line-height: px(48);
+  }
+
+  &__again {
+    margin: 0 px(60);
+    line-height: px(88);
+
+    background:linear-gradient(90deg,rgba(157,211,0,1) 0%,rgba(70,189,1,1) 100%);
+    box-shadow: 0 px(4) px(8) 0 rgba(128,209,62,0.2);
+    box-sizing: border-box;
+    border-radius: px(12);
+    font-size:  px(32);
+    font-family: PingFangSC-Regular;
+    font-weight: 400;
+    color: #FFFFFF;
+    text-align: center;
+
+    @include size(px(630),px(88))
+  }
+}
