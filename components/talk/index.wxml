@@ -1,4 +1,5 @@
 <view class="cu-talk">
+  <view wx:if="{{isShowPop}}" class="my_mask" bindtap="closePop"></view>
   <view class="cu-talk__action">
     <text>取消</text>
     <text class="cu-talk__action--submit" bindtap="submit">提交</text>
@@ -6,12 +7,12 @@
   <view class="cu-talk__body">
     <view class="cu-talk__virtualinfo">
       <view class="cu-talk__virtualinfo__image">
-        <image class="cu-talk__virtualinfo__img" src="{{headImageUrl}}" />
+        <image class="cu-talk__virtualinfo__img" src="{{userPortraitUrl}}" />
       </view>
       <text class="cu-talk__virtualinfo__text">您的IP已经被保护
         虚拟IP {{virtualInfo.ip}}</text>
       <view class="cu-talk__virtualinfo__flag-image">
-        <image class="cu-talk__virtualinfo__flag" src="../../images/guoqi/br.png"/>
+        <image class="cu-talk__virtualinfo__flag" src="{{nationalFlagUrl}}"/>
       </view>
       <text class="cu-talk__virtualinfo__change" bindtap="changeVirtualInfo">更换</text>
     </view>
@@ -19,7 +20,7 @@
       <textarea class="cu-talk__textarea--area"
         placeholder-class="cu-talk__textarea--placeholder"
         placeholder="此刻你想提的意见或建议..."
-        maxlength="200"
+        maxlength="500"
         bindinput="setConent"
         value="{{content}}"></textarea>
     </view>

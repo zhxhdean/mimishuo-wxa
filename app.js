@@ -30,8 +30,8 @@ App({
         }
       }
     })
-    // 登录
-
+    self.globalData.userPortrait = 40
+    self.globalData.nationalFlag = 189
   },
   onHide: function() {},
 

@@ -3,11 +3,17 @@ const {urls} = require('../../config.js')
 const {formatTimeFromStamp} = require('../../utils/timeUtil')
 const storage = require('../../utils/storage.js')
 const util = require('../../utils/util.js')
+const app = getApp()
 Component({
   properties: {
   },
   data: {
     text: '我是首页',
+    userPortraitCount: app.globalData.userPortrait,
+    userPortraitUrl: '',
+    nationalFlagCount: app.globalData.nationalFlag,
+    nationalFlagUrl: '',
+    isShowPop: false,
     userInfo: {
     },
     virtualInfo:{
@@ -27,8 +33,9 @@ Component({
   },
   async attached () {
     this.getVirtual()
+    this.changeVirtualInfo()
+
     const headImageUrl = storage.authStorage.getAuth() ? storage.authStorage.getAuth().headImageUrl : ''
-    debugger
     this.setData({
       headImageUrl
     })
@@ -88,6 +95,12 @@ Component({
           }
         }
       })
+
+      self.setData({isShowPop: true})
+    },
+    closePop () {
+      const self = this
+      self.setData({isShowPop: false})
     },
     async upLoadFile () {
       const self = this
@@ -148,12 +161,20 @@ Component({
       }
     },
     setConent (e){
-      this.setData({content: e.detail.value})
+      const data = e.detail.value
+      this.setData({content: data})
     },
     // 更换虚拟信息
     changeVirtualInfo (){
-      // toto
-
+      const self = this
+      const u = Math.floor(Math.random()*self.data.userPortraitCount)
+      const n = Math.floor(Math.random()*self.data.nationalFlagCount)
+      const userPortraitUrl = `../../images/resources/User-${u}.jpg`
+      const nationalFlagUrl = `../../images/resources/Nipic_${n}.jpg`
+      self.setData({
+        userPortraitUrl,
+        nationalFlagUrl
+      })
     },
     /**
      * 封装接口需要的参数
