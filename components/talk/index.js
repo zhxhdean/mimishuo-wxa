@@ -77,27 +77,48 @@ Component({
       this.data.previewImages.splice(index, 1)
       this.setData({previewImages: this.data.previewImages})
     },
-    async submit () {
+    async toSubmit () {
       const self = this
-
-      wx.showModal({
-        title: '是否提交？',
-        content: '您的吐槽反馈仅HR可见并已加密处理，请放心提交。',
-        confirmText: '提交吐槽',
-        success(res){
-          if(res.confirm){
-            // todo
-            self.upLoadFile()
-          }else if(res){
-            //todo
-            console.log('取消')
-
-          }
-        }
-      })
+      // wx.showModal({
+      //   title: '是否提交？',
+      //   content: '您的吐槽反馈仅HR可见并已加密处理，请放心提交。',
+      //   confirmText: '提交吐槽',
+      //   success(res){
+      //     if(res.confirm){
+      //       // todo
+      //       self.upLoadFile()
+      //     }else if(res){
+      //       //todo
+      //       console.log('取消')
+      //
+      //     }
+      //   }
+      // })
 
       self.setData({isShowPop: true})
     },
+    async submit () {
+      const self = this
+      self.upLoadFile()
+      console.log(self.data.burnAfterReading)
+      self.setData({
+        isShowPop: true,
+        isShowPop: false
+      })
+    },
+    checkboxChange: function (e) {
+      const self = this
+      let status = self.data.burnAfterReading
+      if (e.detail.value == '') {
+        status = false
+      } else {
+        status = true
+      }
+      self.setData({
+        burnAfterReading: status
+      })
+    },
+
     closePop () {
       const self = this
       self.setData({isShowPop: false})
@@ -137,7 +158,7 @@ Component({
           imageUrls.push(item.previewUrl)
           imageKeyList.push(item.fileKey)
         })
-        debugger
+
         self.setData({
           imageUrls: imageUrls,
           imageKeyList: imageKeyList
@@ -194,6 +215,29 @@ Component({
         subject
       }
       return result
+    },
+    toBack () {
+      const self = this
+      wx.setNavigationBarTitle({
+        title: '广场',
+      })
+      setTimeout(() => {
+        self.triggerEvent('swichNav', 0)
+      }, 0)
+    },
+    textAreaLineChange(e) {
+      this.setData({ txtHeight: e.detail.height })
+    },
+    txtInput(e) {
+      this.setData({ txtContent: e.detail.value })
+    },
+    changeMaskVisible(e) {
+      if (!this.data.showMask) {
+        // 将换行符转换为wxml可识别的换行元素 <br/>
+        const txtRealContent = this.data.txtContent.replace(/\n/g, '<br/>')
+        this.setData({ txtRealContent })
+      }
+      this.setData({ showMask: !this.data.showMask })
     }
   },
 

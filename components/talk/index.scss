@@ -6,6 +6,7 @@
   position: absolute;
 
   background: rgba(241, 241, 241, 1);
+  border-top: px(1) solid #DDDDDD;
   @include size(100%);
   &__action {
     padding:0 px(60);
@@ -164,5 +165,73 @@
       border-radius: 0;
       font-weight: bolder;
     }
+  }
+}
+.talk-pop {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+  @include size(px(600),px(380));
+  background: #ffffff;
+  z-index: 199;
+  transform: translate(-50%,-80%);
+  border-radius: px(16);
+
+  &__top {
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__content1 {
+    padding-top: px(60);
+    line-height: px(64);
+
+    font-weight: 600;
+    font-size: px(36);
+  }
+
+  &__content2 {
+    line-height: px(44);
+    color: #FF0000;
+    font-size: px(24);
+  }
+
+  &__check-box {
+    display: flex;
+    align-items: center;
+    line-height: px(44);
+    font-size: px(24);
+  }
+
+  &__botton {
+    height: px(160);
+    display: flex;
+    align-items: center;
+    padding: 0 px(20);
+
+    justify-content: space-between;
+  }
+
+  &__btn {
+    @include size(px(265),px(80));
+    text-align: center;
+    line-height: px(80);
+    border: px(1) solid #dddddd;
+    border-radius: px(8);
+
+    &--sub {
+      color: #FFFFFF;
+      background: #9dd300;
+    }
+  }
+
+  &__box {
+    transform: scale(0.6,0.6);
   }
 }
