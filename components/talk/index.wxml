@@ -5,13 +5,9 @@
       <view class="talk-pop__content1">是否提交？</view>
       <view class="talk-pop__content2">您的吐槽反馈仅HR可见并已加密处理，请放心提交</view>
       <view class="talk-pop__check-box">
-        <!--<label class="checkbox" wx:for="{{items}}">-->
-          <!---->
-        <!--</label>-->
         <checkbox-group bindchange="checkboxChange" data-index="{{index}}" data-checks="{{burnAfterReading}}">
           <checkbox checked="{{burnAfterReading}}" class="talk-pop__box" value="1"/>阅后即焚
         </checkbox-group>
-
       </view>
     </view>
     <view class="talk-pop__botton">
@@ -36,13 +32,26 @@
       <text class="cu-talk__virtualinfo__change" bindtap="changeVirtualInfo">更换</text>
     </view>
     <view class="cu-talk__textarea">
-      <textarea class="cu-talk__textarea--area"
-        placeholder-class="cu-talk__textarea--placeholder"
-        placeholder="此刻你想提的意见或建议..."
-        maxlength="500"
-        bindinput="setConent"
-        value="{{content}}"></textarea>
+      <!--<textarea class="cu-talk__textarea&#45;&#45;area"-->
+        <!--placeholder-class="cu-talk__textarea&#45;&#45;placeholder"-->
+        <!--placeholder="此刻你想提的意见或建议..."-->
+        <!--maxlength="500"-->
+        <!--bindinput="setConent"-->
+        <!--value="{{content}}"></textarea>-->
+
+      <textarea class="cu-talk__textarea--area" value="{{content}}"
+                placeholder-class="cu-talk__textarea--placeholder"
+                placeholder="此刻你想提的意见或建议..."
+                bindinput='setConent'
+                wx:if="{{!isShowPop}}"/>
+
+      <view class="cu-talk__rich-text{{txtRealContent?'':' cu-talk__textarea--placeholder'}}" wx:else>
+        <rich-text nodes="{{txtRealContent?txtRealContent:'此刻你想提的意见或建议...'}}"></rich-text>
+      </view>
     </view>
+
+
+
     <view class="cu-talk__imglist">
       <view class="cu-talk__imglist__image" wx:for="{{previewImages}}" wx:key="*this">
         <image src="{{item}}" class="cu-talk__imglist__img"></image>

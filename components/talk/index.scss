@@ -6,7 +6,6 @@
   position: absolute;
 
   background: rgba(241, 241, 241, 1);
-  border-top: px(1) solid #DDDDDD;
   @include size(100%);
   &__action {
     padding:0 px(60);
@@ -92,6 +91,7 @@
     font-size: px(32);
     text-align: left;
     font-family: PingFangSC-regular;
+    border: px(1) solid #DDDDDD;
 
     &--placeholder {
       color: rgba(181, 181, 181, 1);
@@ -99,9 +99,18 @@
 
     &--area {
       height: px(120);
+      width: 100%;
     }
   }
 
+  &__rich-text {
+    height: px(120);
+    overflow: hidden;
+    font-size: px(32);
+    border: px(1) solid #DDDDDD;
+    padding: px(10);
+
+  }
 
   &__imglist {
     /*display: flex;

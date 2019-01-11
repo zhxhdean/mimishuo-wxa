@@ -28,8 +28,8 @@ Component({
     imageUrls: [],  // 秘密图片
     reply: '',  // 回复内容
     replyTime: '', //  回复时间
-    subject: ''  //  主题
-
+    subject: '',  //  主题
+    txtRealContent: '' // 文字备份
   },
   async attached () {
     this.getVirtual()
@@ -94,7 +94,11 @@ Component({
       //     }
       //   }
       // })
-
+      if (!self.data.isShowPop) {
+        // 将换行符转换为wxml可识别的换行元素 <br/>
+        const txtRealContent = self.data.content.replace(/\n/g, '<br/>')
+        self.setData({ txtRealContent })
+      }
       self.setData({isShowPop: true})
     },
     async submit () {
