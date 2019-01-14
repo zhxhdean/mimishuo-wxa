@@ -21,7 +21,7 @@ async function userJoin (companyId) {
       success: function () {
         wx.login({
           success: function (loginRes) {
-            const code = loginRes.code
+            const wcode = loginRes.code
             wx.getUserInfo({
               withCredentials: true,
               success: function (data) {
@@ -34,7 +34,7 @@ async function userJoin (companyId) {
                   header: head,
                   method: 'POST',
                   data: {
-                    code: '', // code  测试默认传''
+                    code: wcode, // code  测试默认传''
                     companyId: companyId,
                     headImageUrl: userInfo.avatarUrl,
                     nickName: userInfo.nickName,
@@ -144,7 +144,7 @@ function userLogin(options) {
             url: `${host}/user/login`,
             header: head,
             data: {
-              code: '' // res.code  测试默认传''
+              code: res.code // res.code  测试默认传''
             },
             success(res) {
               console.info(res)
@@ -251,7 +251,7 @@ async function wxLogin() {
         wx.request({
           url: `${host}/user/login`,
           data: {
-            code: '' // res.code  测试默认传''
+            code: res.code // res.code  测试默认传''
           },
           success(res) {
             if (res.statusCode === 200) {
