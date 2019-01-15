@@ -10,7 +10,7 @@ noop(regeneratorRuntime)
 
 const {code} = require('./error_code')
 //请求的域名
-const host = 'http://www.mimishuo.net/api'
+const host = 'https://www.mimishuo.net/api'
 
 // 用户第一次进来注册
 
