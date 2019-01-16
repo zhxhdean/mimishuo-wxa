@@ -216,7 +216,7 @@ Component({
         })
         console.log(rsp.data)
       }catch (err) {
-        showToast(err.message || '网络错误，请重试')
+        unit.showToast(err.message || '网络错误，请重试')
       }
     },
     /**

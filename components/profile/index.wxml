@@ -1,6 +1,6 @@
 <view>
   <view class="user">
-    <image src="{{userInfo.avatar || '../../images/avator.jpg'}}"/>
+    <image src="{{userInfo.headImageUrl || '../../images/avator.jpg'}}"/>
     <image src="../../images/flash.png" class="power"/>
     <text class="cff9">{{userInfo.power || 12}}</text>
   </view>

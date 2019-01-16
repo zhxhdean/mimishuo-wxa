@@ -2,7 +2,7 @@
 .user{
   display: flex;
 
-  margin-top: -80rpx;
+  margin-top: -40rpx;
   height: 318rpx;
   align-items: center;
 }
