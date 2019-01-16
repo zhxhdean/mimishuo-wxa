@@ -26,30 +26,6 @@ Component({
         content: '食堂的伙食可不可以翻新一下。还有我无辣不欢，是否可以配一瓶老干妈拌饭。',
         replyContent: '您的建议很靠谱，我会联系厨房的。谢谢',
         replyTime: 1543819518281
-      },{
-        id: 2,
-        avatar: '',
-        createTime: 1543500185522,
-        power: 12,
-        content: '食堂的伙食可不可以翻新一下。还有我无辣不欢，是否可以配一瓶老干妈拌饭。',
-        replyContent: '您的建议很靠谱，我会联系厨房的。谢谢',
-        replyTime: 1543801518281
-      },{
-        id: 3,
-        avatar: '',
-        createTime: 1543809385522,
-        power: 12,
-        content: '食堂的伙食可不可以翻新一下。还有我无辣不欢，是否可以配一瓶老干妈拌饭。',
-        replyContent: '您的建议很靠谱，我会联系厨房的。谢谢',
-        replyTime: 1543819518281
-      },{
-        id: 4,
-        avatar: '',
-        createTime: 1543500185522,
-        power: 12,
-        content: '食堂的伙食可不可以翻新一下。还有我无辣不欢，是否可以配一瓶老干妈拌饭。',
-        replyContent: '您的建议很靠谱，我会联系厨房的。谢谢',
-        replyTime: 1543801518281
       }]
       const rst = data.map(item => {
         return Object.assign(item, {

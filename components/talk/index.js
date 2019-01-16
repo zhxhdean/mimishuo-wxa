@@ -35,10 +35,10 @@ Component({
     this.getVirtual()
     this.changeVirtualInfo()
 
-    const headImageUrl = storage.authStorage.getAuth() ? storage.authStorage.getAuth().headImageUrl : ''
-    this.setData({
-      headImageUrl
-    })
+    // const headImageUrl = storage.authStorage.getAuth() ? storage.authStorage.getAuth().headImageUrl : ''
+    // this.setData({
+    //   headImageUrl
+    // })
     // const rsp = await get({ url: urls.userAuth })
     // if(rsp.code === 0){
     //   wx.showToast({title: '数据加载成功'})
@@ -190,16 +190,34 @@ Component({
       this.setData({content: data})
     },
     // 更换虚拟信息
-    changeVirtualInfo (){
+    async changeVirtualInfo (){
       const self = this
-      const u = Math.floor(Math.random()*self.data.userPortraitCount)
-      const n = Math.floor(Math.random()*self.data.nationalFlagCount)
-      const userPortraitUrl = `../../images/resources/User-${u}.jpg`
-      const nationalFlagUrl = `../../images/resources/Nipic_${n}.jpg`
-      self.setData({
-        userPortraitUrl,
-        nationalFlagUrl
-      })
+      const u = Math.floor(Math.random()*(self.data.userPortraitCount-1))
+      // const n = Math.floor(Math.random()*(self.data.nationalFlagCount-1))
+      const headImageUrl = `images/resources/User-${u}.jpg`
+      // const nationalFlagUrl = `../../images/resources/Nipic_${n}.jpg`
+      let nationalFlagUrl
+      try{
+        const rsp = await get({
+          url: urls.changeIp,
+          data: self.params()
+        })
+        switch (rsp.data.country) {
+          case 'UK' :nationalFlagUrl = 'images/resources/Nipic_48.jpg';break;
+          case 'JAPAN' :nationalFlagUrl = 'images/resources/Nipic_121.jpg';break;
+          case 'France' :nationalFlagUrl = 'images/resources/Nipic_78.jpg';break;
+          case 'US' :nationalFlagUrl = 'images/resources/Nipic_26.jpg';break;
+        }
+        const virtualInfo = rsp.data || {}
+        this.setData({
+          virtualInfo,
+          headImageUrl,
+          nationalFlagUrl
+        })
+        console.log(rsp.data)
+      }catch (err) {
+        showToast(err.message || '网络错误，请重试')
+      }
     },
     /**
      * 封装接口需要的参数

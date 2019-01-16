@@ -14,7 +14,7 @@
       <view class="cu-profile__user">
         <view class="cu-profile__user-left">
           <view class="cu-profile__user-image">
-            <image src="{{item.headImageUrl}}" class="cu-profile__user-img"/>
+            <image wx:if="{{item.headImageUrl}}" src="../../{{item.headImageUrl}}" class="cu-profile__user-img"/>
           </view>{{item.createTime}}
         </view>
         <view class="cu-profile__user-right">

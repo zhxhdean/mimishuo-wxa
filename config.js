@@ -11,7 +11,8 @@ const urls = {
   secretList: 'secret/list',
   secretMy: 'secret/my',
   secretNew: 'secret/new',
-  upLoadFile: 'file/upload'
+  upLoadFile: 'file/upload',
+  changeIp: 'user/generate/ip'
 }
 
 module.exports = {
