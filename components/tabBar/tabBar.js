@@ -11,14 +11,14 @@ Component({
     currentTab: 0,
     items: [
       {
-        "iconPath": "../../images/icon/tabbar_square.png",
-        "selectedIconPath": "../../images/icon/tabbar_square_on.png",
-        "text": ""
+        'iconPath': '../../images/icon/tabbar_square.png',
+        'selectedIconPath': '../../images/icon/tabbar_square_on.png',
+        'text': ''
       },
       {
-        "iconPath": "../../images/icon/tabbar_me.png",
-        "selectedIconPath": "../../images/icon/tabbar_me_on.png",
-        "text": ""
+        'iconPath': '../../images/icon/tabbar_me.png',
+        'selectedIconPath': '../../images/icon/tabbar_me_on.png',
+        'text': ''
       }
     ]
   },
@@ -28,10 +28,10 @@ Component({
   },
   methods: {
     swichNav (e) {
-      let self = this;
+      let self = this
       const currentTab = e.target.dataset.current
       if (this.data.currentTab === currentTab) {
-        return false;
+        return false
       } else {
         self.setData({
           currentTab: e.target.dataset.current
@@ -47,15 +47,15 @@ Component({
         // }
         if (currentTab === 0) {
           wx.setNavigationBarTitle({
-            title: '广场',
+            title: '广场'
           })
         } else if (currentTab === 1) {
           wx.setNavigationBarTitle({
-            title: '我的',
+            title: '我的'
           })
         } else if (currentTab === 2) {
           wx.setNavigationBarTitle({
-            title: '',
+            title: ''
           })
         }
         // wx.setNavigationBarTitle({

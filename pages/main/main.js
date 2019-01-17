@@ -2,17 +2,17 @@
 const {formatTimeFromStamp} = require('../../utils/timeUtil')
 Page({
   data: {
-    currentTab: 0 //当前tab选择项  默认 0 广场   1 个人中心
+    currentTab: 0 // 当前tab选择项  默认 0 广场   1 个人中心
   },
   onLoad: async function (options) {
     const {currentTab = 0} = options
     if (currentTab === 1) {
       wx.setNavigationBarTitle({
-        title: '我的',
+        title: '我的'
       })
     } else {
       wx.setNavigationBarTitle({
-        title: '广场',
+        title: '广场'
       })
     }
     this.setData({currentTab})
@@ -30,7 +30,7 @@ Page({
   },
   onReachBottom: function () {
     if (this.data.currentTab == 0) {
-      this.selectComponent("#cusquare").loadMore();
+      this.selectComponent('#cusquare').loadMore()
     }
   },
 
@@ -40,7 +40,7 @@ Page({
   onShareAppMessage: function () {
 
   },
-  swichNav: function(event){
+  swichNav: function (event) {
     const currentTab = event.detail
     this.setData({currentTab})
   }

@@ -5,9 +5,9 @@ noop(regeneratorRuntime)
 App({
   onLaunch: function() {},
   globalData: {
-    isIphoneX: false,
+    isIphoneX: false
   },
-  onShow: async function() {
+  onShow: async function () {
     let self = this
     // 获取用户经纬度
     wx.getLocation({
@@ -20,7 +20,7 @@ App({
         const accuracy = res.accuracy
         console.log(res)
       }
-     })
+    })
     // 全局值中设定是否粪X，为了在界面中设定显示安全区
     wx.getSystemInfo({
       success: res => {

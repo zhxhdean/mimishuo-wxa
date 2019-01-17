@@ -60,7 +60,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-      // todo调接口
+    // todo调接口
   },
 
   /**
@@ -69,8 +69,7 @@ Page({
   onShareAppMessage: function () {
 
   },
-  clickComplaints: async function(){
+  clickComplaints: async function () {
     const rsp = await join(this.data.companyId)
-
   }
 })
