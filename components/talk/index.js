@@ -16,7 +16,7 @@ Component({
     isShowPop: false,
     userInfo: {
     },
-    virtualInfo:{
+    virtualInfo: {
     },
     previewImages: [],
 
@@ -25,34 +25,26 @@ Component({
     headImageKey: '', // 头像key
     headImageUrl: '', // 头像
     imageKeyList: [], // 图片key列表
-    imageUrls: [],  // 秘密图片
-    reply: '',  // 回复内容
+    imageUrls: [], // 秘密图片
+    reply: '', // 回复内容
     replyTime: '', //  回复时间
-    subject: '',  //  主题
+    subject: '', //  主题
     txtRealContent: '' // 文字备份
   },
   async attached () {
     this.getVirtual()
     this.changeVirtualInfo()
 
-    // const headImageUrl = storage.authStorage.getAuth() ? storage.authStorage.getAuth().headImageUrl : ''
-    // this.setData({
-    //   headImageUrl
-    // })
-    // const rsp = await get({ url: urls.userAuth })
-    // if(rsp.code === 0){
-    //   wx.showToast({title: '数据加载成功'})
-    //   rsp.data.expireTime = formatTimeFromStamp(rsp.data.expireTime, 'Y-M-D h:m:s')
-    //   this.setData({userInfo: rsp.data})
-    // }else{
-    //   wx.showToast({title: '数据加载失败'})
-    // }
+    const headImageUrl = storage.authStorage.getAuth() ? storage.authStorage.getAuth().headImageUrl : ''
+    this.setData({
+      headImageUrl
+    })
   },
   methods: {
     getVirtual () {
       const virtualInfo = {
         ip: '169.132.155.34',
-        country: '巴西'
+        country: ''
       }
       this.setData({virtualInfo: virtualInfo})
     },
@@ -63,7 +55,7 @@ Component({
         sizeType: ['original', 'compressed'],
         sourceType: ['album', 'camera'],
         success (res) {
-          if(res.errMsg === 'chooseImage:ok'){
+          if (res.errMsg === 'chooseImage:ok') {
             // tempFilePath可以作为img标签的src属性显示图片
             const tempFilePaths = res.tempFilePaths
             self.setData({previewImages: self.data.previewImages.concat(tempFilePaths)})
@@ -79,21 +71,10 @@ Component({
     },
     async toSubmit () {
       const self = this
-      // wx.showModal({
-      //   title: '是否提交？',
-      //   content: '您的吐槽反馈仅HR可见并已加密处理，请放心提交。',
-      //   confirmText: '提交吐槽',
-      //   success(res){
-      //     if(res.confirm){
-      //       // todo
-      //       self.upLoadFile()
-      //     }else if(res){
-      //       //todo
-      //       console.log('取消')
-      //
-      //     }
-      //   }
-      // })
+      if (!self.data.content) {
+        util.showToast('请填写您要吐槽的内容')
+        return
+      }
       if (!self.data.isShowPop) {
         // 将换行符转换为wxml可识别的换行元素 <br/>
         const txtRealContent = self.data.content.replace(/\n/g, '<br/>')
@@ -106,7 +87,6 @@ Component({
       self.upLoadFile()
       console.log(self.data.burnAfterReading)
       self.setData({
-        isShowPop: true,
         isShowPop: false
       })
     },
@@ -152,7 +132,7 @@ Component({
 
       try {
         wx.showLoading({
-          title: '正在上传...',
+          title: '正在上传...'
         })
         const upload_res = await Promise.all(tasks)
         wx.hideLoading()
@@ -178,52 +158,50 @@ Component({
         util.showToast('保存成功')
         setTimeout(() => {
           self.triggerEvent('swichNav', 0)
-        },1500)
+        }, 1500)
       } catch (err) {
         wx.hideLoading()
         console.log(err)
-        util.showToast(err ? err : '保存失败')
+        util.showToast(err || '保存失败')
       }
     },
-    setConent (e){
+    setConent (e) {
       const data = e.detail.value
       this.setData({content: data})
     },
     // 更换虚拟信息
-    async changeVirtualInfo (){
+    async changeVirtualInfo () {
       const self = this
-      const u = Math.floor(Math.random()*(self.data.userPortraitCount-1))
-      // const n = Math.floor(Math.random()*(self.data.nationalFlagCount-1))
-      const headImageUrl = `images/resources/User-${u}.jpg`
-      // const nationalFlagUrl = `../../images/resources/Nipic_${n}.jpg`
+      // const u = Math.floor(Math.random() * (self.data.userPortraitCount - 1))
+
+      // const headImageUrl = `images/resources/User-${u}.jpg`
       let nationalFlagUrl
-      try{
+      try {
         const rsp = await get({
           url: urls.changeIp,
           data: self.params()
         })
         switch (rsp.data.country) {
-          case 'UK' :nationalFlagUrl = 'images/resources/Nipic_48.jpg';break;
-          case 'JAPAN' :nationalFlagUrl = 'images/resources/Nipic_121.jpg';break;
-          case 'France' :nationalFlagUrl = 'images/resources/Nipic_78.jpg';break;
-          case 'US' :nationalFlagUrl = 'images/resources/Nipic_26.jpg';break;
+          case 'UK' :nationalFlagUrl = 'images/resources/Nipic_48.jpg'; break
+          case 'JAPAN' :nationalFlagUrl = 'images/resources/Nipic_121.jpg'; break
+          case 'France' :nationalFlagUrl = 'images/resources/Nipic_78.jpg'; break
+          case 'US' :nationalFlagUrl = 'images/resources/Nipic_26.jpg'; break
         }
         const virtualInfo = rsp.data || {}
         this.setData({
           virtualInfo,
-          headImageUrl,
           nationalFlagUrl
         })
         console.log(rsp.data)
-      }catch (err) {
-        unit.showToast(err.message || '网络错误，请重试')
+      } catch (err) {
+        util.showToast(err.message || '网络错误，请重试')
       }
     },
     /**
      * 封装接口需要的参数
      */
     params () {
-      const { burnAfterReading  = false, content, headImageKey, headImageUrl, imageKeyList = [], imageUrls = [], reply = '', replyTime = '', subject } = this.data
+      const { burnAfterReading = false, content, headImageKey, headImageUrl, imageKeyList = [], imageUrls = [], reply = '', replyTime = '', subject } = this.data
       let result = {
         burnAfterReading,
         content,
@@ -241,19 +219,19 @@ Component({
     toBack () {
       const self = this
       wx.setNavigationBarTitle({
-        title: '广场',
+        title: '广场'
       })
       setTimeout(() => {
         self.triggerEvent('swichNav', 0)
       }, 0)
     },
-    textAreaLineChange(e) {
+    textAreaLineChange (e) {
       this.setData({ txtHeight: e.detail.height })
     },
-    txtInput(e) {
+    txtInput (e) {
       this.setData({ txtContent: e.detail.value })
     },
-    changeMaskVisible(e) {
+    changeMaskVisible (e) {
       if (!this.data.showMask) {
         // 将换行符转换为wxml可识别的换行元素 <br/>
         const txtRealContent = this.data.txtContent.replace(/\n/g, '<br/>')
@@ -261,6 +239,6 @@ Component({
       }
       this.setData({ showMask: !this.data.showMask })
     }
-  },
+  }
 
 })

@@ -6,6 +6,7 @@
 $tab_bar_height: 164;  //  tabbar 高度
 $tab_bar_img_h: 140;  //  tabbar 图片高度
 
+
 view, text {
   font-family: inherit;
   color: inherit;
@@ -16,7 +17,6 @@ view, text {
   padding-bottom: px(68);
   //border-bottom: px(68) solid #FFFFFF;
 }
-
 .my_mask{
   position:fixed;
   width:100%;
@@ -25,4 +25,8 @@ view, text {
   left:0;
   z-index:98;
   background-color:rgba(0,0,0,0.4);
+}
+.cu-placeholder {
+  background: url($background_placeholder) center no-repeat;
+  background-size: 100% 100%;
 }

@@ -1,5 +1,4 @@
 @charset "UTF-8";
-@import "../../scss/vars";
 @import "../../scss/base";
 @import "../../scss/mixins";
 .cu-talk {
@@ -53,7 +52,7 @@
     }
     &__flag-image {
       margin-top: px(50);
-      margin-left: px(32);
+      margin-left: px(20);
 
       overflow: hidden;
       @include size(px(88),px(48));
@@ -66,6 +65,7 @@
       margin-left: px(24);
       line-height: px(50);
 
+      width: px(320);
       color: rgba(138, 137, 137, 1);
       text-align: left;
     }

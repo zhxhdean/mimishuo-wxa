@@ -13,7 +13,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "2.0.4",
 	"appid": "wxb3c596eaba329a23",
-	"projectname": "%E7%A7%98%E5%AF%86%E8%AF%B4(%E6%96%B0)",
+	"projectname": "%E7%A7%98%E5%AF%86%E8%AF%B4new",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
@@ -36,30 +36,12 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 6,
+			"current": 2,
 			"list": [
-				{
-					"id": -1,
-					"name": "我的",
-					"pathName": "pages/profile/index",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "首页",
-					"pathName": "pages/index/index",
-					"query": ""
-				},
 				{
 					"id": -1,
 					"name": "吐槽",
 					"pathName": "pages/talk/index",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "111",
-					"pathName": "pages/secret/index",
 					"query": ""
 				},
 				{
@@ -70,14 +52,9 @@
 				},
 				{
 					"id": -1,
-					"name": "吐槽2",
-					"pathName": "pages/talk/index",
-					"query": ""
-				},
-				{
-					"id": -1,
 					"name": "login",
-					"pathName": "pages/login/login"
+					"pathName": "pages/main/main",
+					"query": "广场"
 				}
 			]
 		}

@@ -1,89 +1,115 @@
 const config = require('../config.js')
 const storage = require('./storage.js')
 const unit = require('./util.js')
-
+const app = getApp()
 const regeneratorRuntime = require('./runtime')
 
-function noop(){}
+function noop () {}
 noop(regeneratorRuntime)
 
-
 const {code} = require('./error_code')
-//请求的域名
+// 请求的域名
 const host = 'https://www.mimishuo.net/api'
 
 // 用户第一次进来注册
 
-
 async function userJoin (companyId) {
-    wx.authorize({
-      scope: 'scope.userInfo',
-      success: function () {
-        wx.login({
-          success: function (loginRes) {
-            const wcode = loginRes.code
-            wx.getUserInfo({
-              withCredentials: true,
-              success: function (data) {
-                wx.setStorageSync('userInfo', data.userInfo)
-                console.log(data.userInfo)
-                const userInfo = data.userInfo
-                let head = {'content-type': 'application/json'}
-                wx.request({
-                  url: `${host}/user/join`,
-                  header: head,
-                  method: 'POST',
-                  data: {
-                    code: wcode, // code  测试默认传''
-                    companyId: companyId,
-                    headImageUrl: userInfo.avatarUrl,
-                    nickName: userInfo.nickName,
-                    sex: userInfo.gender
-                  },
-                  success(res) {
-                    console.info(res)
-                    wx.redirectTo({
-                      url: '/pages/main/main'
-                    })
-                  },
-                  fail(res) {
-                    reject(res)
+  wx.authorize({
+    scope: 'scope.userInfo',
+    success: function () {
+      wx.login({
+        success: function (loginRes) {
+          const wcode = loginRes.code
+          wx.getUserInfo({
+            withCredentials: true,
+            success: function (data) {
+              wx.setStorageSync('userInfo', data.userInfo)
+              console.log(data.userInfo)
+              const userInfo = data.userInfo
+              // 取到用户经纬度
+              let userLocation = app.globalData.userLocation
+              if (!userLocation) {
+                wx.getLocation({
+                  type: 'wgs84',
+                  altitude: true,
+                  success (res) {
+                    const latitude = res.latitude
+                    const longitude = res.longitude
+                    app.globalData.userLocation = {
+                      latitude: latitude,
+                      longitude: longitude
+                    }
+                    userLocation = app.globalData.userLocation
                   }
                 })
-                //RequestLogin(code, data.encryptedData, data.iv, success, fail)
               }
-            })
-          },
-          fail: function () {
-          }
-        })
-      },
-      fail: function () {
-        wx.removeStorageSync('userInfo')
-      }
-    })
-  }
 
+              let head = {'content-type': 'application/json'}
+              wx.request({
+                url: `${host}/user/join`,
+                header: head,
+                method: 'POST',
+                data: {
+                  code: wcode, // code  测试默认传''
+                  companyId: companyId,
+                  headImageUrl: userInfo.avatarUrl,
+                  nickName: userInfo.nickName,
+                  sex: userInfo.gender
+                },
+                success (res) {
+                  if (res.statusCode === 200) {
+                    if (res.data && res.data.errorCode === '200' || res.data.result === 'success') {
+                      storage.authStorage.setAuth(res.data.data)
+                      if (res.data.data && res.data.data.accessToken) {
+                        wx.redirectTo({
+                          url: '/pages/main/main'
+                        })
+                      } else {
+                        showLoginErr(res.data.errorMsg || '登录失败，请稍后重试')
+                      }
+                    } else {
+                      showLoginErr('网络连接失败')
+                    }
+                  } else {
+                    showLoginErr('网络连接失败')
+                  }
+                },
+                fail (res) {
+                  showLoginErr(res.errMsg || '网络连接失败')
+                }
+              })
+              // RequestLogin(code, data.encryptedData, data.iv, success, fail)
+            }
+          })
+        },
+        fail: function () {
+        }
+      })
+    },
+    fail: function () {
+      wx.removeStorageSync('userInfo')
+    }
+  })
+}
 
 // 微信发送请求
-async function wxRequest(options) {
+async function wxRequest (options) {
   const { url, data, method, dataType, header } = options
   let head = {}
-  if(!header){
+  if (!header) {
     let authorization = storage.authStorage.getAuth() ? storage.authStorage.getAuth().accessToken : ''
     if (!authorization) {
       try {
         authorization = await userLogin()
-      }catch (err) {
+      } catch (err) {
         return
       }
-
     }
     head = {
       'content-type': 'application/json', // 默认值
-      'authorization': authorization, // 测试值，// todo 到时候需要通过接口获取到这个值
+      'authorization': authorization // 测试值，// todo 到时候需要通过接口获取到这个值
     }
-  }else {
+  } else {
     head = header
   }
   // 请求url是否在合法的urls中
@@ -96,8 +122,8 @@ async function wxRequest(options) {
     })
   }
   const request_url = `${host}/${url}`
-  const request_method = method || 'GET' //未设置，默认get
-  const request_dataType = dataType || 'json' //未设置，默认json
+  const request_method = method || 'GET' // 未设置，默认get
+  const request_dataType = dataType || 'json' // 未设置，默认json
 
   const promise = new Promise((resolve, reject) => {
     wx.request({
@@ -106,14 +132,14 @@ async function wxRequest(options) {
       method: request_method,
       dataType: request_dataType,
       header: head,
-      success(res) {
+      success (res) {
         // console.log(res)
         // todo ，统一校验
         if (res.statusCode === 200) {
-          if(res.data.result === 'success'){
-            //接口成功返回数据
+          if (res.data.result === 'success') {
+            // 接口成功返回数据
             resolve({code: 0, data: res.data.data})
-          }else{
+          } else {
             if (res.data.errorCode == '401' || res.data.errorCode == '403') { // 如果是tonken过期，自动刷新登录接口
               userLogin()
             } else {
@@ -124,7 +150,7 @@ async function wxRequest(options) {
           reject(res)
         }
       },
-      fail(res) {
+      fail (res) {
         reject(res)
       }
     })
@@ -132,12 +158,11 @@ async function wxRequest(options) {
   return promise
 }
 
-
-function userLogin(options) {
+function userLogin (options) {
   const promise = new Promise((resolve, reject) => {
     wx.login({
-      success(res){
-        if(res.code){
+      success (res) {
+        if (res.code) {
           // 发网络请求，调api获取openid
           let head = {'content-type': 'application/json'}
           wx.request({
@@ -146,51 +171,50 @@ function userLogin(options) {
             data: {
               code: res.code // res.code  测试默认传''
             },
-            success(res) {
+            success (res) {
               console.info(res)
               if (res.statusCode === 200) {
-
-                if(res.data && res.data.errorCode === '200' || res.data.result === 'success'){
-                  storage.authStorage.setAuth(res.data.data);
+                if (res.data && res.data.errorCode === '200' || res.data.result === 'success') {
+                  storage.authStorage.setAuth(res.data.data)
                   if (res.data.data && res.data.data.accessToken) {
                     resolve(res.data.data.accessToken)
                   } else {
-                    showLoginErr(res.data.errorMsg || '登录失败，请稍后重试',options)
+                    showLoginErr(res.data.errorMsg || '登录失败，请稍后重试', options)
                   }
-                }else{
-                  showLoginErr('网络连接失败',options)
+                } else {
+                  showLoginErr('网络连接失败', options)
                   reject()
                 }
               } else {
-                showLoginErr('网络连接失败',options)
+                showLoginErr('网络连接失败', options)
                 reject()
               }
             },
-            fail(res) {
-              showLoginErr('网络连接失败',options)
+            fail (res) {
+              showLoginErr('网络连接失败', options)
               reject(res)
             }
           })
-        }else{
-          showLoginErr('微信登录授权失败',options)
+        } else {
+          showLoginErr('微信登录授权失败', options)
         }
       }
     })
   })
   return promise
 }
-function showLoginErr(errMessage,type) {
+function showLoginErr (errMessage, type) {
   unit.showToast(errMessage || '登录失败，请稍后重试')
   if (type !== 2) {
     setTimeout(() => {
       wx.navigateTo({
         url: '/pages/login/login'
       })
-    },1500)
+    }, 1500)
   }
 }
 // 上传图片
-function wxUploadFile(options) {
+function wxUploadFile (options) {
   const { url = 'file/upload', img} = options
 
   // 请求url是否在合法的urls中
@@ -204,7 +228,6 @@ function wxUploadFile(options) {
   }
   const request_url = `${host}/${url}`
   const promise = new Promise((resolve, reject) => {
-
     wx.uploadFile({
       url: request_url,
       filePath: img,
@@ -213,20 +236,19 @@ function wxUploadFile(options) {
         'Content-Type': 'multipart/form-data'
       },
       formData: {
-        "user": "test"
+        'user': 'test'
       },
       success: function (res) {
-        var data = JSON.parse(res.data);
-        //服务器返回格式: {"result": "success","errorMsg": null,"errorCode": null,"data": { "presignedUrl": null,"previewUrl": "https://mimishuo.oss-cn-beijing.aliyuncs.com/82a42370240143d7afb5f049d52d849b.jpg?Expires=1544943830&OSSAccessKeyId=LTAI8OcdlGlLVNgz&Signature=KB1GTXIO7%2BIUqazwe8BAUe7z2Dk%3D","fileKey": "82a42370240143d7afb5f049d52d849b.jpg"}}
+        var data = JSON.parse(res.data)
+        // 服务器返回格式: {"result": "success","errorMsg": null,"errorCode": null,"data": { "presignedUrl": null,"previewUrl": "https://mimishuo.oss-cn-beijing.aliyuncs.com/82a42370240143d7afb5f049d52d849b.jpg?Expires=1544943830&OSSAccessKeyId=LTAI8OcdlGlLVNgz&Signature=KB1GTXIO7%2BIUqazwe8BAUe7z2Dk%3D","fileKey": "82a42370240143d7afb5f049d52d849b.jpg"}}
         if (data.errorCode === '200' || data.result === 'success') {
           resolve(data.data)
         } else {
           reject(data.errorMsg)
         }
-
       },
       fail: function (res) {
-        wx.hideToast();
+        wx.hideToast()
         wx.showModal({
           title: '错误提示',
           content: '上传图片失败',
@@ -238,66 +260,65 @@ function wxUploadFile(options) {
       complete: function () {
 
       }
-    });
+    })
   })
   return promise
 }
 
-
-async function wxLogin() {
+async function wxLogin () {
   wx.login({
-    success(res){
-      if(res.code){
+    success (res) {
+      if (res.code) {
         wx.request({
           url: `${host}/user/login`,
           data: {
             code: res.code // res.code  测试默认传''
           },
-          success(res) {
+          success (res) {
             if (res.statusCode === 200) {
-              if(res.data.errorCode === 200){
-                storage.setAuth(res.data.data);
-              }else{
+              if (res.data.errorCode === 200) {
+                storage.setAuth(res.data.data)
+              } else {
                 unit.showToast(res.data.errorMsg)
               }
             } else {
 
             }
           },
-          fail(res) {
+          fail (res) {
 
           }
         })
         console.log(res.code)
-      }else{
-        console.log('登录失败'+res.errMsg)
+      } else {
+        console.log('登录失败' + res.errMsg)
       }
     }
   })
 }
 
-async function uploadFile(options) {
+async function uploadFile (options) {
   return await wxUploadFile(options)
 }
-async function login(options) {
+async function login (options) {
   return await userLogin(options)
 }
-async function join(companyId) {
+async function join (companyId) {
   return await userJoin(companyId)
 }
-async function get(options) {
+async function get (options) {
   options = options || {}
   options.method = 'GET'
-   return await wxRequest(options)
+  return await wxRequest(options)
 }
 
-async function post(options) {
+async function post (options) {
   options = options || {}
   options.method = 'POST'
   return await wxRequest(options)
 }
 
-async function put(options) {
+async function put (options) {
   options = options || {}
   options.method = 'PUT'
   return await wxRequest(options)

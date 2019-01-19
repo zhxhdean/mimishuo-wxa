@@ -21,7 +21,7 @@
   </view>
   <view class="cu-talk__body">
     <view class="cu-talk__virtualinfo">
-      <view class="cu-talk__virtualinfo__image">
+      <view class="cu-talk__virtualinfo__image cu-placeholder">
         <image wx:if="{{headImageUrl}}" class="cu-talk__virtualinfo__img" src="../../{{headImageUrl}}" />
       </view>
       <text class="cu-talk__virtualinfo__text">您的IP已经被保护

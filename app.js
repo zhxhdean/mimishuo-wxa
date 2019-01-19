@@ -3,7 +3,7 @@ const regeneratorRuntime = require('./utils/runtime')
 function noop () { }
 noop(regeneratorRuntime)
 App({
-  onLaunch: function() {},
+  onLaunch: function () {},
   globalData: {
     isIphoneX: false
   },
@@ -16,8 +16,10 @@ App({
       success (res) {
         const latitude = res.latitude
         const longitude = res.longitude
-        const speed = res.speed
-        const accuracy = res.accuracy
+        self.globalData.userLocation = {
+          latitude: latitude,
+          longitude: longitude
+        }
         console.log(res)
       }
     })
@@ -33,6 +35,6 @@ App({
     self.globalData.userPortrait = 40
     self.globalData.nationalFlag = 189
   },
-  onHide: function() {},
+  onHide: function () {}
 
 })

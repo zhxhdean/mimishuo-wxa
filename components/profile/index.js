@@ -11,17 +11,17 @@ Component({
     try {
       const rsp = await get({ url: urls.userInfo })
       this.setData({userInfo: rsp.data})
-    }catch (err) {
+    } catch (err) {
       util.showToast(rsp.message || '获取用户信息失败')
     }
   },
   methods: {
     swichNav (e) {
       console.log(e)
-      let self = this;
+      let self = this
       const currentTab = e.target.dataset.current
       if (this.data.currentTab === currentTab) {
-        return false;
+        return false
       } else {
         self.setData({
           currentTab: e.target.dataset.current
@@ -35,7 +35,6 @@ Component({
             url: '/pages/profile/index'
           })
         }
-
       }
     }
   }
