@@ -1,26 +1,26 @@
 <view>
-  <view class="user">
-    <image src="{{userInfo.headImageUrl}}"/>
-    <image src="../../images/flash.png" class="power"/>
-    <text class="cff9">{{userInfo.power || 12}}</text>
+  <view class="cu-profile__user">
+    <image class="cu-profile__user-image cu-placeholder" src="{{userInfo.headImageUrl}}"/>
+    <image class="cu-profile__user-power" src="../../images/flash.png"/>
+    <text class="cff9 cu-profile__user-text">{{userInfo.power || 12}}</text>
   </view>
 
-  <view class="menu">
+  <view class="cu-profile__menu">
     <navigator url="/pages/secret/index">
-      <view class="menu-item">
-        <view>
-          <image src="../../images/icon/icon_secret.png" />秘密说
+      <view class="cu-profile__menu-items">
+        <view class="cu-profile__menu-item">
+          <image class="cu-profile__menu-image" src="../../images/icon/icon_secret.png" />秘密说
         </view>5
       </view>
     </navigator>
-    <view class="menu-item">
-      <view>
-        <image src="../../images/icon/icon_energy.png" />充能值
+    <view class="cu-profile__menu-items">
+      <view class="cu-profile__menu-item">
+        <image class="cu-profile__menu-image" src="../../images/icon/icon_energy.png" />充能值
       </view>32
     </view>
-    <view class="menu-item">
-      <view>
-        <image src="../../images/icon/icon_reply.png" />已回复
+    <view class="cu-profile__menu-items">
+      <view class="cu-profile__menu-item">
+        <image class="cu-profile__menu-image" src="../../images/icon/icon_reply.png" />已回复
       </view>3
     </view>
   </view>

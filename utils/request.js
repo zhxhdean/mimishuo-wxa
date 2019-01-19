@@ -27,7 +27,7 @@ async function userJoin (companyId) {
               console.log(data.userInfo)
               const userInfo = data.userInfo
               // 取到用户经纬度
-              let userLocation = app.globalData.userLocation
+              let userLocation = getApp().globalData.userLocation
               if (!userLocation) {
                 wx.getLocation({
                   type: 'wgs84',
@@ -35,11 +35,11 @@ async function userJoin (companyId) {
                   success (res) {
                     const latitude = res.latitude
                     const longitude = res.longitude
-                    app.globalData.userLocation = {
+                    getApp().globalData.userLocation = {
                       latitude: latitude,
                       longitude: longitude
                     }
-                    userLocation = app.globalData.userLocation
+                    userLocation = getApp().globalData.userLocation
                   }
                 })
               }
@@ -65,17 +65,17 @@ async function userJoin (companyId) {
                           url: '/pages/main/main'
                         })
                       } else {
-                        showLoginErr(res.data.errorMsg || '登录失败，请稍后重试')
+                        unit.showToast(res.data.errorMsg || '登录失败，请稍后重试')
                       }
                     } else {
-                      showLoginErr('网络连接失败')
+                      unit.showToast('网络连接失败')
                     }
                   } else {
-                    showLoginErr('网络连接失败')
+                    unit.showToast('网络连接失败')
                   }
                 },
                 fail (res) {
-                  showLoginErr(res.errMsg || '网络连接失败')
+                  unit.showToast(res.errMsg || '网络连接失败')
                 }
               })
               // RequestLogin(code, data.encryptedData, data.iv, success, fail)
@@ -213,6 +213,7 @@ function showLoginErr (errMessage, type) {
     }, 1500)
   }
 }
+
 // 上传图片
 function wxUploadFile (options) {
   const { url = 'file/upload', img} = options

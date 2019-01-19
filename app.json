@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/start/start",
     "pages/main/main",
+    "pages/start/start",
     "pages/index/index",
     "pages/profile/index",
     "pages/talk/index",
