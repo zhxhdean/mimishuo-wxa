@@ -39,7 +39,7 @@ Page({
       data: this.params()
     })
     // wx.hideLoading()
-    if(rsp.code === 0){
+    if (rsp.code === 0) {
       const data = rsp.data
       if (!data.items || data.items.length === 0) {
         this.setData({noMore: true})
@@ -59,7 +59,7 @@ Page({
     }
   },
   params () {
-    const { pageIndex = 1, pageSize = 10} = this.data
+    const {pageIndex = 1, pageSize = 10} = this.data
     let result = {
       pageIndex,
       pageSize
@@ -71,12 +71,5 @@ Page({
    */
   onReachBottom: function () {
     this.loadMore()
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
   }
 })

@@ -58,6 +58,10 @@
     &--first {
       margin-top: px(60);
     }
+
+    &:last-of-type {
+      border-bottom: none;
+    }
   }
   &__bodys {
     padding-bottom: px(164);

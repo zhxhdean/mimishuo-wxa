@@ -1,0 +1,28 @@
+@charset "UTF-8";
+@import "../../scss/vars";
+@import "../../scss/mixins";
+.cu-no-more{
+  position: relative;
+  line-height: px(114);
+
+  font-size: px(24);
+  font-weight:400;
+  color: #999999;
+
+  text-align: center;
+  @include size(100%,px(114));
+
+  &::before {
+    content: '';
+    width: px(120);
+    border-bottom: px(1) solid #DDDDDD;
+    @include abs-pos(px(58), auto, auto, px(162));
+  }
+
+  &::after {
+    content: '';
+    width: px(120);
+    border-top: px(1) solid #DDDDDD;
+    @include abs-pos(px(58), px(164),auto , auto);
+  }
+}
