@@ -8,7 +8,8 @@ Page({
     pageSize: 10,
     totalCount: 0,
     secretList: [],
-    noMore: false
+    noMore: false,
+    isEmpty: false
   },
   onLoad: function (options) {
 
@@ -22,12 +23,12 @@ Page({
 
   },
   refresh () {
-    // this.setData({
-    //   isEmpty: false,
-    //   noMore: false,
-    //   pageIndex: 1,
-    //   list: []
-    // })
+    this.setData({
+      isEmpty: false,
+      noMore: false,
+      pageIndex: 1,
+      list: []
+    })
     this.loadMore()
   },
   async loadMore () {
@@ -53,7 +54,7 @@ Page({
       })
       this.setData({
         secretList: [...this.data.secretList, ...rst],
-        pageIndex: data.pageIndex,
+        pageIndex: data.pageIndex + 1,
         totalCount: data.totalCount
       })
     }

@@ -89,6 +89,6 @@ Component({
         upDown
       }
       return result
-    },
+    }
   }
 })

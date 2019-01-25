@@ -1,4 +1,4 @@
-const {join} = require('../../utils/request')
+const {join, login} = require('../../utils/request')
 const {urls} = require('../../config')
 const {formatTimeFromStamp} = require('../../utils/timeUtil')
 Page({
@@ -70,6 +70,17 @@ Page({
 
   },
   clickComplaints: async function () {
-    const rsp = await join(this.data.companyId)
+    if (this.data.companyId) {
+      await join(this.data.companyId)
+    } else {
+      try {
+        await login(2)
+        wx.redirectTo({
+          url: '/pages/main/main'
+        })
+      } catch (err) {
+        console.log(err)
+      }
+    }
   }
 })

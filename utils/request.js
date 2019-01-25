@@ -52,9 +52,10 @@ async function userJoin (companyId) {
                 data: {
                   code: wcode, // code  测试默认传''
                   companyId: companyId,
-                  headImageUrl: userInfo.avatarUrl,
                   nickName: userInfo.nickName,
-                  sex: userInfo.gender
+                  sex: userInfo.gender,
+                  lat: userLocation.latitude,
+                  lng: userLocation.longitude
                 },
                 success (res) {
                   if (res.statusCode === 200) {
@@ -140,8 +141,9 @@ async function wxRequest (options) {
             // 接口成功返回数据
             resolve({code: 0, data: res.data.data})
           } else {
-            if (res.data.errorCode == '401' || res.data.errorCode == '403') { // 如果是tonken过期，自动刷新登录接口
-              userLogin()
+            if (res.data.errorCode == '10002') { // 如果是tonken过期，自动刷新登录接口
+              // userLogin()
+              showLoginErr('授权过期，请重新登录')
             } else {
               resolve({code: res.data.errorCode, content: res.data.errorMsg})
             }
@@ -179,7 +181,13 @@ function userLogin (options) {
                   if (res.data.data && res.data.data.accessToken) {
                     resolve(res.data.data.accessToken)
                   } else {
-                    showLoginErr(res.data.errorMsg || '登录失败，请稍后重试', options)
+                    if (res.data.errorCode == '10002') { // 如果是tonken过期，自动刷新登录接口
+                      // userLogin()
+                      showLoginErr('授权过期，请重新登录', options)
+                    } else {
+                      showLoginErr(res.data.errorMsg || '登录失败，请稍后重试', options)
+                    }
+
                   }
                 } else {
                   showLoginErr('网络连接失败', options)

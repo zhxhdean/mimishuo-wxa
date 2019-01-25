@@ -134,15 +134,16 @@
     }
 
     &__i {
-      z-index: 9999;
       position: absolute;
       display: block;
       left: px(170);
       top: px(10);
+
       color: #f20;
-      @include size(px(40));
       font-weight: bold;
       transform: rotate(45deg) scale(1.5);
+      z-index: 99;
+      @include size(px(40));
     }
 
     &__add {
