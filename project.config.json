@@ -36,7 +36,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 2,
+			"current": 3,
 			"list": [
 				{
 					"id": -1,
@@ -55,6 +55,12 @@
 					"name": "login",
 					"pathName": "pages/main/main",
 					"query": "广场"
+				},
+				{
+					"id": -1,
+					"name": "我的吐槽",
+					"pathName": "pages/secret/index",
+					"query": ""
 				}
 			]
 		}

@@ -1,3 +1,6 @@
 {
-  "component": true
+  "component": true,
+  "usingComponents": {
+    "cu-no-more": "/components/nomore/nomore"
+  }
 }

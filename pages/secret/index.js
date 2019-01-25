@@ -8,7 +8,8 @@ Page({
     pageSize: 10,
     totalCount: 0,
     secretList: [],
-    noMore: false
+    noMore: false,
+    isEmpty: false
   },
   onLoad: function (options) {
 
@@ -22,12 +23,12 @@ Page({
 
   },
   refresh () {
-    // this.setData({
-    //   isEmpty: false,
-    //   noMore: false,
-    //   pageIndex: 1,
-    //   list: []
-    // })
+    this.setData({
+      isEmpty: false,
+      noMore: false,
+      pageIndex: 1,
+      list: []
+    })
     this.loadMore()
   },
   async loadMore () {
@@ -39,7 +40,7 @@ Page({
       data: this.params()
     })
     // wx.hideLoading()
-    if(rsp.code === 0){
+    if (rsp.code === 0) {
       const data = rsp.data
       if (!data.items || data.items.length === 0) {
         this.setData({noMore: true})
@@ -53,13 +54,13 @@ Page({
       })
       this.setData({
         secretList: [...this.data.secretList, ...rst],
-        pageIndex: data.pageIndex,
+        pageIndex: data.pageIndex + 1,
         totalCount: data.totalCount
       })
     }
   },
   params () {
-    const { pageIndex = 1, pageSize = 10} = this.data
+    const {pageIndex = 1, pageSize = 10} = this.data
     let result = {
       pageIndex,
       pageSize
@@ -71,12 +72,5 @@ Page({
    */
   onReachBottom: function () {
     this.loadMore()
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
   }
 })

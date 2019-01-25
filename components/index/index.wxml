@@ -10,6 +10,7 @@
   <view class="cu-profile__bodys">
     <view wx:for="{{secretList}}" wx:key="{{item.secretId}}"
           wx:for-index="index"
+          wx:if="{{item.content}}"
           class="cu-profile__body {{index==0?'cu-profile__body--first':''}}">
       <view class="cu-profile__user">
         <view class="cu-profile__user-left">
@@ -44,6 +45,7 @@
         </view>
       </view>
     </view>
+    <cu-no-more wx:if="{{noMore}}"></cu-no-more>
   </view>
 
   <cu-tab-bar></cu-tab-bar>
