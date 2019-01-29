@@ -24,7 +24,9 @@ async function userJoin (companyId) {
             withCredentials: true,
             success: function (data) {
               wx.setStorageSync('userInfo', data.userInfo)
-              console.log(data.userInfo)
+              console.log(data)
+              const encryptedData = data.encryptedData
+              const iv = data.iv
               const userInfo = data.userInfo
               // 取到用户经纬度
               let userLocation = getApp().globalData.userLocation
@@ -55,7 +57,9 @@ async function userJoin (companyId) {
                   nickName: userInfo.nickName,
                   sex: userInfo.gender,
                   lat: userLocation.latitude,
-                  lng: userLocation.longitude
+                  lng: userLocation.longitude,
+                  iv: iv,
+                  encryptedData: encryptedData
                 },
                 success (res) {
                   if (res.statusCode === 200) {
