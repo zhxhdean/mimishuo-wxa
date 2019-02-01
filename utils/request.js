@@ -73,7 +73,7 @@ async function userJoin (companyId) {
                         unit.showToast(res.data.errorMsg || '登录失败，请稍后重试')
                       }
                     } else {
-                      unit.showToast('网络连接失败')
+                      unit.showToast(res.data.errorMsg || '网络连接失败')
                     }
                   } else {
                     unit.showToast('网络连接失败')

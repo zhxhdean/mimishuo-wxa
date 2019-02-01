@@ -38,7 +38,7 @@
       </view>
 
       <view wx:if="{{item.reply}}" class="cu-profile__reply">
-        <view>{{item.replyContent}}
+        <view>{{item.reply}}
         </view>
         <view class="cu-profile__reply-hr"><strong>HR</strong>
           <text class="cu-profile__reply-time">{{item.replyTime}}</text>
