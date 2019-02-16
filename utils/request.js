@@ -14,10 +14,7 @@ const host = 'https://www.mimishuo.net/api'
 // 用户第一次进来注册
 
 async function userJoin (companyId) {
-  wx.authorize({
-    scope: 'scope.userInfo',
-    success: function () {
-      wx.login({
+  wx.login({
         success: function (loginRes) {
           const wcode = loginRes.code
           wx.getUserInfo({
@@ -90,11 +87,6 @@ async function userJoin (companyId) {
         fail: function () {
         }
       })
-    },
-    fail: function () {
-      wx.removeStorageSync('userInfo')
-    }
-  })
 }
 
 // 微信发送请求

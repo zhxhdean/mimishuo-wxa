@@ -15,7 +15,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const companyId = options.companyId || 0
+    const companyId = options.companyId || 1
     this.setData({
       companyId
     })
@@ -68,6 +68,11 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  getUserInfo : function(data){
+    // const userInfo = data.detail.userInfo
+    // console.log(data)
+    this.clickComplaints()
   },
   clickComplaints: async function () {
     if (this.data.companyId) {

@@ -15,7 +15,7 @@
   </view>
   <view class="start__bottom">
         <!--<image class="start__bottom__img" src="/images/icon/index_main.png"/>-->
-    <button class="start__bottom__button" open-type="getUserInfo" bindgetuserinfo="clickComplaints"></button>
+    <button class="start__bottom__button" open-type="getUserInfo" bindgetuserinfo="getUserInfo"></button>
   </view>
 
 </view>
