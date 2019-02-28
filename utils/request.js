@@ -10,6 +10,7 @@ noop(regeneratorRuntime)
 const {code} = require('./error_code')
 // 请求的域名
 const host = 'https://www.mimishuo.net/api'
+const imgHost = 'https://mimishuo.oss-cn-beijing.aliyuncs.com'
 
 // 用户第一次进来注册
 
@@ -244,7 +245,13 @@ function wxUploadFile (options) {
         'user': 'test'
       },
       success: function (res) {
-        var data = JSON.parse(res.data)
+        var data;
+        if (res.statusCode == 200) {
+          data = JSON.parse(res.data)
+        } else {
+          reject(res.data)
+          return
+        }
         // 服务器返回格式: {"result": "success","errorMsg": null,"errorCode": null,"data": { "presignedUrl": null,"previewUrl": "https://mimishuo.oss-cn-beijing.aliyuncs.com/82a42370240143d7afb5f049d52d849b.jpg?Expires=1544943830&OSSAccessKeyId=LTAI8OcdlGlLVNgz&Signature=KB1GTXIO7%2BIUqazwe8BAUe7z2Dk%3D","fileKey": "82a42370240143d7afb5f049d52d849b.jpg"}}
         if (data.errorCode === '200' || data.result === 'success') {
           resolve(data.data)
