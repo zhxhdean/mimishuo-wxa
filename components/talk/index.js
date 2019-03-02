@@ -107,51 +107,36 @@ Component({
       const self = this
       self.setData({isShowPop: false})
     },
-    async upLoadFile () {
+    upLoadFile () {
       const self = this
-      const tasks = []
-      self.data.previewImages.forEach(item => {
-        tasks.push(uploadFile({img: item}))
-        // tasks.push(new Promise((resolve, reject) => {
-        //   wx.uploadFile({
-        //     url: 'http://140.143.223.43:8080/api/file/upload',
-        //     filePath: item,
-        //     name:'name',
-        //     success: function(res){
-        //       resolve(res)
-        //     },
-        //     fail: function() {
-        //       reject()
-        //     },
-        //     complete: function() {
-        //
-        //     }
-        //   })
-        // }))
+      const imgList = self.data.previewImages
+      wx.showLoading({
+        title: '正在上传...'
       })
-
-      try {
-        wx.showLoading({
-          title: '正在上传...'
-        })
-        const upload_res = await Promise.all(tasks)
+      let promiseList = uploadFile(imgList)
+      // 使用Primise.all来执行promiseList
+      Promise.all(promiseList).then((res) => {
         wx.hideLoading()
         let imageKeyList = []
         let imageUrls = []
-        upload_res.map(item => {
+        res.map(item => {
           imageUrls.push(item.previewUrl)
           imageKeyList.push(item.fileKey)
         })
-
         self.setData({
           imageUrls: imageUrls,
           imageKeyList: imageKeyList
         })
-
-        console.log(upload_res)
-        // 新增秘密
-
-        const rsp = await post({
+        self.secretNew()
+      }).catch((error) => {
+        wx.hideLoading()
+        util.showToast(error || '图片上传失败')
+      });
+    },
+    async secretNew () {
+      const self = this
+      try {
+        await post({
           url: urls.secretNew,
           data: self.params()
         })
@@ -160,10 +145,9 @@ Component({
           self.triggerEvent('swichNav', 0)
         }, 1500)
       } catch (err) {
-        wx.hideLoading()
-        console.log(err)
         util.showToast(err || '保存失败')
       }
+
     },
     setConent (e) {
       const data = e.detail.value

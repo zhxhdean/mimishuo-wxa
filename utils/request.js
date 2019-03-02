@@ -220,62 +220,47 @@ function showLoginErr (errMessage, type) {
 }
 
 // 上传图片
-function wxUploadFile (options) {
-  const { url = 'file/upload', img} = options
+function wxUploadFile (imgList) {
+  const url = 'file/upload'
 
   // 请求url是否在合法的urls中
   if (!Object.values(config.urls).includes(url)) {
-    return new Promise((resolve, reject) => {
-      return resolve({
-        code: code.INVALID_URL,
-        content: '非法的url'
-      })
-    })
+    unit.showToast('不合法的url')
+    return
   }
   const request_url = `${host}/${url}`
-  const promise = new Promise((resolve, reject) => {
-    wx.uploadFile({
-      url: request_url,
-      filePath: img,
-      name: 'file',
-      header: {
-        'Content-Type': 'multipart/form-data'
-      },
-      formData: {
-        'user': 'test'
-      },
-      success: function (res) {
-        var data;
-        if (res.statusCode == 200) {
-          data = JSON.parse(res.data)
-        } else {
-          reject(res.data)
-          return
+  let promiseList = imgList.map((item) => {
+    return new Promise((resolve, reject) => {
+      wx.uploadFile({
+        url: request_url,
+        filePath: item,
+        name: 'file',
+        header: {
+          'Content-Type': 'multipart/form-data'
+        },
+        formData: {
+          'user': 'test'
+        },
+        success: (res) => {
+          var data;
+          if (res.statusCode == 200) {
+            data = JSON.parse(res.data)
+          } else {
+            unit.showToast('上传图片数据解析失败')
+          }
+          if (data.errorCode === '200' || data.result === 'success') {
+            resolve(data.data)
+          }
+        },
+        fail: function (res) {
+          reject(res)
         }
-        // 服务器返回格式: {"result": "success","errorMsg": null,"errorCode": null,"data": { "presignedUrl": null,"previewUrl": "https://mimishuo.oss-cn-beijing.aliyuncs.com/82a42370240143d7afb5f049d52d849b.jpg?Expires=1544943830&OSSAccessKeyId=LTAI8OcdlGlLVNgz&Signature=KB1GTXIO7%2BIUqazwe8BAUe7z2Dk%3D","fileKey": "82a42370240143d7afb5f049d52d849b.jpg"}}
-        if (data.errorCode === '200' || data.result === 'success') {
-          resolve(data.data)
-        } else {
-          reject(data.errorMsg)
-        }
-      },
-      fail: function (res) {
-        wx.hideToast()
-        wx.showModal({
-          title: '错误提示',
-          content: '上传图片失败',
-          showCancel: false,
-          success: function (res) { }
-        })
-        reject(res)
-      },
-      complete: function () {
-
-      }
-    })
-  })
-  return promise
+      });
+    });
+  });
+  return promiseList
 }
+
 
 async function wxLogin () {
   wx.login({
@@ -309,8 +294,8 @@ async function wxLogin () {
   })
 }
 
-async function uploadFile (options) {
-  return await wxUploadFile(options)
+function uploadFile (imgList) {
+  return wxUploadFile(imgList)
 }
 async function login (options) {
   return await userLogin(options)
