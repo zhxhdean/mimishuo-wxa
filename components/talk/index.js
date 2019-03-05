@@ -80,12 +80,12 @@ Component({
         const txtRealContent = self.data.content.replace(/\n/g, '<br/>')
         self.setData({ txtRealContent })
       }
-      self.setData({isShowPop: true})
+      self.submit()
+      //self.setData({isShowPop: true})
     },
     async submit () {
       const self = this
       self.upLoadFile()
-      console.log(self.data.burnAfterReading)
       self.setData({
         isShowPop: false
       })

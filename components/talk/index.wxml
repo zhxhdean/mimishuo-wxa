@@ -1,20 +1,20 @@
 <view class="cu-talk">
   <view wx:if="{{isShowPop}}" class="my_mask" bindtap="closePop"></view>
-  <view wx:if="{{isShowPop}}" class="talk-pop">
-    <view class="talk-pop__top">
-      <view class="talk-pop__content1">是否提交？</view>
-      <view class="talk-pop__content2">您的吐槽反馈仅HR可见并已加密处理，请放心提交</view>
-      <view class="talk-pop__check-box">
-        <checkbox-group bindchange="checkboxChange" data-index="{{index}}" data-checks="{{burnAfterReading}}">
-          <checkbox checked="{{burnAfterReading}}" class="talk-pop__box" value="1"/>阅后即焚
-        </checkbox-group>
-      </view>
-    </view>
-    <view class="talk-pop__botton">
-      <view class="talk-pop__btn" bindtap="closePop">取消</view>
-      <view class="talk-pop__btn talk-pop__btn--sub" bindtap="submit">提交吐槽</view>
-    </view>
-  </view>
+  <!--<view wx:if="{{isShowPop}}" class="talk-pop">-->
+    <!--<view class="talk-pop__top">-->
+      <!--<view class="talk-pop__content1">是否提交？</view>-->
+      <!--<view class="talk-pop__content2">您的吐槽反馈仅HR可见并已加密处理，请放心提交</view>-->
+      <!--<view class="talk-pop__check-box">-->
+        <!--<checkbox-group bindchange="checkboxChange" data-index="{{index}}" data-checks="{{burnAfterReading}}">-->
+          <!--<checkbox checked="{{burnAfterReading}}" class="talk-pop__box" value="1"/>阅后即焚-->
+        <!--</checkbox-group>-->
+      <!--</view>-->
+    <!--</view>-->
+    <!--<view class="talk-pop__botton">-->
+      <!--<view class="talk-pop__btn" bindtap="closePop">取消</view>-->
+      <!--<view class="talk-pop__btn talk-pop__btn&#45;&#45;sub" bindtap="submit">提交吐槽</view>-->
+    <!--</view>-->
+  <!--</view>-->
   <view class="cu-talk__action">
     <text bindtap="toBack">取消</text>
     <text class="cu-talk__action--submit" bindtap="toSubmit">提交</text>
