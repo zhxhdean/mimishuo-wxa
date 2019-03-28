@@ -14,95 +14,95 @@ const imgHost = 'https://mimishuo.oss-cn-beijing.aliyuncs.com'
 
 // 用户第一次进来注册
 
-async function userJoin (companyId) {
+function userJoin (companyId) {
   wx.login({
-        success: function (loginRes) {
-          const wcode = loginRes.code
-          wx.getUserInfo({
-            withCredentials: true,
-            success: function (data) {
-              wx.setStorageSync('userInfo', data.userInfo)
-              console.log(data)
-              const encryptedData = data.encryptedData
-              const iv = data.iv
-              const userInfo = data.userInfo
-              // 取到用户经纬度
-              let userLocation = getApp().globalData.userLocation
-              if (!userLocation) {
-                wx.getLocation({
-                  type: 'wgs84',
-                  altitude: true,
-                  success (res) {
-                    const latitude = res.latitude
-                    const longitude = res.longitude
-                    getApp().globalData.userLocation = {
-                      latitude: latitude,
-                      longitude: longitude
-                    }
-                    userLocation = getApp().globalData.userLocation
-                  }
-                })
-              }
-
-              let head = {'content-type': 'application/json'}
-              wx.request({
-                url: `${host}/user/join`,
-                header: head,
-                method: 'POST',
-                data: {
-                  code: wcode, // code  测试默认传''
-                  companyId: companyId,
-                  nickName: userInfo.nickName,
-                  sex: userInfo.gender,
-                  lat: userLocation.latitude,
-                  lng: userLocation.longitude,
-                  iv: iv,
-                  encryptedData: encryptedData
-                },
-                success (res) {
-                  if (res.statusCode === 200) {
-                    if (res.data && res.data.errorCode === '200' || res.data.result === 'success') {
-                      storage.authStorage.setAuth(res.data.data)
-                      if (res.data.data && res.data.data.accessToken) {
-                        wx.redirectTo({
-                          url: '/pages/main/main'
-                        })
-                      } else {
-                        unit.showToast(res.data.errorMsg || '登录失败，请稍后重试')
-                      }
-                    } else {
-                      unit.showToast(res.data.errorMsg || '网络连接失败')
-                    }
-                  } else {
-                    unit.showToast('网络连接失败')
-                  }
-                },
-                fail (res) {
-                  unit.showToast(res.errMsg || '网络连接失败')
+    success: function (loginRes) {
+      const wcode = loginRes.code
+      wx.getUserInfo({
+        withCredentials: true,
+        success: function (data) {
+          wx.setStorageSync('userInfo', data.userInfo)
+          console.log(data)
+          const encryptedData = data.encryptedData
+          const iv = data.iv
+          const userInfo = data.userInfo
+          // 取到用户经纬度
+          let userLocation = getApp().globalData.userLocation
+          if (!userLocation) {
+            wx.getLocation({
+              type: 'wgs84',
+              altitude: true,
+              success (res) {
+                const latitude = res.latitude
+                const longitude = res.longitude
+                getApp().globalData.userLocation = {
+                  latitude: latitude,
+                  longitude: longitude
                 }
-              })
-              // RequestLogin(code, data.encryptedData, data.iv, success, fail)
+                userLocation = getApp().globalData.userLocation
+              }
+            })
+          }
+
+          let head = {'content-type': 'application/json'}
+          wx.request({
+            url: `${host}/user/join`,
+            header: head,
+            method: 'POST',
+            data: {
+              code: wcode, // code  测试默认传''
+              companyId: companyId,
+              nickName: userInfo.nickName,
+              sex: userInfo.gender,
+              lat: userLocation.latitude,
+              lng: userLocation.longitude,
+              iv: iv,
+              encryptedData: encryptedData
+            },
+            success (res) {
+              if (res.statusCode === 200) {
+                if (res.data && (res.data.errorCode === '200' || res.data.result === 'success')) {
+                  storage.authStorage.setAuth(res.data.data)
+                  if (res.data.data && res.data.data.accessToken) {
+                    wx.redirectTo({
+                      url: '/pages/main/main'
+                    })
+                  } else {
+                    unit.showToast(res.data.errorMsg || '登录失败，请稍后重试')
+                  }
+                } else {
+                  unit.showToast(res.data.errorMsg || '网络连接失败')
+                }
+              } else {
+                unit.showToast('网络连接失败')
+              }
+            },
+            fail (res) {
+              unit.showToast(res.errMsg || '网络连接失败')
             }
           })
-        },
-        fail: function () {
+          // RequestLogin(code, data.encryptedData, data.iv, success, fail)
         }
       })
+    },
+    fail: function () {
+    }
+  })
 }
 
 // 微信发送请求
-async function wxRequest (options) {
+function wxRequest (options) {
   const { url, data, method, dataType, header } = options
   let head = {}
   if (!header) {
     let authorization = storage.authStorage.getAuth() ? storage.authStorage.getAuth().accessToken : ''
-    if (!authorization) {
-      try {
-        authorization = await userLogin()
-      } catch (err) {
-        return
-      }
-    }
+    // if (!authorization) {
+    //   try {
+    //     authorization = await userLogin()
+    //   } catch (err) {
+    //     return
+    //   }
+    // }
     head = {
       'content-type': 'application/json', // 默认值
       'authorization': authorization // 测试值，// todo 到时候需要通过接口获取到这个值
@@ -119,16 +119,16 @@ async function wxRequest (options) {
       })
     })
   }
-  const request_url = `${host}/${url}`
-  const request_method = method || 'GET' // 未设置，默认get
-  const request_dataType = dataType || 'json' // 未设置，默认json
+  const requestUrl = `${host}/${url}`
+  const requestMethod = method || 'GET' // 未设置，默认get
+  const requestDataType = dataType || 'json' // 未设置，默认json
 
   const promise = new Promise((resolve, reject) => {
     wx.request({
-      url: request_url,
+      url: requestUrl,
       data: data,
-      method: request_method,
-      dataType: request_dataType,
+      method: requestMethod,
+      dataType: requestDataType,
       header: head,
       success (res) {
         // console.log(res)
@@ -173,7 +173,7 @@ function userLogin (options) {
             success (res) {
               console.info(res)
               if (res.statusCode === 200) {
-                if (res.data && res.data.errorCode === '200' || res.data.result === 'success') {
+                if (res.data && (res.data.errorCode === '200' || res.data.result === 'success')) {
                   storage.authStorage.setAuth(res.data.data)
                   if (res.data.data && res.data.data.accessToken) {
                     resolve(res.data.data.accessToken)
@@ -184,15 +184,14 @@ function userLogin (options) {
                     } else {
                       showLoginErr(res.data.errorMsg || '登录失败，请稍后重试', options)
                     }
-
                   }
                 } else {
                   showLoginErr('网络连接失败', options)
-                  reject()
+                  reject(new Error('网络连接失败'))
                 }
               } else {
                 showLoginErr('网络连接失败', options)
-                reject()
+                reject(new Error('网络连接失败'))
               }
             },
             fail (res) {
@@ -228,11 +227,11 @@ function wxUploadFile (imgList) {
     unit.showToast('不合法的url')
     return
   }
-  const request_url = `${host}/${url}`
+  const requestUrl = `${host}/${url}`
   let promiseList = imgList.map((item) => {
     return new Promise((resolve, reject) => {
       wx.uploadFile({
-        url: request_url,
+        url: requestUrl,
         filePath: item,
         name: 'file',
         header: {
@@ -242,7 +241,7 @@ function wxUploadFile (imgList) {
           'user': 'test'
         },
         success: (res) => {
-          var data;
+          var data
           if (res.statusCode == 200) {
             data = JSON.parse(res.data)
           } else {
@@ -255,14 +254,13 @@ function wxUploadFile (imgList) {
         fail: function (res) {
           reject(res)
         }
-      });
-    });
-  });
+      })
+    })
+  })
   return promiseList
 }
 
-
-async function wxLogin () {
+function wxLogin () {
   wx.login({
     success (res) {
       if (res.code) {
@@ -297,28 +295,28 @@ async function wxLogin () {
 function uploadFile (imgList) {
   return wxUploadFile(imgList)
 }
-async function login (options) {
-  return await userLogin(options)
+function login (options) {
+  return userLogin(options)
 }
-async function join (companyId) {
-  return await userJoin(companyId)
+function join (companyId) {
+  return userJoin(companyId)
 }
-async function get (options) {
+function get (options) {
   options = options || {}
   options.method = 'GET'
-  return await wxRequest(options)
+  return wxRequest(options)
 }
 
-async function post (options) {
+function post (options) {
   options = options || {}
   options.method = 'POST'
-  return await wxRequest(options)
+  return wxRequest(options)
 }
 
-async function put (options) {
+function put (options) {
   options = options || {}
   options.method = 'PUT'
-  return await wxRequest(options)
+  return wxRequest(options)
 }
 
 module.exports = {

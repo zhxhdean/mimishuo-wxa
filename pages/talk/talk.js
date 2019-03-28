@@ -1,6 +1,10 @@
 const {get, post} = require('../../utils/request')
 const {urls} = require('../../config')
 const {formatTimeFromStamp} = require('../../utils/timeUtil')
+const regeneratorRuntime = require('../../utils/runtime')
+
+function noop () {}
+noop(regeneratorRuntime)
 const app = getApp()
 Page({
   data: {

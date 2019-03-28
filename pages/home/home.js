@@ -1,6 +1,10 @@
 const {get, post} = require('../../utils/request')
 const {urls} = require('../../config')
 const util = require('../../utils/util.js')
+const regeneratorRuntime = require('../../utils/runtime')
+
+function noop () {}
+noop(regeneratorRuntime)
 Page({
   data: {
     userInfo: {}

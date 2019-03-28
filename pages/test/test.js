@@ -1,72 +1,52 @@
-
-const {formatTimeFromStamp} = require('../../utils/timeUtil')
-Page({
-
-  /**
-   * 页面的初始数据
-   */
+import httpHelper from '../../utils/request'
+import { CuPage } from '../../base/index'
+import userInfo from '../../mixins/userInfo'
+const regeneratorRuntime = require('../../utils/runtime')
+function noop () {}
+noop(regeneratorRuntime)
+CuPage({
+  mixins: [userInfo],
   data: {
-      content: '您的每一条吐槽都将受到技术保护\n请放心大胆地说出你的建议，不要怂'
+    xing: 'li',
+    xing2: '',
+    name: 'Hello World',
+    firstName: '',
+    watchName: ''
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
+  computed: {
+    quanming () {
+      return this.data.xing + this.data.name
+    }
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  watch: {
+    name (val, old ) {
+      this.setData({
+        watchName: val
+      })
+    }
   },
+  onShow: async function () {
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+    const rsp = await httpHelper.post({
+      url: 'secret/list',
+      data: this.params()
+    })
+    console.log(rsp)
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  params () {
+    const { upDown = true, pageSize = 10, last = 0 } = this.data
+    let result = {
+      size: pageSize,
+      last,
+      upDown
+    }
+    return result
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-      // todo调接口
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
-  clickComplaints: function(){
-    wx.navigateTo({
-      url: '/pages/index/index'
+  changeName: function () {
+    this.getUserName()
+    this.setData({
+      name: 'lishanjun',
+      xing: 'zahng'
     })
   }
 })

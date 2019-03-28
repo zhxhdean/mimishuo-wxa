@@ -1,6 +1,10 @@
 const {get, post} = require('../../utils/request')
 const {urls} = require('../../config')
 const {formatTimeFromStamp} = require('../../utils/timeUtil')
+const regeneratorRuntime = require('../../utils/runtime')
+
+function noop () {}
+noop(regeneratorRuntime)
 Page({
   data: {
     pageSize: 10, // 分页的请求条数

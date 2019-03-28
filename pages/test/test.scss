@@ -1,11 +1,50 @@
 @charset "UTF-8";
 @import "../../scss/vars";
-@import "../../scss/mixins";
-$main_color: #dddddd;
+@import "../../scss/base";
+
 .sample {
-  padding: px(15);
+  padding: 45rpx;
   &__botton {
-    @include size(150);
-    background-color: $main_color;
+    width: 375rpx;
+    background-color: #dddddd;
+  }
+}
+.lll {
+  @include size(px(39));
+  width: px(20);
+
+}
+
+.user {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: px(100) auto;
+
+  background: #eeeeee;
+
+  &__name {
+    color: #000000;
+    font-size: px(30);
+  }
+
+  &__rel-name {
+    display: block;
+    color: red;
+  }
+
+  &__btn {
+    margin: px(100) auto;
+    padding: 0 px(20);
+    color: #eeeeee;
+    background: blue;
+    @include size(px(300),px(100));
+    text-align: center;
+    line-height: px(100);
+  }
+
+  &__content {
+    @include size(px(300),px(1000))
   }
 }

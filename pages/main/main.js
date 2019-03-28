@@ -1,5 +1,9 @@
 
 const {formatTimeFromStamp} = require('../../utils/timeUtil')
+const regeneratorRuntime = require('../../utils/runtime')
+
+function noop () {}
+noop(regeneratorRuntime)
 Page({
   data: {
     currentTab: 0 // 当前tab选择项  默认 0 广场   1 个人中心
