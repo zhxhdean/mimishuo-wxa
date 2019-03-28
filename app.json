@@ -1,12 +1,15 @@
 {
   "pages": [
+    "pages/index/index",
+    "pages/home/home",
+    "pages/talk/talk",
+    "pages/login/login",
+
     "pages/start/start",
     "pages/main/main",
-    "pages/index/index",
-    "pages/profile/index",
-    "pages/talk/index",
-    "pages/secret/index",
-    "pages/login/login"
+
+    "pages/secret/index"
+
   ],
   "permission": {
     "scope.userLocation": {
@@ -20,6 +23,35 @@
     "navigationBarTextStyle": "black",
     "backgroundColor": "#ffffff",
     "backgroundTextStyle": "light"
+  },
+  "tabBar": {
+    "color": "#60616A",
+    "selectedColor": "#3FA8FF",
+    "borderStyle": "white",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/tabbar/square.png",
+        "selectedIconPath": "images/tabbar/square_selected.png",
+        "text": "广场",
+        "color": "#3FA8FF"
+      },
+      {
+        "pagePath": "pages/home/home",
+        "iconPath": "images/tabbar/center.png",
+        "selectedIconPath": "images/tabbar/center_selected.png",
+        "text": "我的",
+        "color": "#3FA8FF"
+      },
+      {
+        "pagePath": "pages/talk/talk",
+        "iconPath": "images/tabbar/teasing.png",
+        "selectedIconPath": "images/tabbar/teasing_selected.png",
+        "text": "吐槽",
+        "color": "#3FA8FF"
+      }
+    ]
   },
   "networkTimeout": {
     "request": 10000,

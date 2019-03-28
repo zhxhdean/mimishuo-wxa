@@ -1,6 +1,6 @@
 {
   "navigationBarTitleText": "我的",
+  "onReachBottomDistance": 100,
   "usingComponents": {
-    "cu-tab-bar": "/components/tabBar/tabBar"
   }
 }

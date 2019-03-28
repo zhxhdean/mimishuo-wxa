@@ -1,0 +1,62 @@
+@charset "UTF-8";
+@import "../../scss/base";
+@import "../../scss/mixins";
+
+.cu-profile {
+  &__user {
+    display: flex;
+
+    margin-top: px(-40);
+    height: px(318);
+    align-items: center;
+  }
+
+  &__user-image {
+    margin-left: px(60);
+
+    //border: px(1) solid #DDDDDD;
+    //box-sizing: border-box;
+    @include size(px(112),px(150));
+  }
+
+  &__user-power {
+    margin-left: px(20);
+
+    @include size(px(86),px(150));
+  }
+  &__user-text {
+    margin-left: px(12);
+
+    font-size: px(56);
+    font-weight: bolder;
+  }
+
+  &__menu {
+    color: rgba(16, 16, 16, 1);
+    font-size: px(32);
+    font-family: PingFangSC-regular;
+  }
+
+  &__menu-items {
+    display: flex;
+    align-items: center;
+    padding: 0 px(128) 0 px(80);
+    justify-content: space-between;
+    margin-top: px(18);
+
+    height: px(102);
+    background:#ECECEC;
+  }
+
+  &__menu-item {
+    display: flex;
+
+    align-items: center;
+  }
+
+  &__menu-image {
+    margin-right: px(30);
+
+    @include size(px(100),px(90))
+  }
+}
