@@ -2,6 +2,8 @@ const {get, post} = require('../../utils/request')
 const {urls} = require('../../config')
 const {formatTimeFromStamp} = require('../../utils/timeUtil')
 const regeneratorRuntime = require('../../utils/runtime')
+const storage = require('../../utils/storage.js')
+const util = require('../../utils/util.js')
 
 function noop () {}
 noop(regeneratorRuntime)
@@ -42,9 +44,8 @@ Page({
 
   onPullDownRefresh: function () {
   },
-  /*加载更多*/
+  /* 加载更多 */
   onReachBottom: function () {
-    this.loadMore()
   },
   onShareAppMessage: function () {
   },
@@ -88,7 +89,7 @@ Page({
       self.setData({ txtRealContent })
     }
     self.submit()
-    //self.setData({isShowPop: true})
+    // self.setData({isShowPop: true})
   },
   async submit () {
     const self = this

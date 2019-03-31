@@ -1,0 +1,182 @@
+@charset "UTF-8";
+@import "../../scss/base";
+@import "../../scss/mixins";
+
+$border_img: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACWCAMAAAAL34HQAAAAVFBMVEUAAAD+/v7d3d3e3t7d3d3e3t7f39/p6ene3t7h4eHe3t7d3d3j4+Pj4+Pe3t7e3t7f39/f39/h4eHe3t7d3d3g4ODd3d3d3d3d3d3e3t7g4ODd3d04idp1AAAAG3RSTlMABfmDiXx2DpUr9NUaFNuPWz01nksl6um9sDEDMfkVAAABZklEQVR42u2cOW4DMRAEe1eWuKdu+eL//2kKFqDUjlQz6EqGYQMFVEj9cplqQ40X33IY9WRTIbOOtQ6dGt1llUoRg9vQT6MaQ/0SifNJjbH2Z/G47gfRKHeNnWCM/Swga51EpFa9vQnHZnNfRsSz/sNuJxzbrYhADXJnuVs5PBJxt6Ib5M5yt3J4JOJuRTfIneVu5fBIxN2KbpA7y93K4ZGIuxXdIHeWu5XDIxF3K7pB7ix3K4dHIu5WdIPcWe5WDo9E3K3oBrmz3K0cHom4W9ENcme5Wzk8EnG3ohvkznK3cngk4m5FN8id5W7l8EjE3YpukDvL3crhkYi7Fd0gd5a7lcMjEXcrukHuLHcrh0ci7lZ0g9xZ7lYOj0TcregGubPcrRweibhbf6UwP+g711lar4Jx7A9apv5bMJZVGurHTSC6x/ncF8x/md1p2JfHc5E019rf3/W199TuUU/eGbOW+TCq8QPocjVXjqbz/wAAAABJRU5ErkJggg==';
+
+.talk {
+  font-family: PingFangSC-Regular;
+
+  &__top {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+
+    &-user {
+      @include size(px(140));
+      border-radius: 50%;
+      overflow: hidden;
+    }
+
+    &-img {
+      @include size(px(140));
+    }
+
+    &-ip {
+      margin-top: px(20);
+
+      text-align: center;
+      font-family: PingFangSC-Medium;
+      font-size: px(26);
+      color: #222222;
+
+      &__text {
+        font-size: px(36);
+        color: #3FA8FF;
+        text-align: center;
+        line-height: px(36);
+      }
+    }
+
+    &-text {
+      margin-bottom: px(10);
+      font-size: px(22);
+      color: #666666;
+      letter-spacing: 0;
+      text-align: center;
+      line-height: px(36);
+    }
+
+  }
+
+  &__country {
+    position: absolute;
+    line-height: px(30);
+    height: px(30);
+    top: px(30);
+    right: px(30);
+
+    &__image {
+      display: inline-block;
+      vertical-align: middle;
+      @include size(px(44),px(30));
+      overflow: hidden;
+    }
+
+    &__img {
+      @include size(px(44),px(30));
+    }
+
+    &-change {
+      margin-left: px(10);
+      font-family: PingFangSC-Regular;
+      font-size: px(26);
+      color: #3FA8FF;
+      text-align: center;
+    }
+
+  }
+
+  &__content {
+    position: relative;
+    margin: px(30);
+    padding: px(30);
+
+    height: px(300);
+    box-sizing: border-box;
+    background: #F8F8F8;
+    border: px(1) solid #E8E8E8;
+    border-radius: px(8);
+
+    &__area {
+      @include size(100%);
+      &--placeholder {
+        font-size: px(30);
+        color: #999999;
+        text-align: center;
+      }
+    }
+
+    &__num {
+      position: absolute;
+      bottom: px(20);
+      right: px(20);
+
+      font-size: px(24);
+      color: #666666;
+      text-align: right;
+    }
+
+  }
+
+  &__images {
+    padding: 0 px(30);
+    &__image {
+      display: inline-block;
+      margin: px(10) px(30) 0 0;
+      @include size(px(150));
+
+      border: px(2) solid #DDDDDD;
+      box-sizing: border-box;
+
+      &:nth-child(4n+4) {
+        margin-right: 0;
+      }
+    }
+
+    &__add {
+      /*display: flex;
+      flex-direction: column;
+      align-items: center;*/
+      position: relative;
+      vertical-align: top;
+
+      text-align: center;
+      font-size: px(24);
+      color: #999999;
+      border: px(0) solid #DDDDDD;
+      box-sizing: border-box;
+      border-radius: px(8);
+
+      background: url($border_img) center no-repeat;
+      background-size: 100% 100%;
+
+      &-img {
+        margin-top: px(27);
+        @include size(px(48))
+      }
+
+      &-text {
+        display: block;
+      }
+    }
+
+  }
+
+  &__botton {
+    padding: px(60) px(95) px(80) px(95);
+  }
+
+  &__btn {
+    display: inline-block;
+    line-height: px(80);
+    box-sizing: border-box;
+
+    opacity: 0.5;
+    border: px(2) solid #3FA8FF;
+    border-radius: px(40);
+    font-family: PingFangSC-Regular;
+    font-size: px(30);
+    color: #3FA8FF;
+    @include size(px(240),px(80));
+    text-align: center;
+
+    &--sub {
+      margin-left: px(80);
+      background: #3FA8FF;
+      color: #FFFFFF;
+    }
+
+  }
+}

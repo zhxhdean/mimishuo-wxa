@@ -3,7 +3,9 @@ const regeneratorRuntime = require('./utils/runtime')
 function noop () { }
 noop(regeneratorRuntime)
 App({
-  onLaunch: function () {},
+  onLaunch: function () {
+    login()
+  },
   globalData: {
     isIphoneX: false
   },
