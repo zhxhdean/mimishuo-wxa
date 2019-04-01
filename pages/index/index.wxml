@@ -29,8 +29,13 @@
         <view wx:for="{{item.imageUrls}}"
               wx:key="{{index}}"
               wx:for-index="index"
-              wx:for-item="img" class="cu-profile__image">
-          <image src="{{img}}" class="cu-profile__img"/>
+              wx:for-item="img"
+              class="cu-profile__image">
+          <image src="{{img}}"
+                 class="cu-profile__img"
+                 bindtap="previewImage"
+                 data-images="{{item.imageUrls}}"
+                 data-index="{{index}}"/>
         </view>
         <!--<block wx:for="{{item.images}}" wx:key="*this" wx:for-item="i">
           <image src="{{i}}"/>

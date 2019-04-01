@@ -96,13 +96,14 @@ function wxRequest (options) {
   let head = {}
   if (!header) {
     let authorization = storage.authStorage.getAuth() ? storage.authStorage.getAuth().accessToken : ''
-    // if (!authorization) {
-    //   try {
-    //     authorization = await userLogin()
-    //   } catch (err) {
-    //     return
-    //   }
-    // }
+    if (!authorization) {
+      showLoginErr('登录过期，请重新登录')
+      // try {
+      //   authorization = await userLogin()
+      // } catch (err) {
+      //   return
+      // }
+    }
     head = {
       'content-type': 'application/json', // 默认值
       'authorization': authorization // 测试值，// todo 到时候需要通过接口获取到这个值
@@ -260,38 +261,6 @@ function wxUploadFile (imgList) {
   return promiseList
 }
 
-function wxLogin () {
-  wx.login({
-    success (res) {
-      if (res.code) {
-        wx.request({
-          url: `${host}/user/login`,
-          data: {
-            code: res.code // res.code  测试默认传''
-          },
-          success (res) {
-            if (res.statusCode === 200) {
-              if (res.data.errorCode === 200) {
-                storage.setAuth(res.data.data)
-              } else {
-                unit.showToast(res.data.errorMsg)
-              }
-            } else {
-
-            }
-          },
-          fail (res) {
-
-          }
-        })
-        console.log(res.code)
-      } else {
-        console.log('登录失败' + res.errMsg)
-      }
-    }
-  })
-}
-
 function uploadFile (imgList) {
   return wxUploadFile(imgList)
 }
@@ -323,7 +292,6 @@ module.exports = {
   get: get,
   post: post,
   put: put,
-  wxLogin: wxLogin,
   login: login,
   uploadFile: uploadFile,
   join: join

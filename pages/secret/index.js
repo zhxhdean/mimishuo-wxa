@@ -1,6 +1,10 @@
 const {get, post} = require('../../utils/request')
 const {urls} = require('../../config')
 const {formatTimeFromStamp} = require('../../utils/timeUtil')
+const regeneratorRuntime = require('../../utils/runtime')
+
+function noop () {}
+noop(regeneratorRuntime)
 Page({
 
   data: {
@@ -67,10 +71,13 @@ Page({
     }
     return result
   },
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-    this.loadMore()
+  previewImage: function (e) {
+    const data = e.target.dataset
+    const urls = data.images
+    const current = urls[data.index]
+    wx.previewImage({
+      current: current,
+      urls: urls
+    })
   }
 })

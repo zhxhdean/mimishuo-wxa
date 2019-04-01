@@ -1,4 +1,4 @@
-const {get, post} = require('../../utils/request')
+const {get, post, uploadFile} = require('../../utils/request')
 const {urls} = require('../../config')
 const {formatTimeFromStamp} = require('../../utils/timeUtil')
 const regeneratorRuntime = require('../../utils/runtime')
@@ -28,7 +28,9 @@ Page({
     reply: '', // 回复内容
     replyTime: '', //  回复时间
     subject: '', //  主题
-    txtRealContent: '' // 文字备份
+    txtRealContent: '', // 文字备份
+    contentCount: 0,
+    contentTotal: 150
   },
   onLoad: async function (options) {
     this.getVirtual()
@@ -150,16 +152,20 @@ Page({
       })
       util.showToast('保存成功')
       setTimeout(() => {
-        self.triggerEvent('swichNav', 0)
+        wx.switchTab({
+          url: '/pages/index/index'
+        })
       }, 1500)
     } catch (err) {
       util.showToast(err || '保存失败')
     }
-
   },
   setConent (e) {
     const data = e.detail.value
-    this.setData({content: data})
+    this.setData({
+      content: data,
+      contentCount: data.length
+    })
   },
   // 更换虚拟信息
   async changeVirtualInfo () {
@@ -209,13 +215,9 @@ Page({
     return result
   },
   toBack () {
-    const self = this
-    wx.setNavigationBarTitle({
-      title: '广场'
+    wx.switchTab({
+      url: '/pages/index/index'
     })
-    setTimeout(() => {
-      self.triggerEvent('swichNav', 0)
-    }, 0)
   },
   textAreaLineChange (e) {
     this.setData({ txtHeight: e.detail.height })

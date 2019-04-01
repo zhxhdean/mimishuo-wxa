@@ -113,6 +113,7 @@ $border_img: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACWCAMAAAAL34HQ
   &__images {
     padding: 0 px(30);
     &__image {
+      position: relative;
       display: inline-block;
       margin: px(10) px(30) 0 0;
       @include size(px(150));
@@ -123,6 +124,24 @@ $border_img: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACWCAMAAAAL34HQ
       &:nth-child(4n+4) {
         margin-right: 0;
       }
+
+      &-i {
+        position: absolute;
+        display: block;
+        left: px(118);
+        top: px(5);
+        line-height: px(30);
+
+        color: #f20;
+        font-weight: bold;
+        transform: rotate(45deg) scale(1.1);
+        z-index: 99;
+        @include size(px(30));
+      }
+    }
+
+    &__img {
+      @include size(px(150));
     }
 
     &__add {

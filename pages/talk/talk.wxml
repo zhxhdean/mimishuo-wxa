@@ -1,35 +1,44 @@
 <view class="talk">
     <view class="talk__top">
         <view class="talk__top-user">
-            <image class="talk__top-img" src="../../images/resources/Nipic_26.jpg"></image>
+            <image wx:if="{{headImageUrl}}" class="talk__top-img" src="{{headImageUrl}}"></image>
         </view>
         <view class="talk__top-ip">
             <view>虚拟IP</view>
-            <view class="talk__top-ip__text">62.168.59.221</view>
+            <view class="talk__top-ip__text">{{virtualInfo.ip}}</view>
         </view>
         <text class="talk__top-text">
             您的IP已经被保护 \n 秘密说确保您的隐私安全，所有信息完全匿名
         </text>
         <view class="talk__country">
             <view class="talk__country__image">
-                <image class="talk__country__img" src="../../images/camera.png"></image>
+                <image wx:if="{{nationalFlagUrl}}" class="talk__country__img" src="../../{{nationalFlagUrl}}"></image>
             </view>
             <text class="talk__country-change" bindtap="changeVirtualInfo">更换IP</text>
         </view>
     </view>
     <view class="talk__content">
         <textarea class="talk__content__area" value="{{content}}"
+                  maxlength="{{contentTotal}}"
                   placeholder-class="talk__content__area--placeholder"
                   placeholder="此时你想告诉公司的秘密"
                   bindinput='setConent'/>
-        <text class="talk__content__num">54/150</text>
+        <text class="talk__content__num">{{contentCount}}/{{contentTotal}}</text>
     </view>
     <view class="talk__images">
-        <view class="talk__images__image"></view>
-        <view class="talk__images__image"></view>
-        <view class="talk__images__image"></view>
-        <view class="talk__images__image"></view>
-        <view class="talk__images__image talk__images__add" catchtap="chooseImage" >
+        <view class="talk__images__image"
+              wx:for="{{previewImages}}"
+              wx:key="{{index}}"
+              wx:for-index="index">
+            <image src="{{item}}" class="talk__images__img"></image>
+            <i class="talk__images__image-i"
+               bindtap="removeImage"
+               color="red"
+               type="cancel"
+               size="60"
+               data-index="{{index}}">+</i>
+        </view>
+        <view class="talk__images__image talk__images__add" catchtap="chooseImage" wx:if="{{previewImages.length < 5}}">
             <image class="talk__images__add-img" src="../../images/camera.png"></image>
             <text class="talk__images__add-text">添加图片</text>
         </view>

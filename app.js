@@ -4,7 +4,7 @@ function noop () { }
 noop(regeneratorRuntime)
 App({
   onLaunch: function () {
-    login()
+    // login()
   },
   globalData: {
     isIphoneX: false
@@ -25,7 +25,7 @@ App({
         console.log(res)
       }
     })
-    // 全局值中设定是否粪X，为了在界面中设定显示安全区
+    // 全局值中设定是否iponex，为了在界面中设定显示安全区
     wx.getSystemInfo({
       success: res => {
         let modelmes = res.model

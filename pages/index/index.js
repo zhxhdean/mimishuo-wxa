@@ -1,4 +1,4 @@
-const {get, post} = require('../../utils/request')
+const {post} = require('../../utils/request')
 const {urls} = require('../../config')
 const {formatTimeFromStamp} = require('../../utils/timeUtil')
 const regeneratorRuntime = require('../../utils/runtime')
@@ -15,14 +15,14 @@ Page({
     showSelect: false
   },
   onLoad: async function (options) {
-    this.refresh()
   },
   onShow: function () {
+    this.refresh()
   },
 
   onPullDownRefresh: function () {
   },
-  /*加载更多*/
+  /* 加载更多 */
   onReachBottom: function () {
     this.loadMore()
   },
@@ -53,7 +53,7 @@ Page({
       data: this.params()
     })
     // wx.hideLoading()
-    if(rsp.code === 0){
+    if (rsp.code === 0) {
       if (!rsp.data.items || rsp.data.items.length === 0) {
         this.setData({noMore: true})
         return
@@ -81,5 +81,14 @@ Page({
       upDown
     }
     return result
+  },
+  previewImage: function (e) {
+    const data = e.target.dataset
+    const urls = data.images
+    const current = urls[data.index]
+    wx.previewImage({
+      current: current,
+      urls: urls
+    })
   }
 })

@@ -1,11 +1,11 @@
 {
   "pages": [
+    "pages/start/start",
     "pages/index/index",
     "pages/home/home",
     "pages/talk/talk",
     "pages/login/login",
 
-    "pages/start/start",
     "pages/main/main",
     "pages/secret/index",
     "pages/test/test"
