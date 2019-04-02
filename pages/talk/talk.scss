@@ -170,7 +170,6 @@ $border_img: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACWCAMAAAAL34HQ
         display: block;
       }
     }
-
   }
 
   &__botton {
@@ -192,6 +191,7 @@ $border_img: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACWCAMAAAAL34HQ
     text-align: center;
 
     &--sub {
+      opacity: 1;
       margin-left: px(80);
       background: #3FA8FF;
       color: #FFFFFF;

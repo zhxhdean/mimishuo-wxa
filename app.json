@@ -32,22 +32,22 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "iconPath": "images/tabbar/square.png",
-        "selectedIconPath": "images/tabbar/square_selected.png",
+        "iconPath": "images/tabIcon/square.png",
+        "selectedIconPath": "images/tabIcon/square_selected.png",
         "text": "广场",
         "color": "#3FA8FF"
       },
       {
         "pagePath": "pages/home/home",
-        "iconPath": "images/tabbar/center.png",
-        "selectedIconPath": "images/tabbar/center_selected.png",
+        "iconPath": "images/tabIcon/center.png",
+        "selectedIconPath": "images/tabIcon/center_selected.png",
         "text": "我的",
         "color": "#3FA8FF"
       },
       {
         "pagePath": "pages/talk/talk",
-        "iconPath": "images/tabbar/teasing.png",
-        "selectedIconPath": "images/tabbar/teasing_selected.png",
+        "iconPath": "images/tabIcon/teasing.png",
+        "selectedIconPath": "images/tabIcon/teasing_selected.png",
         "text": "吐槽",
         "color": "#3FA8FF"
       }

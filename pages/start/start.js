@@ -81,13 +81,10 @@ Page({
   clickComplaints: async function () {
     if (this.data.companyId) {
       await join(this.data.companyId)
-      wx.redirectTo({
-        url: '/pages/index/index'
-      })
     } else {
       try {
         await login(2)
-        wx.redirectTo({
+        wx.switchTab({
           url: '/pages/index/index'
         })
       } catch (err) {

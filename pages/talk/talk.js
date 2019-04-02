@@ -1,6 +1,5 @@
 const {get, post, uploadFile} = require('../../utils/request')
 const {urls} = require('../../config')
-const {formatTimeFromStamp} = require('../../utils/timeUtil')
 const regeneratorRuntime = require('../../utils/runtime')
 const storage = require('../../utils/storage.js')
 const util = require('../../utils/util.js')
@@ -141,7 +140,7 @@ Page({
     }).catch((error) => {
       wx.hideLoading()
       util.showToast(error || '图片上传失败')
-    });
+    })
   },
   async secretNew () {
     const self = this
@@ -151,9 +150,10 @@ Page({
         data: self.params()
       })
       util.showToast('保存成功')
+      self.resetData()
       setTimeout(() => {
-        wx.switchTab({
-          url: '/pages/index/index'
+        wx.navigateTo({
+          url: '/pages/secret/index'
         })
       }, 1500)
     } catch (err) {
@@ -232,5 +232,16 @@ Page({
       this.setData({ txtRealContent })
     }
     this.setData({ showMask: !this.data.showMask })
+  },
+  resetData () {
+    this.setData({
+      previewImages: [],
+      imageUrls: [],
+      imageKeyList: [],
+      burnAfterReading: false,
+      content: '',
+      subject: '',
+      contentCount: 0
+    })
   }
 })

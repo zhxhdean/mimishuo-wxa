@@ -18,7 +18,7 @@
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
-	"isGameTourist": false,
+	"scripts": {},
 	"condition": {
 		"search": {
 			"current": -1,
@@ -33,11 +33,10 @@
 			"list": []
 		},
 		"game": {
-			"currentL": -1,
 			"list": []
 		},
 		"miniprogram": {
-			"current": 4,
+			"current": -1,
 			"list": [
 				{
 					"id": -1,
@@ -66,7 +65,8 @@
 				{
 					"id": -1,
 					"name": "上传",
-					"pathName": "pages/main/main"
+					"pathName": "pages/main/main",
+					"query": ""
 				}
 			]
 		}

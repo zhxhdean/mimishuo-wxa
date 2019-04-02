@@ -64,8 +64,8 @@ function userJoin (companyId) {
                 if (res.data && (res.data.errorCode === '200' || res.data.result === 'success')) {
                   storage.authStorage.setAuth(res.data.data)
                   if (res.data.data && res.data.data.accessToken) {
-                    wx.redirectTo({
-                      url: '/pages/main/main'
+                    wx.switchTab({
+                      url: '/pages/index/index'
                     })
                   } else {
                     unit.showToast(res.data.errorMsg || '登录失败，请稍后重试')
