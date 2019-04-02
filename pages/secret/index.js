@@ -26,6 +26,9 @@ Page({
   onPullDownRefresh: function () {
 
   },
+  onReachBottom: function () {
+    this.loadMore()
+  },
   refresh () {
     this.setData({
       isEmpty: false,
