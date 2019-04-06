@@ -36,37 +36,21 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 1,
 			"list": [
 				{
 					"id": -1,
-					"name": "吐槽",
-					"pathName": "pages/talk/index",
-					"query": ""
-				},
-				{
-					"id": 4,
-					"name": "我的主页",
-					"pathName": "pages/main/main",
-					"query": "currentTab=2"
+					"name": "talk",
+					"pathName": "pages/talk/talk",
+					"query": "",
+					"scene": null
 				},
 				{
 					"id": -1,
-					"name": "login",
-					"pathName": "pages/main/main",
-					"query": "广场"
-				},
-				{
-					"id": -1,
-					"name": "我的吐槽",
-					"pathName": "pages/secret/index",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "上传",
-					"pathName": "pages/main/main",
-					"query": ""
+					"name": "home",
+					"pathName": "pages/home/home",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

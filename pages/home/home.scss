@@ -17,6 +17,8 @@
     //border: px(1) solid #DDDDDD;
     //box-sizing: border-box;
     @include size(px(112),px(150));
+    border-radius: 50%;
+    box-shadow: 0 0 px(50) #DDDDDD;
   }
 
   &__user-power {

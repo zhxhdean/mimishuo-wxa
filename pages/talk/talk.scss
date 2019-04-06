@@ -12,10 +12,12 @@ $border_img: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACWCAMAAAAL34HQ
     position: relative;
     flex-direction: column;
     align-items: center;
+    padding-top: px(40);
 
     &-user {
       @include size(px(140));
       border-radius: 50%;
+      box-shadow: 0 0 px(50) #DDDDDD;
       overflow: hidden;
     }
 
@@ -30,12 +32,14 @@ $border_img: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACWCAMAAAAL34HQ
       font-family: PingFangSC-Medium;
       font-size: px(26);
       color: #222222;
+      height: px(87);
 
       &__text {
+        margin-top: px(10);
         font-size: px(36);
         color: #3FA8FF;
         text-align: center;
-        line-height: px(36);
+        line-height: px(37);
       }
     }
 

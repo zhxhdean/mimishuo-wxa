@@ -7,9 +7,7 @@
             <view>虚拟IP</view>
             <view class="talk__top-ip__text">{{virtualInfo.ip}}</view>
         </view>
-        <text class="talk__top-text">
-            您的IP已经被保护 \n 秘密说确保您的隐私安全，所有信息完全匿名
-        </text>
+        <text class="talk__top-text">您的IP已经被保护 \n 秘密说确保您的隐私安全，所有信息完全匿名</text>
         <view class="talk__country">
             <view class="talk__country__image">
                 <image wx:if="{{nationalFlagUrl}}" class="talk__country__img" src="../../{{nationalFlagUrl}}"></image>
