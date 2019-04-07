@@ -80,6 +80,7 @@ Page({
   },
   clickComplaints: async function () {
     if (this.data.companyId) {
+      wx.setStorageSync('initCompanyId', this.data.companyId)
       await join(this.data.companyId)
     } else {
       try {

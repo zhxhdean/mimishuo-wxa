@@ -16,11 +16,10 @@ Page({
     isEmpty: false
   },
   onLoad: function (options) {
-
+    this.refresh()
   },
 
   onShow: function () {
-    this.refresh()
   },
 
   onPullDownRefresh: function () {
@@ -35,7 +34,6 @@ Page({
       noMore: false,
       pageIndex: 1,
       secretList: [],
-      
     })
     this.loadMore()
   },

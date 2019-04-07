@@ -15,9 +15,9 @@ Page({
     showSelect: false
   },
   onLoad: async function (options) {
+    this.refresh()
   },
   onShow: function () {
-    this.refresh()
   },
 
   onPullDownRefresh: function () {
@@ -36,6 +36,7 @@ Page({
    * 刷新,并且初始化页面参数
    */
   refresh () {
+    console.log('refresh')
     // this.setData({
     //   isEmpty: false,
     //   noMore: false,
