@@ -34,7 +34,8 @@ Page({
       isEmpty: false,
       noMore: false,
       pageIndex: 1,
-      list: []
+      secretList: [],
+      
     })
     this.loadMore()
   },
