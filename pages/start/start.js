@@ -19,7 +19,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const companyId = options.companyId || 1
+    const companyId = options.companyId || 0
     this.setData({
       companyId
     })
