@@ -21,10 +21,6 @@ Page({
 
   onShow: function () {
   },
-
-  onPullDownRefresh: function () {
-
-  },
   onReachBottom: function () {
     this.loadMore()
   },

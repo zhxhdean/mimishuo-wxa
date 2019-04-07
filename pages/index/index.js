@@ -21,6 +21,7 @@ Page({
   },
 
   onPullDownRefresh: function () {
+    this.refresh()
   },
   /* 加载更多 */
   onReachBottom: function () {
@@ -36,14 +37,16 @@ Page({
    * 刷新,并且初始化页面参数
    */
   refresh () {
-    console.log('refresh')
-    // this.setData({
-    //   isEmpty: false,
-    //   noMore: false,
-    //   pageIndex: 1,
-    //   list: []
-    // })
+    this.setData({
+      isEmpty: false,
+      noMore: false,
+      last: 0,
+      secretList: []
+    })
     this.loadMore()
+    setTimeout(function () {
+      wx.stopPullDownRefresh()
+    }, 1500)
   },
   async loadMore () {
     if (this.data.noMore) {

@@ -1,6 +1,8 @@
 {
   "navigationBarTitleText": "广场",
   "onReachBottomDistance": 100,
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark",
   "usingComponents": {
     "cu-no-more": "/components/nomore/nomore"
   }
