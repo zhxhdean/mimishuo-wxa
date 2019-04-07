@@ -19,10 +19,21 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const companyId = options.companyId || 0
-    this.setData({
-      companyId
-    })
+    const scene = options.scene || ''
+    if (scene) {
+      const regex = /c=([0-9]+)/
+      const m = regex.exec(decodeURIComponent(scene))
+      if (m && m.length > 1) {
+        this.setData({
+          companyId: m[1]
+        })
+      }
+      // const arr = decodeURIComponent(scene).split('=')
+      // const companyId = arr.length > 1 ? arr[1] : 0
+      // this.setData({
+      //   companyId
+      // })
+    }
   },
 
   /**

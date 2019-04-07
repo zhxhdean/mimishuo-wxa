@@ -2,6 +2,7 @@ const {post} = require('../../utils/request')
 const {urls} = require('../../config')
 const {formatTimeFromStamp} = require('../../utils/timeUtil')
 const regeneratorRuntime = require('../../utils/runtime')
+const util = require('../../utils/util.js')
 
 function noop () {}
 noop(regeneratorRuntime)
@@ -12,7 +13,8 @@ Page({
     last: 0, // 最后一条
     noMore: false,
     secretList: [],
-    showSelect: false
+    showSelect: false,
+    isEmpty: false
   },
   onLoad: async function (options) {
     this.refresh()
@@ -52,26 +54,32 @@ Page({
     if (this.data.noMore) {
       return
     }
-    const rsp = await post({
-      url: urls.secretList,
-      data: this.params()
-    })
-    // wx.hideLoading()
-    if (rsp.code === 0) {
-      if (!rsp.data.items || rsp.data.items.length === 0) {
-        this.setData({noMore: true})
-        return
-      }
-      const rst = rsp.data.items.map(item => {
-        return Object.assign(item, {
-          createTime: formatTimeFromStamp(item.createTime, 'Y/M/D'),
-          replyTime: formatTimeFromStamp(item.replyTime, 'Y/M/D h:m')
+    try {
+      const rsp = await post({
+        url: urls.secretList,
+        data: this.params()
+      })
+      // wx.hideLoading()
+      if (rsp.code === 0) {
+        if (!rsp.data.items || rsp.data.items.length === 0) {
+          this.setData({noMore: true})
+          return
+        }
+        const rst = rsp.data.items.map(item => {
+          return Object.assign(item, {
+            createTime: formatTimeFromStamp(item.createTime, 'Y/M/D'),
+            replyTime: formatTimeFromStamp(item.replyTime, 'Y/M/D h:m')
+          })
         })
-      })
-      this.setData({
-        secretList: [...this.data.secretList, ...rst],
-        last: rsp.data.last
-      })
+        this.setData({
+          secretList: [...this.data.secretList, ...rst],
+          last: rsp.data.last
+        })
+      } else {
+        util.showToast(rsp.content || '接口失败，请刷新重试')
+      }
+    } catch (err) {
+      util.showToast(err || '接口失败，请重试')
     }
   },
   /**

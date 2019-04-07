@@ -14,9 +14,13 @@ Page({
   onLoad: async function (options) {
     try {
       const rsp = await get({ url: urls.userInfo })
-      this.setData({userInfo: rsp.data})
+      if (rsp.code === 0) {
+        this.setData({userInfo: rsp.data})
+      } else {
+        util.showToast(rsp.content || '获取用户信息失败，请退出重试')
+      }
     } catch (err) {
-      util.showToast(rsp.message || '获取用户信息失败')
+      util.showToast(err || '获取用户信息失败')
     }
   },
   onShow: function () {
