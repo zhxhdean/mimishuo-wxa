@@ -188,7 +188,8 @@ Page({
       const virtualInfo = rsp.data || {}
       this.setData({
         virtualInfo,
-        nationalFlagUrl
+        nationalFlagUrl,
+        headImageUrl: virtualInfo.headImageUrl
       })
       console.log(rsp.data)
     } catch (err) {
