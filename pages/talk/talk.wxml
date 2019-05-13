@@ -1,4 +1,7 @@
 <view class="talk">
+    <view wx:if="{{isShowOfficial}}" class="official">
+        <official-account class="official" bindload='bindload' binderror='binderror'>关注</official-account>
+    </view>
     <view class="talk__top">
         <view class="talk__top-user">
             <image wx:if="{{headImageUrl}}" class="talk__top-img" src="{{headImageUrl}}"></image>
@@ -16,7 +19,7 @@
         </view>
     </view>
     <view class="talk__content">
-        <textarea class="talk__content__area" value="{{content}}"
+        <textarea fixed="true" class="talk__content__area" value="{{content}}"
                   maxlength="{{contentTotal}}"
                   placeholder-class="talk__content__area--placeholder"
                   placeholder="此时你想告诉公司的秘密"

@@ -1,6 +1,4 @@
 const {join, login} = require('../../utils/request')
-const {urls} = require('../../config')
-const {formatTimeFromStamp} = require('../../utils/timeUtil')
 const regeneratorRuntime = require('../../utils/runtime')
 
 function noop () {}
@@ -12,7 +10,8 @@ Page({
    */
   data: {
     content: '您的每一条吐槽都将受到技术保护\n请放心大胆地说出你的建议，不要怂',
-    companyId: 0
+    companyId: 0,
+    isShowOfficial: false
   },
 
   /**
@@ -103,5 +102,11 @@ Page({
         console.log(err)
       }
     }
+  },
+  bindload (event) {
+    this.setData({
+      isShowOfficial: true
+    })
+    console.log(event.detail)
   }
 })

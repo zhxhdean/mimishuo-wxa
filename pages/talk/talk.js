@@ -29,7 +29,8 @@ Page({
     subject: '', //  主题
     txtRealContent: '', // 文字备份
     contentCount: 0,
-    contentTotal: 150
+    contentTotal: 150,
+    isShowOfficial: true
   },
   onLoad: async function (options) {
     this.getVirtual()
@@ -233,6 +234,15 @@ Page({
       this.setData({ txtRealContent })
     }
     this.setData({ showMask: !this.data.showMask })
+  },
+  bindload (event) {
+    console.log(event.detail)
+  },
+  binderror (event) {
+    this.setData({
+      isShowOfficial: false
+    })
+    console.log(event.detail)
   },
   resetData () {
     this.setData({

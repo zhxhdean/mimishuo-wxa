@@ -1,21 +1,11 @@
-<view class="start">
-  <view class="start__top">
-    <view class="top__left">
-      <image class="top__left__img" src="/images/icon/index_eyes.png"/>
-    </view>
-    <view class="top__right">
-      <image class="top__right__img" src="/images/icon/index_title.png"/>
-    </view>
-  </view>
-  <view class="start__middle">
-    <image class="start__middle__img" src="/images/icon/index_top.png"/>
-  </view>
+<view class="start" style="background: url(../../images/bg.png) no-repeat center;background-size:100% 100%; ">
   <view class="start__content">
-    <text class="">{{content}}</text>
+    <view class="{{isShowOfficial ? 'start__button start__button--official' : 'start__button'}}">
+      <button class="start__btn" open-type="getUserInfo" bindgetuserinfo="getUserInfo">去吐槽</button>
+      <official-account class="official" bindload='bindload' binderror='binderror'></official-account>
+    </view>
+    <!--<view class="start__official">-->
+      <!--<official-account class="official" bindload='bindload' binderror='binderror'></official-account>-->
+    <!--</view>-->
   </view>
-  <view class="start__bottom">
-        <!--<image class="start__bottom__img" src="/images/icon/index_main.png"/>-->
-    <button class="start__bottom__button" open-type="getUserInfo" bindgetuserinfo="getUserInfo"></button>
-  </view>
-
 </view>

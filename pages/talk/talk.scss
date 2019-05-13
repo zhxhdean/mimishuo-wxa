@@ -6,7 +6,9 @@ $border_img: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACWCAMAAAAL34HQ
 
 .talk {
   font-family: PingFangSC-Regular;
-
+  .official {
+    @include size(100%,px(168));
+  }
   &__top {
     display: flex;
     position: relative;
