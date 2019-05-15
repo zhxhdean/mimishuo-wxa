@@ -1,4 +1,4 @@
-<view class="start" style="background: url(../../images/bg.png) no-repeat center;background-size:100% 100%; ">
+<view class="start">
   <view class="start__content">
     <view class="{{isShowOfficial ? 'start__button start__button--official' : 'start__button'}}">
       <button class="start__btn" open-type="getUserInfo" bindgetuserinfo="getUserInfo">去吐槽</button>

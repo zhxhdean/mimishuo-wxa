@@ -187,12 +187,12 @@ function userLogin (options) {
                     }
                   }
                 } else {
-                  showLoginErr('网络连接失败', options)
-                  reject(new Error('网络连接失败'))
+                  showLoginErr(res.data && res.data.errorMsg, options)
+                  reject(new Error(res.data.errorMsg))
                 }
               } else {
-                showLoginErr('网络连接失败', options)
-                reject(new Error('网络连接失败'))
+                showLoginErr(res.errMsg, options)
+                reject(new Error(res.errMsg))
               }
             },
             fail (res) {
