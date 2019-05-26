@@ -108,5 +108,8 @@ Page({
       isShowOfficial: true
     })
     console.log(event.detail)
+  },
+  binderror (event) {
+    console.log(event.detail)
   }
 })
