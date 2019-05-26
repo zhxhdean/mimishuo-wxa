@@ -47,7 +47,11 @@ Page({
       if (rsp.code === 0) {
         const data = rsp.data
         if (!data.items || data.items.length === 0) {
-          this.setData({noMore: true})
+          if (this.data.secretList.length === 0) {
+            this.setData({isEmpty: true})
+          } else {
+            this.setData({noMore: true})
+          }
           return
         }
         const rst = data.items.map(item => {
@@ -83,6 +87,11 @@ Page({
     wx.previewImage({
       current: current,
       urls: urls
+    })
+  },
+  goTalk: function () {
+    wx.switchTab({
+      url: '/pages/talk/talk'
     })
   }
 })
