@@ -1,4 +1,5 @@
 <view>
+  <cu-top-line></cu-top-line>
   <view class="cu-profile__user">
     <image bindtap="addCount" class="cu-profile__user-image" src="{{userInfo.headImageUrl}}" />
     <image class="cu-profile__user-power" src="../../images/flash.png"/>

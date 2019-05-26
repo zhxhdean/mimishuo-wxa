@@ -65,7 +65,7 @@ function userJoin (companyId) {
                   storage.authStorage.setAuth(res.data.data)
                   if (res.data.data && res.data.data.accessToken) {
                     wx.switchTab({
-                      url: '/pages/index/index'
+                      url: '/pages/talk/talk'
                     })
                   } else {
                     unit.showToast(res.data.errorMsg || '登录失败，请稍后重试')

@@ -61,8 +61,12 @@ Page({
       })
       // wx.hideLoading()
       if (rsp.code === 0) {
-        if (!rsp.data.items || rsp.data.items.length === 0) {
-          this.setData({noMore: true})
+        if (!rsp.data.items || rsp.data.items.length !== 0) {
+          if (this.data.secretList.length === 0) {
+            this.setData({isEmpty: true})
+          } else {
+            this.setData({noMore: true})
+          }
           return
         }
         const rst = rsp.data.items.map(item => {
@@ -101,6 +105,11 @@ Page({
     wx.previewImage({
       current: current,
       urls: urls
+    })
+  },
+  goTalk: function () {
+    wx.switchTab({
+      url: '/pages/talk/talk'
     })
   }
 })

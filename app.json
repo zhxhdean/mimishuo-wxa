@@ -1,15 +1,13 @@
 {
   "pages": [
     "pages/start/start",
+    "pages/talk/talk",
     "pages/index/index",
     "pages/home/home",
-    "pages/talk/talk",
     "pages/login/login",
-
     "pages/main/main",
     "pages/secret/index",
     "pages/test/test"
-
   ],
   "permission": {
     "scope.userLocation": {

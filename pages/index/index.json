@@ -4,6 +4,7 @@
   "enablePullDownRefresh": true,
   "backgroundTextStyle": "dark",
   "usingComponents": {
+    "cu-top-line": "/components/topLine/topLine",
     "cu-no-more": "/components/nomore/nomore"
   }
 }

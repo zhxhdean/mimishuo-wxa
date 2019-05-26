@@ -96,7 +96,7 @@ Page({
       try {
         await login(2)
         wx.switchTab({
-          url: '/pages/index/index'
+          url: '/pages/talk/talk'
         })
       } catch (err) {
         console.log(err)

@@ -170,3 +170,27 @@
     @include size(100%);
   }
 }
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  color: #858585;
+  font-size: px(32);
+
+  &__img {
+    margin: px(300) 0 px(40) 0;
+    @include size(px(280), px(210));
+  }
+
+  &__btn {
+    margin-top: px(40);
+    line-height: px(60);
+
+    @include size(px(180), px(60));
+    color: #6c6c6c;
+    text-align: center;
+    border: px(2) solid #dddddd;
+    border-radius: px(8);
+  }
+}

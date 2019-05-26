@@ -1,3 +1,5 @@
 {
-  
+  "usingComponents": {
+    "cu-top-line": "/components/topLine/topLine"
+  }
 }

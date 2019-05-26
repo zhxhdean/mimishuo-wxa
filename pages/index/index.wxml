@@ -1,4 +1,5 @@
 <view class="cu-profile">
+  <cu-top-line></cu-top-line>
   <!--<view class="cu-profile__select">
     <view class="cu-profile__select__title" bindtap="selectStage">第一期</view>
     <view class="cu-profile__select__items" wx-if="{{showSelect}}">
@@ -49,6 +50,13 @@
           <text class="cu-profile__reply-time">{{item.replyTime}}</text>
         </view>
       </view>
+    </view>
+    <view wx:if="{{isEmpty}}" class="empty">
+      <image src="../../images/icon/square_empty.jpg"
+             class="empty__img"
+             bindtap="previewImage" />
+      <view>暂时还没有小伙伴吐槽哦</view>
+      <view class="empty__btn" bindtap="goTalk">匿名吐槽</view>
     </view>
     <cu-no-more wx:if="{{noMore}}"></cu-no-more>
   </view>
