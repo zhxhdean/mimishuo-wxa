@@ -23,7 +23,7 @@
         <textarea fixed="true" class="talk__content__area" value="{{content}}"
                   maxlength="{{contentTotal}}"
                   placeholder-class="talk__content__area--placeholder"
-                  placeholder="匿名吐槽发给公司关注。 在广场匿名讨论小伙伴们的吐槽和秘密。 说秘密通过虚拟IP和信息加密技术绝对确保您的隐私安全。"
+                  placeholder="匿名吐槽发给公司关注。说秘密通过虚拟IP和信息加密技术绝对确保您的隐私安全。"
                   bindinput='setConent'/>
         <text class="talk__content__num">{{contentCount}}/{{contentTotal}}</text>
     </view>
