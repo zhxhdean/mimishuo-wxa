@@ -10,7 +10,7 @@ Page({
    */
   data: {
     content: '您的每一条吐槽都将受到技术保护\n请放心大胆地说出你的建议，不要怂',
-    companyId: 1,
+    companyId: '',
     isShowOfficial: false
   },
 

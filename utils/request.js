@@ -179,15 +179,10 @@ function userLogin (options) {
                   if (res.data.data && res.data.data.accessToken) {
                     resolve(res.data.data.accessToken)
                   } else {
-                    if (res.data.errorCode == '10002') { // 如果是tonken过期，自动刷新登录接口
-                      // userLogin()
-                      showLoginErr('授权过期，请重新登录', options)
-                    } else {
-                      showLoginErr(res.data.errorMsg || '登录失败，请稍后重试', options)
-                    }
+                    showLoginErr('首次登录请扫描公司的秘密说二维码！', options)
                   }
                 } else {
-                  showLoginErr(res.data && res.data.errorMsg, options)
+                  showLoginErr('首次登录请扫描公司的秘密说二维码！', options)
                   reject(new Error(res.data.errorMsg))
                 }
               } else {
@@ -196,7 +191,7 @@ function userLogin (options) {
               }
             },
             fail (res) {
-              showLoginErr('网络连接失败', options)
+              showLoginErr('首次登录请扫描公司的秘密说二维码！', options)
               reject(res)
             }
           })
