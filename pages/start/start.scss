@@ -31,6 +31,9 @@ $bg_img: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAu4AAAS3CAMAAACOkg/9AAAC
   }
 
   &__btn {
+    display: block;
+    text-align: center;
+    line-height: px(90);
     margin: 0 auto px(40) auto;
 
     @include size(px(480), px(90));
