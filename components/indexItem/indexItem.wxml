@@ -1,0 +1,49 @@
+<view wx:key="{{item.secretId}}"
+      wx:if="{{item.content}}"
+      class="cu-profile__body {{index==0?'cu-profile__body--first':''}}">
+	<view class="cu-profile__user">
+		<view class="cu-profile__user-left">
+			<view class="cu-profile__user-image">
+				<image wx:if="{{item.headImageUrl}}" src="{{item.headImageUrl}}" class="cu-profile__user-img"/>
+			</view>{{item.createTime}}
+		</view>
+		<view class="cu-profile__user-right">
+			<view class="btn zan" bindtap="likes" data-id="{{item.secretId}}" data-status="{{item.like}}">
+				<view wx:if="{{item.like===true}}" class="zan-img "></view>
+				<image wx:if="{{item.like===true}}" class="zan-img-f " src="../../images/zan_f.png" />
+				<image wx:else class="zan-img" src="../../images/zan.png" />
+				{{item.likeNum?item.likeNum:''}}
+			</view>
+			<view class="btn cai" bindtap="noLikes" data-id="{{item.secretId}}" data-status="{{item.like}}">
+				<view wx:if="{{item.like===false}}" class="zan-img"></view>
+				<image wx:if="{{item.like===false}}" class="zan-img-c" src="../../images/cai_f.png" />
+				<image wx:else class="zan-img" src="../../images/cai.png" />
+				{{item.hateNum?item.hateNum:''}}
+			</view>
+		</view>
+	</view>
+	<view wx:if="{{item.content}}" class="cu-profile__content">{{item.content}}
+	</view>
+	<view class="cu-profile__images">
+		<view wx:for="{{item.imageUrls}}"
+		      wx:key="{{index}}"
+		      wx:for-index="index"
+		      wx:for-item="img"
+		      class="cu-profile__image">
+			<image src="{{img}}"
+			       class="cu-profile__img"
+			       bindtap="previewImage"
+			       data-images="{{item.imageUrls}}"
+			       data-index="{{index}}"/>
+		</view>
+	</view>
+
+	<view wx:if="{{item.reply}}" class="cu-profile__reply">
+		<view class="cu-profile__reply-hr"><strong>HR</strong>
+			<text class="cu-profile__reply-time">{{item.replyTime}}</text>
+		</view>
+		<view>{{item.reply}}
+		</view>
+	</view>
+</view>
+
