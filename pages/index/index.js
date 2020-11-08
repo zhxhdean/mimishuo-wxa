@@ -101,6 +101,13 @@ Page({
         }
       })
     }
+    wx.showToast({
+      title: '操作成功',
+      icon: 'none'
+    })
+    setTimeout(() => {
+      this.refresh()
+    }, 1500)
   },
   async noLikes (e) {
     const { id, status } = e.currentTarget.dataset
@@ -116,6 +123,13 @@ Page({
         }
       })
     }
+    wx.showToast({
+      title: '操作成功',
+      icon: 'none'
+    })
+    setTimeout(() => {
+      this.refresh()
+    }, 1500)
   },
   async likesCancel (id, status) {
     const rsp = await post({
