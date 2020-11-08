@@ -17,14 +17,18 @@ $border_img: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACWCAMAAAAL34HQ
     padding-top: px(40);
 
     &-user {
-      @include size(px(140));
-      border-radius: 50%;
-      box-shadow: 0 0 px(50) #DDDDDD;
+      @include size(px(196),px(210));
+      background: url($author_back) no-repeat center;
+      background-size: 100% 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       overflow: hidden;
     }
 
     &-img {
-      @include size(px(140));
+      border-radius: 50%;
+      @include size(px(134), px(142));
     }
 
     &-ip {
@@ -86,20 +90,24 @@ $border_img: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACWCAMAAAAL34HQ
 
   &__content {
     position: relative;
-    margin: px(30);
-    padding: px(30);
+    margin: 0 px(30) px(30);
+    padding: px(60) px(30) px(30);
 
     height: px(300);
     box-sizing: border-box;
     background: #F8F8F8;
-    border: px(1) solid #E8E8E8;
     border-radius: px(8);
+    background: url($talk_back) no-repeat center;
+    background-size: 100% 100%;
 
     &__area {
       @include size(100%);
       &--placeholder {
-        font-size: px(30);
-        color: #999999;
+        font-size: px(28);
+        font-family: PingFangSC-Regular, PingFang SC;
+        font-weight: 400;
+        color: #8E8E8E;
+        line-height: 28px;
         text-align: center;
       }
     }
@@ -109,8 +117,8 @@ $border_img: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACWCAMAAAAL34HQ
       bottom: px(20);
       right: px(20);
 
-      font-size: px(24);
-      color: #666666;
+      font-size: px(28);
+      color: #8E8E8E;
       text-align: right;
     }
 
@@ -151,25 +159,24 @@ $border_img: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACWCAMAAAAL34HQ
     }
 
     &__add {
-      /*display: flex;
-      flex-direction: column;
-      align-items: center;*/
       position: relative;
       vertical-align: top;
 
       text-align: center;
       font-size: px(24);
-      color: #999999;
       border: px(0) solid #DDDDDD;
       box-sizing: border-box;
       border-radius: px(8);
+      font-family: PingFangSC-Regular, PingFang SC;
+      font-weight: 400;
+      color: #858290;
 
       background: url($border_img) center no-repeat;
       background-size: 100% 100%;
 
       &-img {
         margin-top: px(27);
-        @include size(px(48))
+        @include size(px(60), px(46))
       }
 
       &-text {
@@ -179,27 +186,27 @@ $border_img: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACWCAMAAAAL34HQ
   }
 
   &__botton {
-    padding: px(60) px(95) px(80) px(95);
+    padding: px(60) px(52) px(95);
+    display: flex;
+    justify-content: space-between;
   }
 
   &__btn {
     display: inline-block;
     line-height: px(80);
     box-sizing: border-box;
-
     opacity: 0.5;
     border: px(2) solid #3FA8FF;
     border-radius: px(40);
-    font-family: PingFangSC-Regular;
-    font-size: px(30);
+    font-size: px(28);
     color: #3FA8FF;
-    @include size(px(240),px(80));
+    @include size(px(264),px(80));
     text-align: center;
-
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
     &--sub {
       opacity: 1;
-      margin-left: px(80);
-      background: #3FA8FF;
+      background: linear-gradient(121deg, #008CD8 0%, #006BC1 100%);
       color: #FFFFFF;
     }
 

@@ -1,0 +1,54 @@
+@charset "UTF-8";
+@import "../../scss/vars";
+@import "../../scss/mixins";
+.talkPop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(225,225,225,0.8);;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .content {
+    position: relative;
+    padding: px(44) px(36) 0;
+    @include size(px(600), px(652));
+    background: url($talk_pop_back) center no-repeat;
+    background-size: 100% 100%;
+    font-size: px(36);
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+    color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .image {
+      margin: px(24) 0 px(90);
+      @include size(px(368), px(338));
+    }
+    .icon {
+      position: absolute;
+      top: px(38);
+      right: px(36);
+      @include size(px(60));
+    }
+    .btns {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      font-size: px(28);
+      font-family: PingFangSC-Regular, PingFang SC;
+      font-weight: 400;
+      .btn {
+        @include size(px(264), px(80));
+        box-shadow: 0px px(4) px(8) rgba(255, 255, 255, 0.5);
+        border-radius: px(40);
+        border: px(2) solid #FFFFFF;
+        line-height: px(80);
+        text-align: center;
+      }
+    }
+  }
+}

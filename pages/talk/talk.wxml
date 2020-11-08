@@ -1,5 +1,4 @@
 <view class="talk">
-    <cu-top-line></cu-top-line>
     <view wx:if="{{isShowOfficial}}" class="official">
         <official-account class="official" bindload='bindload' binderror='binderror'>关注</official-account>
     </view>
@@ -16,7 +15,7 @@
             <view class="talk__country__image">
                 <image wx:if="{{nationalFlagUrl}}" class="talk__country__img" src="../../{{nationalFlagUrl}}"></image>
             </view>
-            <text class="talk__country-change" bindtap="changeVirtualInfo">更换IP</text>
+            <text class="talk__country-change" bindtap="changeVirtualInfo">更换IP ></text>
         </view>
     </view>
     <view class="talk__content">
@@ -24,7 +23,11 @@
                   maxlength="{{contentTotal}}"
                   placeholder-class="talk__content__area--placeholder"
                   placeholder="畅所欲言，您的个人信息已被虚拟IP技术和数据加密技术保护～"
-                  bindinput='setConent'/>
+                  bindinput='setConent'
+                  wx:if="{{!isShowPop}}"/>
+        <view class="cu-talk__rich-text{{txtRealContent?'':' cu-talk__textarea--placeholder'}}" wx:else>
+            <rich-text nodes="{{txtRealContent?txtRealContent:'畅所欲言，您的个人信息已被虚拟IP技术和数据加密技术保护～'}}"></rich-text>
+        </view>
         <text class="talk__content__num">{{contentCount}}/{{contentTotal}}</text>
     </view>
     <view class="talk__images">
@@ -49,5 +52,5 @@
         <view class="talk__btn" bindtap="toBack">取消</view>
         <view class="talk__btn talk__btn--sub" catchtap="toSubmit">提交</view>
     </view>
- 
+    <talk-pop wx:if="{{isShowPop}}"  bindclosePop="closePop"></talk-pop>
 </view>

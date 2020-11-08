@@ -113,9 +113,15 @@ Page({
     })
   },
 
-  closePop () {
+  closePop (clear) {
     const self = this
     self.setData({isShowPop: false})
+    if (clear) {
+      self.setData({
+        content: '',
+        contentCount: 0
+      })
+    }
   },
   upLoadFile () {
     const self = this
@@ -255,4 +261,4 @@ Page({
       contentCount: 0
     })
   }
-})
+});

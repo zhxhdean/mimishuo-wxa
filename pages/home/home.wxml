@@ -1,27 +1,33 @@
 <view>
-  <cu-top-line></cu-top-line>
+  <view class="tab_title">我的</view>
   <view class="cu-profile__user">
-    <image bindtap="addCount" class="cu-profile__user-image" src="{{userInfo.headImageUrl}}" />
-    <image class="cu-profile__user-power" src="../../images/flash.png"/>
-    <text class="cff9 cu-profile__user-text">{{userInfo.power || 12}}</text>
+    <div class="cu-profile__user-author">
+      <image bindtap="addCount" class="cu-profile__user-image" src="{{userInfo.headImageUrl}}" />
+    </div>
+    <!--<image class="cu-profile__user-power" src="../../images/flash.png"/>-->
+    <!--<text class="cff9 cu-profile__user-text">{{userInfo.power || 12}}</text>-->
+    <view class="cu-profile__user-power">
+      <image class="cu-profile__user-img" src="../../images/dianzan.png" />
+      <text class="cff9 cu-profile__user-text">{{userInfo.power || 12}}</text>
+    </view>
   </view>
 
   <view class="cu-profile__menu">
     <navigator url="/pages/secret/index">
       <view class="cu-profile__menu-items">
         <view class="cu-profile__menu-item">
-          <image class="cu-profile__menu-image" src="../../images/icon/icon_secret.png" />秘密说
+          <image class="cu-profile__menu-image top1" src="../../images/icon/icon_secret.png" />秘密说
         </view>5
       </view>
     </navigator>
     <view class="cu-profile__menu-items">
       <view class="cu-profile__menu-item">
-        <image class="cu-profile__menu-image" src="../../images/icon/icon_energy.png" />充能值
+        <image class="cu-profile__menu-image top2" src="../../images/icon/icon_energy.png" />充能值
       </view>32
     </view>
     <view class="cu-profile__menu-items">
       <view class="cu-profile__menu-item">
-        <image class="cu-profile__menu-image" src="../../images/icon/icon_reply.png" />已回复
+        <image class="cu-profile__menu-image top3" src="../../images/icon/icon_reply.png" />已回复
       </view>3
     </view>
   </view>

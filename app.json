@@ -16,7 +16,6 @@
   },
   "window": {
     "navigationBarTitleText": "秘密说",
-
     "navigationBarBackgroundColor": "#ffffff",
     "navigationBarTextStyle": "black",
     "backgroundColor": "#ffffff",
@@ -55,5 +54,6 @@
     "request": 10000,
     "downloadFile": 10000
   },
-  "debug": true
+  "debug": true,
+  "sitemapLocation": "sitemap.json"
 }

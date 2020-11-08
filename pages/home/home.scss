@@ -2,63 +2,116 @@
 @import "../../scss/base";
 @import "../../scss/mixins";
 
+.tab_title {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 90px;
+  line-height: 90px;
+  text-align: center;
+  font-size: 17px;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #FFFFFF;
+  letter-spacing: 1px;
+}
 .cu-profile {
   &__user {
+    background: url($home_background_placeholder) no-repeat center;
+    background-size:100% 100%;
     display: flex;
 
     margin-top: px(-40);
-    height: px(318);
+    height: px(600);
     align-items: center;
   }
-
-  &__user-image {
+  &__user-author {
     margin-left: px(60);
-
-    //border: px(1) solid #DDDDDD;
-    //box-sizing: border-box;
-    @include size(px(112),px(150));
+    @include size(px(196),px(210));
+    background: url($author_back) no-repeat center;
+    background-size: 100% 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__user-image {
+    @include size(px(134),px(142));
     border-radius: 50%;
-    box-shadow: 0 0 px(50) #DDDDDD;
   }
 
   &__user-power {
-    margin-left: px(20);
-
-    @include size(px(86),px(150));
+    margin-left: px(28);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 84px;
+    height: 32px;
+    background: linear-gradient(113deg, #FFC368 0%, #FF9304 100%);
+    border-radius: 16px;
+  }
+  &__user-img {
+    width: 28px;
+    height: 28px;
   }
   &__user-text {
-    margin-left: px(12);
-
-    font-size: px(56);
-    font-weight: bolder;
+    margin-left: px(6);
+    font-size: 20px;
+    font-family: PingFangSC-Semibold, PingFang SC;
+    font-weight: 600;
+    color: #FFFFFF;
+    line-height: 25px;
   }
 
   &__menu {
+    margin-top: px(-180);
     color: rgba(16, 16, 16, 1);
     font-size: px(32);
     font-family: PingFangSC-regular;
   }
 
   &__menu-items {
+    margin: px(18) px(48) 0;
     display: flex;
     align-items: center;
-    padding: 0 px(128) 0 px(80);
+    padding: 0 px(84) 0 px(44);
     justify-content: space-between;
-    margin-top: px(18);
 
-    height: px(102);
-    background:#ECECEC;
+    //width: px(654);
+    height: px(192);
+    background: #FFFFFF;
+    box-shadow: 0px 2px 20px 0px rgba(176, 206, 224, 0.5);
+    border-radius: 10px;
+
+    font-size: 26px;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+    color: #858290;
   }
 
   &__menu-item {
     display: flex;
 
     align-items: center;
+
+    font-size: 14px;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #333333;
   }
 
   &__menu-image {
-    margin-right: px(30);
+    margin-right: px(44);
 
     @include size(px(100),px(90))
+  }
+  .top1 {
+    @include size(px(124),px(62))
+  }
+  .top2 {
+    @include size(px(82),px(108))
+  }
+  .top3 {
+    @include size(px(68),px(78))
   }
 }

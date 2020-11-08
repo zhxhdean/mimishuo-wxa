@@ -71,7 +71,7 @@ Page({
         }
         const rst = rsp.data.items.map(item => {
           return Object.assign(item, {
-            createTime: formatTimeFromStamp(item.createTime, 'Y/M/D'),
+            createTime: formatTimeFromStamp(item.createTime, 'Y/M/D h:m'),
             replyTime: formatTimeFromStamp(item.replyTime, 'Y/M/D h:m')
           })
         })
@@ -85,6 +85,47 @@ Page({
     } catch (err) {
       util.showToast(err || '接口失败，请重试')
     }
+  },
+
+  async likes (e) {
+    const { id, status } = e.currentTarget.dataset
+    console.log('status:', typeof status)
+    if (status === true) {
+      this.likesCancel(id, false)
+    } else {
+      await post({
+        url: urls.secretLikes,
+        data: {
+          secretId: id,
+          isLike: status ? !status : true
+        }
+      })
+    }
+  },
+  async noLikes (e) {
+    const { id, status } = e.currentTarget.dataset
+    console.log('status:', typeof status, status)
+    if (status === false) {
+      this.likesCancel(id, true)
+    } else {
+      await post({
+        url: urls.secretLikes,
+        data: {
+          secretId: id,
+          isLike: status ? !status : false
+        }
+      })
+    }
+  },
+  async likesCancel (id, status) {
+    const rsp = await post({
+      url: urls.secretLikesC,
+      data: {
+        secretId: id,
+        isLike: status
+      }
+    })
+    console.log(rsp, id)
   },
   /**
    * 封装接口需要的参数

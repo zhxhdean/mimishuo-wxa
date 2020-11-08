@@ -1,0 +1,12 @@
+<view class="talkPop">
+	<view class="content">
+		<image src="../../images/icon/close.png" class="icon" catchtap="closePop"/>
+		<text>已成功发布</text>
+		<image src="../../images/talk_finish.png" class="image"></image>
+		<view class="btns">
+			<view class="btn" catchtap="toMySecret">查看我的吐糟</view>
+			<view class="btn" catchtap="again">继续吐槽</view>
+		</view>
+	</view>
+</view>
+

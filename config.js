@@ -12,7 +12,9 @@ const urls = {
   secretMy: 'secret/my',
   secretNew: 'secret/new',
   upLoadFile: 'file/upload',
-  changeIp: 'user/generate/ip'
+  changeIp: 'user/generate/ip',
+  secretLikes: 'secret/likes',
+  secretLikesC: 'secret/likes/cancel'
 }
 
 module.exports = {

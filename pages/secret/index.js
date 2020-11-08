@@ -56,7 +56,7 @@ Page({
         }
         const rst = data.items.map(item => {
           return Object.assign(item, {
-            createTime: formatTimeFromStamp(item.createTime, 'Y/M/D'),
+            createTime: formatTimeFromStamp(item.createTime, 'Y/M/D h:m'),
             replyTime: formatTimeFromStamp(item.replyTime, 'Y/M/D h:m')
           })
         })

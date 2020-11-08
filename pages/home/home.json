@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "我的",
   "onReachBottomDistance": 100,
+  "navigationStyle":"custom",
   "usingComponents": {
     "cu-top-line": "/components/topLine/topLine"
   }
