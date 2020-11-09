@@ -8,17 +8,17 @@
 			</view>{{item.createTime}}
 		</view>
 		<view class="cu-profile__user-right">
-			<view class="btn zan" bindtap="likes" data-id="{{item.secretId}}" data-status="{{item.like}}">
-				<view wx:if="{{item.like===true}}" class="zan-img "></view>
-				<image wx:if="{{item.like===true}}" class="zan-img-f " src="../../images/zan_f.png" />
+			<view class="btn zan" bindtap="likes" data-id="{{item.secretId}}" data-status="{{like}}">
+				<view wx:if="{{like===true}}" class="zan-img "></view>
+				<image wx:if="{{like===true}}" class="zan-img-f " src="../../images/zan_f.png" />
 				<image wx:else class="zan-img" src="../../images/zan.png" />
-				{{item.likeNum?item.likeNum:''}}
+				{{likeNum?likeNum:''}}
 			</view>
-			<view class="btn cai" bindtap="noLikes" data-id="{{item.secretId}}" data-status="{{item.like}}">
-				<view wx:if="{{item.like===false}}" class="zan-img"></view>
-				<image wx:if="{{item.like===false}}" class="zan-img-c" src="../../images/cai_f.png" />
+			<view class="btn cai" bindtap="noLikes" data-id="{{item.secretId}}" data-status="{{like}}">
+				<view wx:if="{{like===false}}" class="zan-img"></view>
+				<image wx:if="{{like===false}}" class="zan-img-c" src="../../images/cai_f.png" />
 				<image wx:else class="zan-img" src="../../images/cai.png" />
-				{{item.hateNum?item.hateNum:''}}
+				{{hateNum?hateNum:''}}
 			</view>
 		</view>
 	</view>
