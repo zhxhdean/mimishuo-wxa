@@ -4,6 +4,7 @@
 @import "../../scss/base";
 
 .cu-tab-bar {
+  width: 100%;
   position: fixed;
   display: flex;
   align-items: center;
@@ -12,29 +13,46 @@
   bottom: 0;
   height: px($tab_bar_height);
 
-  background-color: rgba(237, 237, 237, 1);
+  background: #FFFFFF;
   border: px(2) solid rgba(255, 255, 255, 0);
 
+  font-size: px(22);
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #858290;
+  .tab-bar_img {
+    margin-top: px(12);
+    @include size(px(76),px($tab_bar_img_h))
+  }
   &--ipx {
     padding-bottom: px(68);
   }
 
   &__item {
-    flex: 1;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 
     overflow: hidden;
-    @include size(px(219),px($tab_bar_height));
+    @include size(px(180),px($tab_bar_height));
+    .left_img {
+      margin-top: px(20);
+      @include size(px(76),px(50))
+    }
+  }
+  .active {
+    color: #1094FF;
+  }
+  .tab-text {
+    margin-top: px(10);
+    line-height: px(32);
   }
 }
 
-.tab-bar_img {
-  @include size(px(112),px($tab_bar_img_h))
-}
 
 .bar-complaints_btn {
+  flex: 1;
   line-height: px($tab_bar_height);
 
   background-color: rgba(27, 120, 191, 1);
@@ -43,6 +61,11 @@
   box-sizing: border-box;
   color: rgba(255, 255, 255, 1);
   font-size: px(40);
-
-  @include size(px(312),px($tab_bar_height));
+  height: px($tab_bar_height);
+  display: flex;
+  align-items: center;
+  .tabbar_talk_img {
+    margin: px(6) px(48) 0 px(56);
+    @include size(px(56))
+  }
 }

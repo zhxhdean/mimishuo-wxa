@@ -6,6 +6,7 @@
   "usingComponents": {
     "cu-top-line": "/components/topLine/topLine",
     "cu-no-more": "/components/nomore/nomore",
-    "index-item": "/components/indexItem/indexItem"
+    "index-item": "/components/indexItem/indexItem",
+    "tab-bar": "/components/tabBar/tabBar"
   }
 }

@@ -64,7 +64,7 @@ function userJoin (companyId) {
                 if (res.data && (res.data.errorCode === '200' || res.data.result === 'success')) {
                   storage.authStorage.setAuth(res.data.data)
                   if (res.data.data && res.data.data.accessToken) {
-                    wx.switchTab({
+                    wx.reLaunch({
                       url: '/pages/talk/talk'
                     })
                   } else {

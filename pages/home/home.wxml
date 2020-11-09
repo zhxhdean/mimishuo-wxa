@@ -1,4 +1,4 @@
-<view>
+<view class="home_page">
   <view class="tab_title">我的</view>
   <view class="cu-profile__user">
     <div class="cu-profile__user-author">
@@ -31,5 +31,5 @@
       </view>3
     </view>
   </view>
-  <cu-tab-bar></cu-tab-bar>
+  <tab-bar currentTab="1" />
 </view>

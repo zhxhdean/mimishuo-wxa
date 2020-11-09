@@ -1,25 +1,28 @@
 <view class="cu-tab-bar{{isIphoneX?' cu-ipx':''}}">
 
-  <view class="cu-tab-bar__item {{currentTab == idx ? 'active' : 'default' }}"
+  <view class="cu-tab-bar__item"
     wx:for="{{items}}"
     wx:key="prototype"
     wx:for-index="idx"
     wx:for-item="item"
     data-current="{{idx}}"
     bindtap="swichNav">
-    <!--<text class="tab-text"
-          wx:for-index="idx"
-          data-current="{{idx}}"
-          src="{{currentTab == idx ? item.selectedIconPath : item.iconPath }}">
-      {{item.text}}
-    </text>-->
-    <image class="tab-bar_img"
+    <image class="tab-bar_img {{idx == 0 ? 'left_img' : '' }}"
        wx:for-index="idx"
        data-current="{{idx}}"
        src="{{currentTab == idx ? item.selectedIconPath : item.iconPath }}">
     </image>
+    <view class="tab-text {{currentTab == idx ? 'active' : '' }}"
+          wx:for-index="idx"
+          data-current="{{idx}}"
+          src="{{currentTab == idx ? item.selectedIconPath : item.iconPath }}">
+      {{item.text}}
+    </view>
   </view>
 
-  <view class="bar-complaints_btn" bindtap="swichNav" data-current="{{2}}">立即吐槽</view>
+  <view class="bar-complaints_btn" bindtap="toComplaints">
+    <image class="tabbar_talk_img" src="../../images/icon/tabbar_talk.png"/>
+    立刻吐槽
+  </view>
 </view>
 

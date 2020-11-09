@@ -27,7 +27,7 @@ Component({
     likes (e) {
       const { id, status } = e.currentTarget.dataset
       console.log('status:', typeof status)
-      const { result, likeNum } = this.data
+      const { result, likeNum, hateNum } = this.data
       if (status === true) {
         this.likesCancel(id, false, 'like')
       } else {
@@ -49,6 +49,11 @@ Component({
               likeNum: likeNum + 1,
               like: true
             })
+            if (status === false) {
+              this.setData({
+                hateNum: hateNum - 1
+              })
+            }
           } else {
             wx.showToast({
               title: content,
@@ -62,7 +67,7 @@ Component({
     noLikes (e) {
       const { id, status } = e.currentTarget.dataset
       console.log('status:', typeof status, status)
-      const { result, hateNum } = this.data
+      const { result, hateNum, likeNum } = this.data
       if (status === false) {
         this.likesCancel(id, true)
       } else {
@@ -84,6 +89,12 @@ Component({
               },
               hateNum: hateNum + 1,
               like: false})
+
+            if (status === true) {
+              this.setData({
+                likeNum: likeNum - 1
+              })
+            }
           } else {
             wx.showToast({
               title: content,
@@ -131,8 +142,14 @@ Component({
         }
       })
     },
-    kkk () {
-      console.log(111)
+    previewImage: function (e) {
+      const data = e.target.dataset
+      const urls = data.images
+      const current = urls[data.index]
+      wx.previewImage({
+        current: current,
+        urls: urls
+      })
     }
   }
 })

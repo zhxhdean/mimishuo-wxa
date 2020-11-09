@@ -223,7 +223,7 @@ Page({
     return result
   },
   toBack () {
-    wx.switchTab({
+    wx.reLaunch({
       url: '/pages/index/index'
     })
   },

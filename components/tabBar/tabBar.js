@@ -13,12 +13,14 @@ Component({
       {
         'iconPath': '../../images/icon/tabbar_square.png',
         'selectedIconPath': '../../images/icon/tabbar_square_on.png',
-        'text': ''
+        'text': '广场',
+        'url': '/pages/index/index'
       },
       {
         'iconPath': '../../images/icon/tabbar_me.png',
         'selectedIconPath': '../../images/icon/tabbar_me_on.png',
-        'text': ''
+        'text': '我的',
+        'url': '/pages/home/home'
       }
     ]
   },
@@ -29,46 +31,22 @@ Component({
   methods: {
     swichNav (e) {
       let self = this
+      const {items} = self.data
       const currentTab = e.target.dataset.current
       if (this.data.currentTab === currentTab) {
         return false
       } else {
         self.setData({
-          currentTab: e.target.dataset.current
+          currentTab
         })
-        // if (currentTab === 0) {
-        //   wx.navigateTo({
-        //     url: '/pages/index/index'
-        //   })
-        // } else {
-        //   wx.navigateTo({
-        //     url: '/pages/profile/index'
-        //   })
-        // }
-        if (currentTab === 0) {
-          wx.setNavigationBarTitle({
-            title: '广场'
-          })
-        } else if (currentTab === 1) {
-          wx.setNavigationBarTitle({
-            title: '我的'
-          })
-        } else if (currentTab === 2) {
-          wx.setNavigationBarTitle({
-            title: ''
-          })
-        }
-        // wx.setNavigationBarTitle({
-        //   title: res.data.nav_name,
-        // })
-        setTimeout(() => {
-          self.triggerEvent('swichNav', currentTab)
-        }, 0)
+        wx.reLaunch({
+          url: items[currentTab].url
+        })
       }
     },
     toComplaints () {
-      wx.navigateTo({
-        url: '/pages/talk/index'
+      wx.reLaunch({
+        url: '/pages/talk/talk'
       })
     }
   }

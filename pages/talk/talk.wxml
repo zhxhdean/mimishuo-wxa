@@ -53,4 +53,5 @@
         <view class="talk__btn talk__btn--sub" catchtap="toSubmit">提交</view>
     </view>
     <talk-pop wx:if="{{isShowPop}}"  bindclosePop="closePop"></talk-pop>
+    <tab-bar currentTab="2"/>
 </view>

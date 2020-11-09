@@ -90,7 +90,7 @@ Page({
     })
   },
   goTalk: function () {
-    wx.switchTab({
+    wx.reLaunch({
       url: '/pages/talk/talk'
     })
   }

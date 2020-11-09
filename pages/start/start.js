@@ -95,7 +95,7 @@ Page({
     } else {
       try {
         await login(2)
-        wx.switchTab({
+        wx.reLaunch({
           url: '/pages/talk/talk'
         })
       } catch (err) {

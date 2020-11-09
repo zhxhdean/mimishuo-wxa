@@ -3,6 +3,7 @@
   "onReachBottomDistance": 100,
   "navigationStyle":"custom",
   "usingComponents": {
-    "cu-top-line": "/components/topLine/topLine"
+    "cu-top-line": "/components/topLine/topLine",
+    "tab-bar": "/components/tabBar/tabBar"
   }
 }

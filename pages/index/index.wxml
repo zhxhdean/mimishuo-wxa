@@ -10,5 +10,6 @@
     </view>
     <cu-no-more wx:if="{{noMore}}"></cu-no-more>
   </view>
+  <tab-bar currentTab="0"/>
 </view>
 

@@ -5,6 +5,7 @@
 $border_img: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACWCAMAAAAL34HQAAAAVFBMVEUAAAD+/v7d3d3e3t7d3d3e3t7f39/p6ene3t7h4eHe3t7d3d3j4+Pj4+Pe3t7e3t7f39/f39/h4eHe3t7d3d3g4ODd3d3d3d3d3d3e3t7g4ODd3d04idp1AAAAG3RSTlMABfmDiXx2DpUr9NUaFNuPWz01nksl6um9sDEDMfkVAAABZklEQVR42u2cOW4DMRAEe1eWuKdu+eL//2kKFqDUjlQz6EqGYQMFVEj9cplqQ40X33IY9WRTIbOOtQ6dGt1llUoRg9vQT6MaQ/0SifNJjbH2Z/G47gfRKHeNnWCM/Swga51EpFa9vQnHZnNfRsSz/sNuJxzbrYhADXJnuVs5PBJxt6Ib5M5yt3J4JOJuRTfIneVu5fBIxN2KbpA7y93K4ZGIuxXdIHeWu5XDIxF3K7pB7ix3K4dHIu5WdIPcWe5WDo9E3K3oBrmz3K0cHom4W9ENcme5Wzk8EnG3ohvkznK3cngk4m5FN8id5W7l8EjE3YpukDvL3crhkYi7Fd0gd5a7lcMjEXcrukHuLHcrh0ci7lZ0g9xZ7lYOj0TcregGubPcrRweibhbf6UwP+g711lar4Jx7A9apv5bMJZVGurHTSC6x/ncF8x/md1p2JfHc5E019rf3/W199TuUU/eGbOW+TCq8QPocjVXjqbz/wAAAABJRU5ErkJggg==';
 
 .talk {
+  padding-bottom: px(128);
   font-family: PingFangSC-Regular;
   .official {
     @include size(100%,px(168));

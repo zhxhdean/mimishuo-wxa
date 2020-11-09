@@ -2,6 +2,7 @@
   "navigationBarTitleText": "我的吐槽",
   "usingComponents": {
     "cu-top-line": "/components/topLine/topLine",
-    "talk-pop": "/components/talkPop/talkPop"
+    "talk-pop": "/components/talkPop/talkPop",
+    "tab-bar": "/components/tabBar/tabBar"
   }
 }
