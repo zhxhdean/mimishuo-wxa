@@ -108,8 +108,8 @@ Component({
       post({
         url: urls.secretLikesC,
         data: {
-          secretId: id,
-          isLike: status
+          secretId: id
+          // isLike: status
         }
       }).then((res) => {
         const { code, content } = res
