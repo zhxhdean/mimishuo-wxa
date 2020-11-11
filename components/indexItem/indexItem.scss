@@ -161,7 +161,8 @@
     margin-top: px(10);
     margin-right: px(10);
 
-    @include size(31.9%,px(200));
+
+    @include size(31.9%,px(174));
     overflow: hidden;
     border: px(1) solid #DDDDDD;
     &:nth-child(3n+3) {

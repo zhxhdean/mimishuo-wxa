@@ -97,7 +97,7 @@ Page({
     const self = this
     self.upLoadFile()
     self.setData({
-      isShowPop: false
+      isShowPop: true
     })
   },
   checkboxChange: function (e) {
@@ -156,7 +156,7 @@ Page({
         url: urls.secretNew,
         data: self.params()
       })
-      util.showToast('保存成功')
+      // util.showToast('保存成功')
       self.resetData()
       setTimeout(() => {
         wx.navigateTo({
