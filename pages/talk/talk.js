@@ -116,12 +116,12 @@ Page({
   closePop (clear) {
     const self = this
     self.setData({isShowPop: false})
-    if (clear) {
-      self.setData({
-        content: '',
-        contentCount: 0
-      })
-    }
+    // if (clear) {
+    //   self.setData({
+    //     content: '',
+    //     contentCount: 0
+    //   })
+    // }
   },
   upLoadFile () {
     const self = this
@@ -156,13 +156,7 @@ Page({
         url: urls.secretNew,
         data: self.params()
       })
-      // util.showToast('保存成功')
       self.resetData()
-      setTimeout(() => {
-        wx.navigateTo({
-          url: '/pages/secret/index'
-        })
-      }, 1500)
     } catch (err) {
       util.showToast(err || '保存失败')
     }

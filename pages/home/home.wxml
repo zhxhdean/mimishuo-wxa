@@ -8,7 +8,7 @@
     <!--<text class="cff9 cu-profile__user-text">{{userInfo.power || 12}}</text>-->
     <view class="cu-profile__user-power">
       <image class="cu-profile__user-img" src="../../images/dianzan.png" />
-      <text class="cff9 cu-profile__user-text">{{userInfo.power || 12}}</text>
+      <text class="cff9 cu-profile__user-text">{{userData.totalLikeNum || 0}}</text>
     </view>
   </view>
 
@@ -17,18 +17,18 @@
       <view class="cu-profile__menu-items">
         <view class="cu-profile__menu-item">
           <image class="cu-profile__menu-image top1" src="../../images/icon/icon_secret.png" />秘密说
-        </view>5
+        </view>{{userData.totalNum || ''}}
       </view>
     </navigator>
     <view class="cu-profile__menu-items">
       <view class="cu-profile__menu-item">
         <image class="cu-profile__menu-image top2" src="../../images/icon/icon_energy.png" />充能值
-      </view>32
+      </view>{{userData.energyNum}}
     </view>
     <view class="cu-profile__menu-items">
       <view class="cu-profile__menu-item">
         <image class="cu-profile__menu-image top3" src="../../images/icon/icon_reply.png" />已回复
-      </view>3
+      </view>{{userData.totalReplyNum}}
     </view>
   </view>
   <tab-bar currentTab="1" />

@@ -9,7 +9,8 @@ noop(regeneratorRuntime)
 Page({
   data: {
     userInfo: {},
-    clickCount: 0
+    clickCount: 0,
+    userData: {}
   },
   onLoad: async function (options) {
     try {
@@ -18,6 +19,16 @@ Page({
         this.setData({userInfo: rsp.data})
       } else {
         util.showToast(rsp.content || '获取用户信息失败，请退出重试')
+      }
+    } catch (err) {
+      util.showToast(err || '获取用户信息失败')
+    }
+    try {
+      const rsp = await get({ url: urls.secretNum })
+      if (rsp.code === 0) {
+        this.setData({userData: rsp.data})
+      } else {
+        util.showToast(rsp.content || '用户秘密统计信息失败')
       }
     } catch (err) {
       util.showToast(err || '获取用户信息失败')

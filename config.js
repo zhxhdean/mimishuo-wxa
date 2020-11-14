@@ -14,7 +14,8 @@ const urls = {
   upLoadFile: 'file/upload',
   changeIp: 'user/generate/ip',
   secretLikes: 'secret/likes',
-  secretLikesC: 'secret/likes/cancel'
+  secretLikesC: 'secret/likes/cancel',
+  secretNum: '/user/secret/num'
 }
 
 module.exports = {
