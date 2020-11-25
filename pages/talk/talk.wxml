@@ -1,7 +1,7 @@
 <view class="talk">
-    <view wx:if="{{isShowOfficial}}" class="official">
-        <official-account class="official" bindload='bindload' binderror='binderror'>关注</official-account>
-    </view>
+    <!--<view wx:if="{{isShowOfficial}}" class="official">-->
+        <!--<official-account class="official" bindload='bindload' binderror='binderror'>关注</official-account>-->
+    <!--</view>-->
     <view class="talk__top">
         <view class="talk__top-user">
             <image wx:if="{{headImageUrl}}" class="talk__top-img" src="{{headImageUrl}}"></image>

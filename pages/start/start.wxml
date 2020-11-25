@@ -3,7 +3,7 @@
     <view class="{{isShowOfficial ? 'start__button start__button--official' : 'start__button'}}">
       <button wx:if="{{companyId}}" class="start__btn" open-type="getUserInfo" bindgetuserinfo="getUserInfo">去吐槽</button>
       <div wx:if="{{!companyId}}" class="start__btn" bindtap="clickComplaints">去吐槽</div>
-      <official-account class="official" bindload='bindload' binderror='binderror'></official-account>
+      <!--<official-account class="official" bindload='bindload' binderror='binderror'></official-account>-->
     </view>
     <!--<view class="start__official">-->
       <!--<official-account class="official" bindload='bindload' binderror='binderror'></official-account>-->
