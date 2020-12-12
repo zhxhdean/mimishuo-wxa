@@ -5,6 +5,8 @@ const regeneratorRuntime = require('../../utils/runtime')
 const util = require('../../utils/util.js')
 
 function noop () {}
+
+// let isBack = true
 noop(regeneratorRuntime)
 Page({
   data: {
@@ -14,12 +16,18 @@ Page({
     noMore: false,
     secretList: [],
     showSelect: false,
-    isEmpty: false
+    isEmpty: false,
+    isOnLoad: false
   },
   onLoad: async function (options) {
+    this.setData({isOnLoad: true})
     this.refresh()
   },
   onShow: function () {
+    if (!this.data.isOnLoad) {
+      this.refresh()
+    }
+    this.setData({isOnLoad: false})
   },
 
   onPullDownRefresh: function () {
@@ -54,12 +62,17 @@ Page({
     if (this.data.noMore) {
       return
     }
+    if (this.data.secretList.length === 0) {
+      wx.showLoading()
+    }
     try {
       const rsp = await post({
         url: urls.secretList,
         data: this.params()
       })
-      // wx.hideLoading()
+      if (this.data.secretList.length === 0) {
+        wx.hideLoading()
+      }
       if (rsp.code === 0) {
         if (!rsp.data.items || rsp.data.items.length === 0) {
           if (this.data.secretList.length === 0) {

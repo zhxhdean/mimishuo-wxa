@@ -1,4 +1,5 @@
 const {join, login} = require('../../utils/request')
+const storage = require('../../utils/storage.js')
 const regeneratorRuntime = require('../../utils/runtime')
 
 function noop () {}
@@ -89,12 +90,15 @@ Page({
     this.clickComplaints()
   },
   clickComplaints: async function () {
-    if (this.data.companyId) {
+    if (this.data.companyId) { // 第一次扫描公司二维码进来
       wx.setStorageSync('initCompanyId', this.data.companyId)
       await join(this.data.companyId)
     } else {
       try {
-        await login(2)
+        let authorization = storage.authStorage.getAuth() ? storage.authStorage.getAuth().accessToken : ''
+        if (!authorization) {
+          await login(2)
+        }
         wx.reLaunch({
           url: '/pages/talk/talk'
         })

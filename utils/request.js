@@ -98,11 +98,6 @@ function wxRequest (options) {
     let authorization = storage.authStorage.getAuth() ? storage.authStorage.getAuth().accessToken : ''
     if (!authorization) {
       showLoginErr('登录过期，请重新登录')
-      // try {
-      //   authorization = await userLogin()
-      // } catch (err) {
-      //   return
-      // }
     }
     head = {
       'content-type': 'application/json', // 默认值
@@ -139,7 +134,7 @@ function wxRequest (options) {
             // 接口成功返回数据
             resolve({code: 0, data: res.data.data})
           } else {
-            if (res.data.errorCode == '10002') { // 如果是tonken过期，自动刷新登录接口
+            if (res.data.errorCode == '10002' || res.data.errorCode === '10006') { // 如果是tonken过期，自动刷新登录接口
               // userLogin()
               showLoginErr('授权过期，请重新登录')
             } else {
