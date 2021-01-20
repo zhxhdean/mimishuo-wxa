@@ -18,6 +18,7 @@
 	</view>
 	<view wx:if="{{item.subject}}" class="cu-profile__content--hr">
 		<image wx:if="{{item.secretTopic}}" class="secretImage" src="../../images/icon/icon_activity.png"></image>
+		<text wx:if="{{item.secretTopic}}" class="replyTip">已有{{item.replyNum || 0}}人参与</text>
 		{{item.subject}}
 		<text class="reply" bindtap="reply" data-id="{{item.topicId}}">回复</text>
 	</view>
@@ -34,7 +35,7 @@
 		</view>
 	</view>
 	<!---->
-	<view wx:if="{{item.topicReplyItem && topicReplyItemList.length === 0}}" class="cu-profile__reply">
+	<view wx:if="{{item.topicReplyItem.content && topicReplyItemList.length === 0}}" class="cu-profile__reply sss">
 		<view class="cu-profile__reply-hr">
 			<text class="cu-profile__reply-time">{{item.topicReplyItem.createdAt}}</text>
 			<view wx:if="{{!item.secretTopic}}" class="cu-profile__reply-img" data-type="reply">
@@ -45,6 +46,6 @@
 		<view >{{item.topicReplyItem.content}}
 		</view>
 	</view>
-	<view  class="reply_num" bindtap="topIcDesc" wx:if="{{item.replyNum>0}}" data-id="{{item.topicId}}">共{{item.replyNum}}条回复 <image class="zan_arrow" src="../../images/icon/icon_arrow_gray.png" /></view>
+	<view  class="reply_num" bindtap="topIcDesc" wx:if="{{item.replyNum>0 && !item.secretTopic}}" data-id="{{item.topicId}}">共{{item.replyNum}}条回复 <image class="zan_arrow" src="../../images/icon/icon_arrow_gray.png" /></view>
 </view>
 

@@ -117,6 +117,7 @@
     border: px(2) solid rgba(255, 255, 255, 0);
 
     &--hr {
+      position: relative;
       margin: px(24) px(40) px(20) px(30);
       padding: px(16) px(24) px(16);
       line-height: px(60);
@@ -132,6 +133,16 @@
       .secretImage {
         @include size(px(126), px(34));
         display: block;
+      }
+      .replyTip {
+        position: absolute;
+        top: px(20);
+        right: px(40);
+        font-size: px(20);
+        font-family: PingFangSC-Regular, PingFang SC;
+        font-weight: 400;
+        color: #858290;
+        line-height: px(28);
       }
     }
   }

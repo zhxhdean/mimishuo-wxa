@@ -80,7 +80,7 @@ Page({
         publishTime: formatTimeFromStamp(data.publishTime, 'Y/M/D h:m'),
         topicReplyItem: {
           ...topicReplyItem,
-          createdAt: formatTimeFromStamp(topicReplyItem.createdAt, 'Y/M/D h:m')
+          createdAt: formatTimeFromStamp(topicReplyItem.createdAt || '', 'Y/M/D h:m')
         }
       }
       this.setData({topic: obj})
