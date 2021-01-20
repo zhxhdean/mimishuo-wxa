@@ -17,7 +17,12 @@ Page({
     secretList: [],
     showSelect: false,
     isEmpty: false,
-    isOnLoad: false
+    isOnLoad: false,
+    topic: null,
+    content: '',
+    secretTopic: false,
+    showReplyPop: false,
+    replyId: ''
   },
   onLoad: async function (options) {
     this.setData({isOnLoad: true})
@@ -51,12 +56,35 @@ Page({
       isEmpty: false,
       noMore: false,
       last: 0,
-      secretList: []
+      secretList: [],
+      topic: null
     })
     this.loadMore()
+    this.feachTopic()
     setTimeout(function () {
       wx.stopPullDownRefresh()
     }, 1500)
+  },
+  async feachTopic () {
+    const rsp = await post({
+      url: urls.topic,
+      data: {}
+    })
+    if (rsp.code === 0) {
+      // let data = rsp.data || JSON.parse('{"expireDate":"2021-01-17T07:33:14.092Z","like":false,"likeNum":10,"publishTime":"2021-01-17T07:33:14.092Z","replyNum":10,"secretTopic":true,"subject":"string","topicId":123,"topicReplyItem":{"content":"string","createdAt":"2021-01-17T07:33:14.092Z","like":true,"likeNum":0}}')
+      let data = rsp.data || {}
+      let topicReplyItem = data.topicReplyItem || {}
+      const obj = {
+        ...data,
+        expireDate: formatTimeFromStamp(data.expireDate, 'Y/M/D h:m'),
+        publishTime: formatTimeFromStamp(data.publishTime, 'Y/M/D h:m'),
+        topicReplyItem: {
+          ...topicReplyItem,
+          createdAt: formatTimeFromStamp(topicReplyItem.createdAt, 'Y/M/D h:m')
+        }
+      }
+      this.setData({topic: obj})
+    }
   },
   async loadMore () {
     if (this.data.noMore) {
@@ -124,5 +152,40 @@ Page({
     wx.reLaunch({
       url: '/pages/talk/talk'
     })
+  },
+  closePop: function () {
+    this.setData({showReplyPop: !this.data.showReplyPop})
+  },
+  toReply: function (e) {
+    console.log('id----:', e)
+    const { id = '', secretTopic = false } = e.detail || {}
+    this.setData({showReplyPop: true, replyId: id, secretTopic})
+  },
+  setReplyConent: function (e) {
+    this.setData({content: e.detail.value})
+  },
+  catchtouchmove () {},
+  async reply () {
+    const { replyId, content } = this.data
+    const rsp = await post({
+      url: urls.topicAdd,
+      data: {
+        content,
+        topicId: replyId
+      }
+    })
+    if (rsp.code === 0) {
+      wx.showToast({
+        title: '提交成功',
+        icon: 'none'
+      })
+      this.refresh()
+      this.setData({showReplyPop: false, content: ''})
+    } else {
+      wx.showToast({
+        title: '提交失败',
+        icon: 'none'
+      })
+    }
   }
 })

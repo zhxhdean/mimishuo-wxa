@@ -6,8 +6,6 @@ const urls = {
   userAuth: 'user/auth' ,
   userLogin: 'user/login',
   userJoin: 'user/join',
-  userLogin: 'user/login',
-  userInfo: 'user/info',
   secretList: 'secret/list',
   secretMy: 'secret/my',
   secretNew: 'secret/new',
@@ -15,7 +13,11 @@ const urls = {
   changeIp: 'user/generate/ip',
   secretLikes: 'secret/likes',
   secretLikesC: 'secret/likes/cancel',
-  secretNum: '/user/secret/num'
+  secretNum: '/user/secret/num',
+  topic: '/secret/topic',
+  topicCancel: '/secret/topic/likes/cancel',
+  topicLikes: '/secret/topic/likes',
+  topicAdd: '/secret/topic/reply/add'
 }
 
 module.exports = {

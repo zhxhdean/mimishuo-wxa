@@ -1,6 +1,22 @@
 <view class="cu-profile">
   <view class="cu-profile__bodys">
-    <index-item  wx:for="{{secretList}}" wx:key="{{item.secretId}}" item="{{item}}" idx="{{index}}"></index-item>
+    <top-item wx:if="{{topic}}" item="{{topic}}" bindtoReply="toReply"></top-item>
+    <index-item wx:for="{{secretList}}" wx:key="{{item.secretId}}" item="{{item}}" idx="{{index}}"></index-item>
+    <view wx:if="{{showReplyPop}}" class="replyPop" bindtap="closePop" catchtouchmove="catchtouchmove">
+      <view class="context" catchtap="catchtouchmove">
+        <image class="reply_icon" src="../../images/icon/icon_reply1.png"></image>
+        <textarea fixed="true" class="reply_content" value="{{content}}"
+          maxlength="200"
+          placeholder-class="reply_placeholder"
+          placeholder="{{secretTopic?'内容仅hr和自己可见':'回复hr'}}"
+          bindinput='setReplyConent'
+          confirm-type="send"
+          fixed="{{true}}"
+          bindconfirm="reply"
+        />
+        <!-- catchtap="reply"-->
+      </view>
+    </view>
     <view wx:if="{{isEmpty}}" class="empty">
       <image src="../../images/icon/square_empty.jpg"
              class="empty__img"

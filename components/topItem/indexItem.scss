@@ -1,56 +1,10 @@
 @charset "UTF-8";
+@import "../../scss/vars";
 @import "../../scss/mixins";
-@import "../../scss/base64";
-@import "../../scss/base";
+
 
 .cu-profile {
-  padding-bottom: px(128);
   background: #FFFFFF;
-
-  &__select {
-    position: fixed;
-    top: 0;
-    left: 0;
-
-
-
-    &__title {
-      position: relative;
-      padding: 0 px(20);
-      line-height: px(80);
-
-      width: px(710);
-      background-color: rgba(35, 166, 221, 1);
-      color: rgba(255, 255, 255, 1);
-      font-size: px(36);
-      font-family: Microsoft Yahei;
-      border-radius: px(10);
-      &::after {
-        content: '';
-
-        @include size(px(78));
-        @include icon($select_down_icon);
-        @include abs-pos(0, px(30), 0, auto);
-
-      }
-
-    }
-
-    &__items {
-      border: px(1) solid #DDDDDD;
-    }
-
-    &__item {
-      padding-left: px(20);
-      line-height: px(50);
-
-      background-color: rgba(35, 166, 221, 1);
-      color: rgba(255, 255, 255, 1);
-      font-size: px(32);
-      font-family: Microsoft Yahei;
-    }
-
-  }
 
   &__body {
     margin-top: px(60);
@@ -161,6 +115,25 @@
     text-align: left;
     font-family: Microsoft Yahei;
     border: px(2) solid rgba(255, 255, 255, 0);
+
+    &--hr {
+      margin: px(24) px(40) px(20) px(30);
+      padding: px(16) px(24) px(16);
+      line-height: px(60);
+
+      background-color: rgba(255,158,28,0.1);
+      border-radius: px(20);
+      font-size: px(28);
+      text-align: left;
+
+      font-family: PingFangSC-Regular, PingFang SC;
+      font-weight: 400;
+      color: #3D4B59;
+      .secretImage {
+        @include size(px(126), px(34));
+        display: block;
+      }
+    }
   }
 
   &__reply {
@@ -207,7 +180,8 @@
     margin-top: px(10);
     margin-right: px(10);
 
-    @include size(31.9%,px(200));
+
+    @include size(31.9%,px(174));
     overflow: hidden;
     border: px(1) solid #DDDDDD;
     &:nth-child(3n+3) {
@@ -218,47 +192,34 @@
   &__img {
     @include size(100%);
   }
-
-  .replyPop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(225,225,225,0.8);
-    z-index: 100;
-
-    .context {
-      display: flex;
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      padding: px(20) 0 px(340);
-      height: px(160);
-      background: #FFFFFF;
-      box-shadow: 0px -2px 2px 0px rgba(0, 0, 0, 0.08);
-      .reply_icon {
-        margin: 0 px(18) 0 px(36);
-        @include size(px(46));
-      }
-      .reply_content {
-        height: 100%;
-        padding: px(10);
-        margin-right: px(36);
-        flex: 1;
-        background: #E5E5EA;
-        border-radius: px(16);
-      }
-      .reply_placeholder {
-        font-size: px(28);
-        font-family: PingFangSC-Regular, PingFang SC;
-        font-weight: 400;
-        color: #3D4B59;
-        line-height: px(40);
-      }
-    }
-  }
+}
+.zan_gray {
+  @include size(px(38));
+}
+.zaned_gray {
+  margin-top: px(-10);
+  @include size(px(58));
+}
+.zan_arrow {
+  @include size(px(32));
+}
+.reply_num {
+  display: flex;
+  align-items: center;
+  font-size: px(26);
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #919191;
+  line-height: px(36);
+  margin-left: px(40);
+}
+.reply {
+  margin-left: px(36);
+  font-size: px(28);
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #5DAEFF;
+  line-height: 30px;
 }
 .empty {
   display: flex;

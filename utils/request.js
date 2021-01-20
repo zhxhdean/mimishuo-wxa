@@ -107,14 +107,14 @@ function wxRequest (options) {
     head = header
   }
   // 请求url是否在合法的urls中
-  if (!Object.values(config.urls).includes(url)) {
-    return new Promise((resolve, reject) => {
-      return resolve({
-        code: code.INVALID_URL,
-        content: '非法的url'
-      })
-    })
-  }
+  // if (!Object.values(config.urls).includes(url)) {
+  //   return new Promise((resolve, reject) => {
+  //     return resolve({
+  //       code: code.INVALID_URL,
+  //       content: '非法的url'
+  //     })
+  //   })
+  // }
   const requestUrl = `${host}/${url}`
   const requestMethod = method || 'GET' // 未设置，默认get
   const requestDataType = dataType || 'json' // 未设置，默认json
