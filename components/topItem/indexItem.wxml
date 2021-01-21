@@ -28,7 +28,7 @@
 			<text class="cu-profile__reply-time">{{item.createdAt}}</text>
 			<view class="cu-profile__reply-img">
 				<image wx:if="{{item.like===true}}" class="zaned_gray" src="../../images/icon/icon_zaned_grey.png" />
-				<image wx:else class="zan_gray" src="../../images/icon/icon_zaned_grey.png" />
+				<image wx:else class="zan_gray" src="../../images/icon/icon_zan_grey.png" />
 			</view>
 		</view>
 		<view>{{item.content}}
@@ -40,12 +40,12 @@
 			<text class="cu-profile__reply-time">{{item.topicReplyItem.createdAt}}</text>
 			<view wx:if="{{!item.secretTopic}}" class="cu-profile__reply-img" data-type="reply">
 				<image wx:if="{{item.topicReplyItem.like===true}}" class="zaned_gray" src="../../images/icon/icon_zaned_grey.png" />
-				<image wx:else class="zan_gray" src="../../images/icon/icon_zaned_grey.png" />
+				<image wx:else class="zan_gray" src="../../images/icon/icon_zan_grey.png" />
 			</view>
 		</view>
 		<view >{{item.topicReplyItem.content}}
 		</view>
 	</view>
-	<view  class="reply_num" bindtap="topIcDesc" wx:if="{{item.replyNum>0 && !item.secretTopic}}" data-id="{{item.topicId}}">共{{item.replyNum}}条回复 <image class="zan_arrow" src="../../images/icon/icon_arrow_gray.png" /></view>
+	<view  class="reply_num" bindtap="topIcDesc" wx:if="{{item.replyNum>0 && !item.secretTopic && topicReplyItemList.length === 0}}" data-id="{{item.topicId}}">共{{item.replyNum}}条回复 <image class="zan_arrow" src="../../images/icon/icon_arrow_gray.png" /></view>
 </view>
 
