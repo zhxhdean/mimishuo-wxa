@@ -19,17 +19,20 @@ Component({
     hateNum: 0,
     result: {},
     index: 0,
-    topicReplyItemList: []
+    topicReplyItemList: [],
+    isShowReplyAll: false
   },
   attached () {
     const {item} = this.properties
     if (item) {
-      this.setData({ result: item, likeNum: item.likeNum, like: item.like })
+      const obj = item.topicReplyItem || {}
+      const arr = obj.content ? [obj] : []
+      this.setData({ result: item, likeNum: item.likeNum, like: item.like, topicReplyItemList: arr })
     }
   },
   methods: {
     likes (e) {
-      const { id, status } = e.currentTarget.dataset
+      const { id, status, type = 'TOPIC' } = e.currentTarget.dataset
       const { likeNum } = this.data
       if (status === true) {
         this.likesCancel(id)
@@ -38,7 +41,7 @@ Component({
           url: urls.topicLikes,
           data: {
             id,
-            topicLikeType: 'TOPIC'
+            topicLikeType: type
           }
         }).then((res) => {
           const { code, content } = res
@@ -98,7 +101,7 @@ Component({
               createdAt: formatTimeFromStamp(item.createdAt, 'Y/M/D h:m')
             })
           })
-          this.setData({topicReplyItemList})
+          this.setData({topicReplyItemList, isShowReplyAll: true})
         }
       })
     },

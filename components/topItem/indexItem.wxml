@@ -22,30 +22,9 @@
 		{{item.subject}}
 		<text class="reply" bindtap="reply" data-id="{{item.topicId}}">回复</text>
 	</view>
-	<!---->
-	<view wx:for="{{topicReplyItemList}}" wx:key="{{item.secretId}}" item="{{item}}" idx="{{index}}" class="cu-profile__reply">
-		<view class="cu-profile__reply-hr">
-			<text class="cu-profile__reply-time">{{item.createdAt}}</text>
-			<view class="cu-profile__reply-img">
-				<image wx:if="{{item.like===true}}" class="zaned_gray" src="../../images/icon/icon_zaned_grey.png" />
-				<image wx:else class="zan_gray" src="../../images/icon/icon_zan_grey.png" />
-			</view>
-		</view>
-		<view>{{item.content}}
-		</view>
-	</view>
-	<!---->
-	<view wx:if="{{item.topicReplyItem.content && topicReplyItemList.length === 0}}" class="cu-profile__reply sss">
-		<view class="cu-profile__reply-hr">
-			<text class="cu-profile__reply-time">{{item.topicReplyItem.createdAt}}</text>
-			<view wx:if="{{!item.secretTopic}}" class="cu-profile__reply-img" data-type="reply">
-				<image wx:if="{{item.topicReplyItem.like===true}}" class="zaned_gray" src="../../images/icon/icon_zaned_grey.png" />
-				<image wx:else class="zan_gray" src="../../images/icon/icon_zan_grey.png" />
-			</view>
-		</view>
-		<view >{{item.topicReplyItem.content}}
-		</view>
-	</view>
-	<view  class="reply_num" bindtap="topIcDesc" wx:if="{{item.replyNum>0 && !item.secretTopic && topicReplyItemList.length === 0}}" data-id="{{item.topicId}}">共{{item.replyNum}}条回复 <image class="zan_arrow" src="../../images/icon/icon_arrow_gray.png" /></view>
+	<!--回复列表-->
+	<reply-item wx:for="{{topicReplyItemList}}" wx:key="{{item.topicReplyId}}" item="{{item}}" idx="{{index}}" secretTopic="{{item.secretTopic}}"></reply-item>
+
+	<view  class="reply_num" bindtap="topIcDesc" wx:if="{{item.replyNum>1 && !item.secretTopic && !isShowReplyAll}}" data-id="{{item.topicId}}">共{{item.replyNum}}条回复 <image class="zan_arrow" src="../../images/icon/icon_arrow_gray.png" /></view>
 </view>
 

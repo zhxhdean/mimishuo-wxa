@@ -1,0 +1,27 @@
+<view wx:if="item" class="cu-profile__reply">
+	<view class="cu-profile__reply-hr">
+		<text class="cu-profile__reply-time">{{item.createdAt}}</text>
+		<view wx:if="{{!secretTopic}}" class="cu-profile__reply-img" data-type="reply">
+			<image wx:if="{{like===true}}"
+			       class="zaned_gray"
+			       src="../../images/icon/icon_zaned_grey.png"
+			       bindtap="likes"
+			       data-status="{{like}}"
+			       data-id="{{item.topicReplyId}}"
+			/>
+			<image wx:else
+			       class="zan_gray"
+			       src="../../images/icon/icon_zan_grey.png"
+			       bindtap="likes"
+			       data-status="{{like}}"
+			       data-id="{{item.topicReplyId}}"
+			/>
+		</view>
+		<view wx:else class="secretReply">
+			<image class="secret_suo" src="../../images/icon/icon_suo_grey.png"></image>
+			他人不可见
+		</view>
+	</view>
+	<view >{{item.content}}
+	</view>
+</view>

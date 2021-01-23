@@ -13,11 +13,11 @@ const urls = {
   changeIp: 'user/generate/ip',
   secretLikes: 'secret/likes',
   secretLikesC: 'secret/likes/cancel',
-  secretNum: '/user/secret/num',
-  topic: '/secret/topic',
-  topicCancel: '/secret/topic/likes/cancel',
-  topicLikes: '/secret/topic/likes',
-  topicAdd: '/secret/topic/reply/add'
+  secretNum: 'user/secret/num',
+  topic: 'secret/topic',
+  topicCancel: 'secret/topic/likes/cancel',
+  topicLikes: 'secret/topic/likes',
+  topicAdd: 'secret/topic/reply/add'
 }
 
 module.exports = {

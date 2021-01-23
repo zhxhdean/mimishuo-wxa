@@ -1,3 +1,6 @@
 {
-  "component": true
+  "component": true,
+  "usingComponents": {
+    "reply-item": "../replyItem/indexItem"
+  }
 }
