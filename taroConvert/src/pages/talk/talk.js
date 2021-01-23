@@ -199,16 +199,16 @@ const app = Taro.getApp()
       })
       switch (rsp.data.country) {
         case 'UK':
-          nationalFlagUrl = 'images/resources/Nipic_48.jpg'
+          nationalFlagUrl = require('../../images/resources/Nipic_48.jpg')
           break
         case 'JAPAN':
-          nationalFlagUrl = 'images/resources/Nipic_121.jpg'
+          nationalFlagUrl = require('../../images/resources/Nipic_121.jpg')
           break
         case 'France':
-          nationalFlagUrl = 'images/resources/Nipic_78.jpg'
+          nationalFlagUrl = require('../../images/resources/Nipic_78.jpg')
           break
         case 'US':
-          nationalFlagUrl = 'images/resources/Nipic_26.jpg'
+          nationalFlagUrl = require('../../images/resources/Nipic_26.jpg')
           break
       }
       const virtualInfo = rsp.data || {}
@@ -313,7 +313,7 @@ class _C extends Taro.Component {
         {/* <official-account class="official" bindload='bindload' binderror='binderror'>关注</official-account> */}
         {/* </view> */}
         <View className="talk__top">
-          <View className="talk__top-user">
+          <View className="talk__top-user talk_user">
             {headImageUrl && (
               <Image className="talk__top-img" src={headImageUrl}></Image>
             )}
@@ -330,7 +330,7 @@ class _C extends Taro.Component {
               {nationalFlagUrl && (
                 <Image
                   className="talk__country__img"
-                  src={'../../' + nationalFlagUrl}
+                  src={nationalFlagUrl}
                 ></Image>
               )}
             </View>
@@ -376,7 +376,7 @@ class _C extends Taro.Component {
         <View className="talk__images">
           {previewImages.map((item, index) => {
             return (
-              <View className="talk__images__image" key={index}>
+              <View className="talk__images__image" key={item}>
                 <Image src={item} className="talk__images__img"></Image>
                 <I
                   className="talk__images__image-i"

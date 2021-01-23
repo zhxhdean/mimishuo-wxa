@@ -223,6 +223,7 @@ class _C extends Taro.Component {
       <View className="cu-profile">
         <View className="cu-profile__bodys">
           {topic && <TopItem item={topic} onToReply={this.toReply}></TopItem>}
+        
           {secretList.map((item, index) => {
             return (
               <IndexItem

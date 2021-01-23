@@ -87,7 +87,7 @@ class _C extends Taro.Component {
     return (
       <View className="home_page">
         <View className="tab_title">我的</View>
-        <View className="cu-profile__user">
+        <View className="cu-profile__user profile_user">
           <Div className="cu-profile__user-author">
             <Image
               onClick={this.addCount}

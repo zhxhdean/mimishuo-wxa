@@ -242,7 +242,7 @@ class _C extends Taro.Component {
           <View className="cu-profile__images">
             {item.imageUrls.map((img, index) => {
               return (
-                <View key={index} className="cu-profile__image">
+                <View key={img} className="cu-profile__image">
                   <Image
                     src={img}
                     className="cu-profile__img"

@@ -25,7 +25,8 @@ const { formatTimeFromStamp } = require('../../utils/timeUtil.js')
     result: {},
     index: 0,
     topicReplyItemList: [],
-    isShowReplyAll: false
+    isShowReplyAll: false,
+    item: {}
   },
   attached() {
     const { item } = this.properties
@@ -36,7 +37,8 @@ const { formatTimeFromStamp } = require('../../utils/timeUtil.js')
         result: item,
         likeNum: item.likeNum,
         like: item.like,
-        topicReplyItemList: arr
+        topicReplyItemList: arr,
+        item: item
       })
     }
   },
@@ -132,7 +134,7 @@ class _C extends Taro.Component {
   }
 
   render() {
-    const { like, likeNum, isShowReplyAll, topicReplyItemList } = this.data
+    const { like, likeNum, isShowReplyAll, topicReplyItemList, item } = this.data
     return (
       item.subject && (
         <View
@@ -196,13 +198,13 @@ class _C extends Taro.Component {
             </View>
           )}
           {/* 回复列表 */}
-          {topicReplyItemList.map((item, index) => {
+          {topicReplyItemList.map((it, index) => {
             return (
               <ReplyItem
-                key={item.topicReplyId}
-                item={item}
+                key={it.topicReplyId}
+                item={it}
                 idx={index}
-                secretTopic={item.secretTopic}
+                secretTopic={it.secretTopic}
               ></ReplyItem>
             )
           })}

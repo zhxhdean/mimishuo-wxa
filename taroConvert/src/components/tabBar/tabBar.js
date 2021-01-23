@@ -16,14 +16,14 @@ const app = Taro.getApp()
     currentTab: 0,
     items: [
       {
-        iconPath: '../../images/icon/tabbar_square.png',
-        selectedIconPath: '../../images/icon/tabbar_square_on.png',
+        iconPath: require('../../images/icon/tabbar_square.png'),
+        selectedIconPath: require('../../images/icon/tabbar_square_on.png'),
         text: '广场',
         url: '/pages/index/index'
       },
       {
-        iconPath: '../../images/icon/tabbar_me.png',
-        selectedIconPath: '../../images/icon/tabbar_me_on.png',
+        iconPath: require('../../images/icon/tabbar_me.png'),
+        selectedIconPath: require('../../images/icon/tabbar_me_on.png'),
         text: '我的',
         url: '/pages/home/home'
       }

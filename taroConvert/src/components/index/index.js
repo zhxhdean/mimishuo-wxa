@@ -15,7 +15,8 @@ const { formatTimeFromStamp } = require('../../utils/timeUtil.js')
     last: 0, // 最后一条
     noMore: false,
     secretList: [],
-    showSelect: false
+    showSelect: false,
+    item: {}
   },
   async attached() {
     this.refresh()
@@ -106,16 +107,16 @@ class _C extends Taro.Component {
   }
 
   render() {
-    const { secretList, noMore } = this.data
+    const { secretList, noMore, item } = this.data
     return (
       <View className="cu-profile">
         <View className="cu-profile__bodys">
           {item.content && (
             <Block>
-              {secretList.map((item, index) => {
+              {secretList.map((it, index) => {
                 return (
                   <View
-                    key={item.secretId}
+                    key={it.secretId}
                     className={
                       'cu-profile__body ' +
                       (index == 0 ? 'cu-profile__body--first' : '')
@@ -124,14 +125,14 @@ class _C extends Taro.Component {
                     <View className="cu-profile__user">
                       <View className="cu-profile__user-left">
                         <View className="cu-profile__user-image cu-placeholder">
-                          {item.headImageUrl && (
+                          {it.headImageUrl && (
                             <Image
-                              src={item.headImageUrl}
+                              src={it.headImageUrl}
                               className="cu-profile__user-img"
                             ></Image>
                           )}
                         </View>
-                        {item.createTime}
+                        {it.createTime}
                       </View>
                       <View className="cu-profile__user-right">
                         <Image
@@ -141,15 +142,15 @@ class _C extends Taro.Component {
                         {item.power}
                       </View>
                     </View>
-                    {item.content && (
+                    {it.content && (
                       <View className="cu-profile__content">
-                        {item.content}
+                        {it.content}
                       </View>
                     )}
                     <View className="cu-profile__images">
-                      {item.imageUrls.map((img, index) => {
+                      {it.imageUrls.map((img, index) => {
                         return (
-                          <View key={index} className="cu-profile__image">
+                          <View key={img} className="cu-profile__image">
                             <Image
                               src={img}
                               className="cu-profile__img"
@@ -161,13 +162,13 @@ class _C extends Taro.Component {
                               <image src="{{i}}"/>
                             </block> */}
                     </View>
-                    {item.reply && (
+                    {it.reply && (
                       <View className="cu-profile__reply">
-                        <View>{item.reply}</View>
+                        <View>{it.reply}</View>
                         <View className="cu-profile__reply-hr">
                           <Strong>HR</Strong>
                           <Text className="cu-profile__reply-time">
-                            {item.replyTime}
+                            {it.replyTime}
                           </Text>
                         </View>
                       </View>
