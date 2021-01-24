@@ -139,9 +139,9 @@ class _C extends Taro.Component {
               </Button>
             )}
             {!companyId && (
-              <Div className="start__btn" onClick={this.clickComplaints}>
+              <View className="start__btn" onClick={this.clickComplaints}>
                 去吐槽
-              </Div>
+              </View>
             )}
             {/* <official-account class="official" bindload='bindload' binderror='binderror'></official-account> */}
           </View>

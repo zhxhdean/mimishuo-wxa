@@ -87,14 +87,14 @@ class _C extends Taro.Component {
     return (
       <View className="home_page">
         <View className="tab_title">我的</View>
-        <View className="cu-profile__user profile_user">
-          <Div className="cu-profile__user-author">
+        <View className="profile_user">
+          <View className="cu-profile_user">
             <Image
               onClick={this.addCount}
               className="cu-profile__user-image"
               src={userInfo.headImageUrl}
             ></Image>
-          </Div>
+          </View>
           {/* <image class="cu-profile__user-power" src="../../images/flash.png"/> */}
           {/* <text class="cff9 cu-profile__user-text">{{userInfo.power || 12}}</text> */}
           <View className="cu-profile__user-power">
